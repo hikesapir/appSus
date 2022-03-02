@@ -44,7 +44,7 @@ function _createNotes() {
             id: "n102",
             type: "note-img",
             info: {
-                url: "http://some-img/me",
+                url: "https://cdn-prod.medicalnewstoday.com/content/images/articles/322/322868/golden-retriever-puppy.jpg",
                 title: "Bobi and Me"
             },
             style: {
