@@ -20,13 +20,11 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  v-for="mail in mails" :key="mail.id" @click="seeDetails(mail.id)">             
-                     <mail-preview :mail="mail" />
-                    </tr>
+                     <mail-preview  v-for="mail in mails" :key="mail.id" @click="seeDetails(mail.id)" :mail="mail" />
                 </tbody>
             </table>
         </section>
-
+        
         
     `,
     components: {
@@ -46,7 +44,15 @@ export default {
 
     methods: {
         seeDetails(id) {
-            this.$router.push(`/mail/${id}`)
+            mailService.get(id)
+                .then(mail => {
+                    mail.isRead = true
+                    mailService.save(mail)
+                    .then(()=>{
+                        this.$router.push(`/mail/${id}`)
+                        this.$emit('test', 1)
+                    })
+                })
         }
     },
     computed: {

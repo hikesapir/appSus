@@ -8,6 +8,7 @@ export default {
     template: `
     <section v-if="mail" class="mail-details">
         <button @click="backToMails">back</button>
+        <button @click="removeMail">remove</button>
         <hr>
         <h1>{{mail.subject}}</h1>
         <div class="addressee">
@@ -38,9 +39,12 @@ export default {
     },
 
     methods: {
-        backToMails(){
+        backToMails() {
             this.$router.push(`/mail/list`)
-
+        },
+        removeMail() {
+            mailService.remove(this.mail.id)
+                .then(() => this.$router.push(`/mail/list`))
         }
 
     },

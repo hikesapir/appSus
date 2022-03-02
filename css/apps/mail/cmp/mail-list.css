@@ -17,11 +17,7 @@
     border-bottom: 1px solid #dddddd;
     text-align: left;
 }
-/* 
-.mail-list .thead {
-    border-bottom: 3px solid #dddddd;
-    
-} */
+
 .mail-list tbody{
     cursor: pointer;
 
@@ -29,4 +25,13 @@
 
 .mail-list tbody tr:hover{
     box-shadow: 0px 10px 13px -7px #000000, 0px 0px 5px 2px rgba(0,0,0,0.43);
+}
+
+.mail-list .unread{
+    font-weight: bold;
+}
+
+.mail-list .raed{
+    font-weight: normal;
+    background-color: var(--clr-light-gray2);
 }

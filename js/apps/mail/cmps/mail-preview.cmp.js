@@ -7,12 +7,13 @@ export default {
     props: ['mail'],
     template: `
         <!-- <section class="mail-preview"> -->
-            <!-- <tr> -->
-               
-                <td> <h1>{{mail.subject}}</h1> </td>
+            <tr :class="openedMail">
+                <input type="checkbox">
+                <td>{{mail.id}}</td>
+                <td> {{mail.subject}} </td>
                 <td> <long-text :txt="mail.body"/></td>
                 <td> {{sentAt}}</td>
-            <!-- </tr> -->
+            </tr>
         <!-- </section> -->
     `,
     components: {
@@ -43,5 +44,8 @@ export default {
             return display
 
         },
+        openedMail(){
+            return (this.mail.isRead)? 'raed':'unread'
+        }
     }
 }

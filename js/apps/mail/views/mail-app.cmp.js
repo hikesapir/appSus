@@ -5,29 +5,55 @@ import navBar from "../cmps/nav-bar.cmp.js";
 
 export default {
     name: 'mail-app',
-    template:`
+    template: `
         <section class="mail-app">
-            <nav-bar></nav-bar>
-               <router-view></router-view>
+            <nav-bar :unread="unread"></nav-bar>
+               <router-view @test="test"></router-view>
         </section>
     `,
     components: {
         mailList,
         navBar,
-      },    
+    },
     data() {
-        return{
+        return {
             mails: null,
+            unread: null,
 
         }
     },
     created() {
         mailService.query()
-            .then(mails => this.mails = mails);
+            .then(mails => {
+                this.mails = mails
+                this.unreadMails()
+            });
+            
     },
 
     methods: {
-        
+        test(e) {
+            console.log(e);
+            this.unreadMails()
+            this.hey()
+        },
+        unreadMails() {
+            mailService.query()
+            .then(mails => {
+                this.mails = mails
+                var count = 0
+                this.mails.forEach(mail => {
+                    if (!mail.isRead) count++
+                })
+                console.log(this.mails);
+                this.unread = count;
+            });
+          
+            // console.log();
+        },
+        hey(){
+            console.log('hey',this.unreadMails1);
+        }
     },
     computed: {
         mailsForDisplay() {
@@ -35,6 +61,9 @@ export default {
             // if (!this.filterBy) return this.cars;
             // const regex = new RegExp(this.filterBy.vendor, 'i');
             // return this.cars.filter(car => regex.test(car.vendor));
+        },
+        unreadMails1() {
+          return this.unread;
         }
 
     },

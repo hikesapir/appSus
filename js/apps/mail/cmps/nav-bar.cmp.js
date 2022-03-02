@@ -2,13 +2,13 @@
 
 export default {
     name: 'nav-bar',
-    props: [],
+    props: ['unread'],
     template: `
         <section class="nav-bar">
             <h1>nav -bar</h1>
             <ul>
                 <li> Compose</li>
-                <li><i class="fa-solid fa-inbox"></i> Inbox</li>
+                <li><i class="fa-solid fa-inbox"></i> Inbox ({{unread}})</li>
                 <li><i class="fa-solid fa-star"></i> Starred</li>
                 <li><i class="fa-solid fa-paper-plane"></i> Sent</li>
                 <li><i class="fa-solid fa-file"></i> Drafts</li>
