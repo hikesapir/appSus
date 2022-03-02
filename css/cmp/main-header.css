@@ -1,0 +1,41 @@
+.app-header {
+    height: 15vh;
+}
+
+.app-header .header-container {
+    height: 15vh;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    
+}
+.app-header .header-container > * {
+    display: flex;
+    align-items: center;
+    
+}
+
+.app-header .logo {
+    margin-left: 2rem;
+}
+
+.app-header .logo img {
+    width: 125px;
+}
+
+.app-header nav a {
+    padding: 0.2rem;
+    margin-right: 2rem;
+    font-size: 1.5rem;
+    font-family: cairo;
+    color: var(--clr-pink);
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.5s ease-out;
+}
+
+.app-header nav a:hover {
+    color: var(--clr-blue);
+    border-color: var(--clr-blue);
+}

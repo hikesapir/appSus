@@ -1,7 +1,17 @@
 export default {
     template:`
-        <section class="app-header">
-            <h3>header</h3>
-        </section>
+        <header class="app-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../img/logo.png"/>
+            </div>
+            <nav class="nav-bar">
+                <router-link to="/">Home</router-link>
+                <router-link to="/note">Notes</router-link>
+                <router-link to="/mail">Mail</router-link>
+                
+            </nav>
+        </div>
+        </header>
     `,
 }

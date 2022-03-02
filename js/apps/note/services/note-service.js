@@ -31,8 +31,17 @@ function save(note) {
 }
 
 function newNote(note) {
-    note.id = utilService.makeId()
-    return storageService.post(NOTES_KEY, note);
+    var currNote = null;
+    if (note.type === 'note-txt') {
+        currNote = _createTxtNote(note.txt);
+    } else if (note.type === 'note-img') {
+        currNote = _createImgNote(note.url, note.txt);
+    } else if (note.type === 'note-todos') {
+        currNote = _createTodoNote(note.url, note.txt)
+    } else console.log('error')
+
+    currNote.id = utilService.makeId();
+    return storageService.post(NOTES_KEY, currNote);
 }
 
 function _createNotes() {
@@ -72,4 +81,35 @@ function _createNotes() {
     }
     utilService.saveToStorage(NOTES_KEY, notes);
     return notes;
+}
+
+function _createTxtNote(txt) {
+    return {
+        type: "note-txt",
+        info: {
+            txt
+        }
+    }
+}
+
+function _createImgNote(url, title) {
+    return {
+        type: "note-img",
+        info: {
+            url,
+            title
+        }
+    }
+}
+
+function _createTodoNote(label,txt) {
+    return {
+        type: "note-todos",
+        info: {
+            label,
+            todos: [
+                {txt, doneAt: new Date(Date.now())}
+            ]
+        }
+    }
 }
