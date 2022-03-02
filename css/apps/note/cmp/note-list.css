@@ -1,0 +1,14 @@
+.note-list .note-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    
+}
+
+.note-list .note-container > * {
+    background-color: #facc33;
+}
+
+.note-list #component h1 {
+    text-align: center;
+}

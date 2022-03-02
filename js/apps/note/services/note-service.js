@@ -10,6 +10,7 @@ export const noteService = {
     get,
     save,
     remove,
+    newNote
 };
 
 function query() {
@@ -25,8 +26,13 @@ function get(noteId) {
 }
 
 function save(note) {
-    if (note.id) return storageService.put(STORAGE_KEY, note);
-    else return storageService.post(STORAGE_KEY, note);
+    if (note.id) return storageService.put(NOTES_KEY, note);
+    else return storageService.post(NOTES_KEY, note);
+}
+
+function newNote(note) {
+    note.id = utilService.makeId()
+    return storageService.post(NOTES_KEY, note);
 }
 
 function _createNotes() {
