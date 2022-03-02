@@ -2,7 +2,7 @@ export default {
     props: ['info'],
     template: `
         <section class="note-txt">
-            <input type="text" v-model="info.txt" @input="changeTxt"/>
+            {{info.txt}}
         </section>
     `,
     data() {
@@ -11,9 +11,6 @@ export default {
         }
     },
     methods: {
-        changeTxt() {
-            this.$emit('setTxt', this.info.txt)
-        }
     },
     computed: {}
 }
