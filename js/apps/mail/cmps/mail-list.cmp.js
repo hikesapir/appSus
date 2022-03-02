@@ -2,14 +2,16 @@
 
 import mailPreview from "./mail-preview.cmp.js";
 import { mailService } from "../services/mail-service.js";
+import searchBar from "../cmps/search-bar.cmp.js";
 
 export default {
     name: 'mail-list',
     // props: ['mails'],
     template: `
         <section v-if="mails" class="mail-list">
+        <search-bar></search-bar>
             <table>
-                <thead>
+                <thead class="thead">
                     <tr>
                         <td>id</td>
                         <td><h1>subject</h1></td>
@@ -24,9 +26,12 @@ export default {
                 </tbody>
             </table>
         </section>
+
+        
     `,
     components: {
         mailPreview,
+        searchBar,
     },
     data() {
         return {

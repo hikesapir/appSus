@@ -7,6 +7,8 @@ export default {
     props: [],
     template: `
     <section v-if="mail" class="mail-details">
+        <button @click="backToMails">back</button>
+        <hr>
         <h1>{{mail.subject}}</h1>
         <div class="addressee">
             <div class="user-icon"><i class="fa-solid fa-user"></i></div>
@@ -36,6 +38,10 @@ export default {
     },
 
     methods: {
+        backToMails(){
+            this.$router.push(`/mail/list`)
+
+        }
 
     },
     computed: {
