@@ -9,10 +9,30 @@
     height: 100%;
     position: absolute;
     left: 10%;
-    background-image: url('../../img/email-logo.png');
+    background-image: url('../../img/email-bg.png');
     background-position: right; 
     background-repeat: no-repeat;
     background-size: contain;
+    animation-name: switchbg;
+    animation-direction: alternate-reverse;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+
+@keyframes switchbg {
+    0% {
+        background-image: url('../../img/email-bg.png');
+    }
+    50% {
+        background-image: url('../../img/book-bg.png');
+    }
+    100% {
+        background-image: url('../../img/note-bg.png');
+    }
 }
 
 .home-page .appsus-info {
@@ -23,6 +43,7 @@
     font-family: cairo;
     font-weight: bold;
     font-size: 6rem;
+    color: var(--clr-purple2);
     text-transform: uppercase;
     margin-bottom: 0;
 }

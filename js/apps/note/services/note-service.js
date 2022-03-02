@@ -37,8 +37,11 @@ function newNote(note) {
     } else if (note.type === 'note-img') {
         currNote = _createImgNote(note.url, note.txt);
     } else if (note.type === 'note-todos') {
-        currNote = _createTodoNote(note.url, note.txt)
-    } else console.log('error')
+        currNote = _createTodoNote(note.url, note.txt);
+    } else if(note.type === 'note-video') {
+        console.log('ger here');
+        currNote =_createVidNote(note.src, note.txt)
+    } else console.log('error');
 
     currNote.id = utilService.makeId();
     return storageService.post(NOTES_KEY, currNote);
@@ -76,6 +79,14 @@ function _createNotes() {
                     { txt: "Coding power", doneAt: 187111111 }
                 ]
             }
+        },
+        {
+            id: "n104",
+            type: "note-video",
+            info: {
+                src: "https://www.youtube.com/embed/QR-tZqiKCrg",
+                title: "Test"
+            }
         }
         ];
     }
@@ -89,7 +100,7 @@ function _createTxtNote(txt) {
         info: {
             txt
         }
-    }
+    };
 }
 
 function _createImgNote(url, title) {
@@ -99,17 +110,37 @@ function _createImgNote(url, title) {
             url,
             title
         }
-    }
+    };
 }
 
-function _createTodoNote(label,txt) {
+function _createTodoNote(label, txt) {
     return {
         type: "note-todos",
         info: {
             label,
             todos: [
-                {txt, doneAt: new Date(Date.now())}
+                { txt, doneAt: new Date(Date.now()) }
             ]
         }
-    }
+    };
+}
+
+// _createVidNote('https://www.youtube.com/watch?v=ozj4T5M5GTk&ab_channel=KitchenNightmares', 'meow')
+
+function _createVidNote(src, title) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = src.match(regExp);
+
+    const id = (match && match[2].length === 11) ? match[2] : null;
+
+    const newSrc = `https://www.youtube.com/embed/${id}`
+    console.log(newSrc)
+
+    return {
+        type: "note-video",
+        info: {
+            src: newSrc,
+            title
+        }
+    };
 }
