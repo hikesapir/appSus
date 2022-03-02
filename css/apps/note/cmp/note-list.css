@@ -12,3 +12,23 @@
 .note-list #component h1 {
     text-align: center;
 }
+
+.note-add {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+.note-add .options {
+    display: flex;
+    gap: 10px;
+}
+
+.note-add .options li {
+    cursor: pointer;
+    font-size: 2rem
+}
+
+.note-add form {
+    display: flex;
+    flex-direction: column;
+}

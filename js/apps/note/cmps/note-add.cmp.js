@@ -2,16 +2,15 @@ export default {
     template: `
         <section class="note-add">
         <form @submit.prevent="addNote">
-            <select v-model="newNote.type">
-                <option disabled value="">Please select one</option>
-                <option value="note-txt">Text</option>
-                <option value="note-img">Image</option>
-                <option value="note-todos">Todo</option>
 
-            </select>
-            <input type="text" placeholder="test" v-model="newNote.txt">
-            <input type="text" placeholder="label" v-model="newNote.label">
-            <input type="text" placeholder="url" v-model="newNote.url">
+            <ul class="options">
+                    <li @click="newNote.type = 'note-txt'"><i class="fa-solid fa-font"></i></li>
+                    <li @click="newNote.type = 'note-img'"><i class="fa-solid fa-image"></i></li>
+                    <li @click="newNote.type = 'note-todos'"><i class="fa-solid fa-list"></i></li>
+                </ul>
+            <input  type="text" placeholder="write some text.." v-model="newNote.txt">
+            <input v-if="newNote.type === 'note-todos'" type="text" placeholder="add label" v-model="newNote.label">
+            <input v-if="newNote.type === 'note-img'" type="text" placeholder="add url" v-model="newNote.url">
         <button>Add new note</button>
         </form>
         </section>
@@ -19,7 +18,7 @@ export default {
     data() {
         return {
             newNote: {
-                type: null,
+                type: 'note-txt',
                 label: null,
                 txt: null,
                 url: null
@@ -29,7 +28,12 @@ export default {
     methods: {
         addNote() {
             this.$emit('add', {...this.newNote})
-        }
+        },
+        
     },
-    computed: {}
+    computed: {
+        checkType() {
+            
+        }
+    }
 }
