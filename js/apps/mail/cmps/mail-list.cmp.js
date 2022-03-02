@@ -1,12 +1,13 @@
 'use strict';
 
 import mailPreview from "./mail-preview.cmp.js";
+import { mailService } from "../services/mail-service.js";
 
 export default {
     name: 'mail-list',
-    props: ['mails'],
+    // props: ['mails'],
     template: `
-        <section class="mail-list">
+        <section v-if="mails" class="mail-list">
             <table>
                 <thead>
                     <tr>
@@ -29,11 +30,13 @@ export default {
     },
     data() {
         return {
+            mails: null,
 
         }
     },
     created() {
-
+        mailService.query()
+            .then(mails => this.mails = mails);
     },
 
     methods: {

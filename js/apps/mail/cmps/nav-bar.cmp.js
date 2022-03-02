@@ -10,9 +10,9 @@ export default {
                 <li> Compose</li>
                 <li><i class="fa-solid fa-inbox"></i> Inbox</li>
                 <li><i class="fa-solid fa-star"></i> Starred</li>
-                <li>Sent</li>
-                <li>Drafts</li>
-                <li>Trash</li>
+                <li><i class="fa-solid fa-paper-plane"></i> Sent</li>
+                <li><i class="fa-solid fa-file"></i> Drafts</li>
+                <li><i class="fa-solid fa-trash-can"></i> Trash</li>
             </ul>
         </section>
     `,

@@ -1,6 +1,7 @@
 /* layout */
 .mail-app{
     display: flex;
+    padding: 25px;
 }
 
 .mail-list-conainer{

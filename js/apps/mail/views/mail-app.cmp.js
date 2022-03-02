@@ -12,7 +12,8 @@ export default {
             <nav-bar></nav-bar>
             <div class="mail-list-conainer">
                 <search-bar></search-bar>
-               <mail-list :mails="mailsForDisplay" ></mail-list>
+               <!-- <mail-list :mails="mailsForDisplay" ></mail-list> -->
+               <router-view></router-view>
             </div>
         </section>
     `,
