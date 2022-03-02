@@ -1,21 +1,25 @@
 import { noteService } from '../../note/services/note-service.js';
 import noteList from '../../note/cmps/note-list.cmp.js';
 import noteAdd from '../../note/cmps/note-add.cmp.js';
+// import noteEdit from '../../note/cmps/note-edit.cmp.js';
 
 export default {
     template: `
         <section class="note-app main-layout">
             <note-add @add="addNote" />
-            <note-list :notes="notes" @remove="removeNote"/>
+            <note-list :notes="notes" @remove="removeNote" @edit="editNote"/>
+            <!-- <note-edit  v-if="openEdit"/> -->
         </section>
     `,
     components: {
         noteList,
-        noteAdd
+        noteAdd,
+        // noteEdit
     },
     data() {
         return {
-            notes: null
+            notes: null,
+            openEdit: false
         };
     },
     created() {
@@ -36,6 +40,9 @@ export default {
                     noteService.query()
                         .then(notes => this.notes = notes);
                 });
+        },
+        editNote(id) {
+            this.openEdit = true
         }
     }
 
