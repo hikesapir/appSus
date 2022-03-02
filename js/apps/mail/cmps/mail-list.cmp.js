@@ -46,7 +46,6 @@ export default {
 
     methods: {
         seeDetails(id) {
-            console.log(id);
             this.$router.push(`/mail/${id}`)
         }
     },

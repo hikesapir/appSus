@@ -8,7 +8,7 @@ export default {
     template: `
         <!-- <section class="mail-preview"> -->
             <!-- <tr> -->
-                <!-- <td> <component :is="cmpType" @click="callToAction">{{mail.id}}</component></td> -->
+               
                 <td> <h1>{{mail.subject}}</h1> </td>
                 <td> <long-text :txt="mail.body"/></td>
                 <td> {{sentAt}}</td>
