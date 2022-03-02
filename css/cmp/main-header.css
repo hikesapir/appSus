@@ -3,7 +3,6 @@
 }
 
 .app-header .header-container {
-    height: 15vh;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -16,6 +15,7 @@
 }
 
 .app-header .logo {
+    cursor: pointer;
     margin-left: 2rem;
 }
 
