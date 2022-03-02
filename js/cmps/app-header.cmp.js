@@ -2,8 +2,8 @@ export default {
     template:`
         <header class="app-header">
         <div class="header-container">
-            <div class="logo">
-                <img src="../../img/logo.png"/>
+            <div @click="test" class="logo">
+                <img  src="../../img/logo.png"/>
             </div>
             <nav class="nav-bar">
                 <router-link to="/">Home</router-link>
@@ -14,4 +14,9 @@ export default {
         </div>
         </header>
     `,
+    methods: {
+        test() {
+            this.$router.push('/')
+        }
+    }
 }
