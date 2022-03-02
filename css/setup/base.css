@@ -31,3 +31,7 @@ h6 {
     font-weight: 400;
     font-family: rubik-title;
 }
+
+.main-layout {
+    max-width: 1600px
+}
