@@ -1,0 +1,14 @@
+@font-face {
+    font-family: rubik-title;
+    src: url(/fonts/Rubik-Medium.ttf);
+}
+
+@font-face {
+    font-family: rubik;
+    src: url(/fonts/Rubik-Regular.ttf);
+}
+
+@font-face {
+    font-family: cairo;
+    src: url(/fonts/Cairo-Light.ttf);
+}
