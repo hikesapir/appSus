@@ -7,7 +7,7 @@ export default {
     template:`
         <section class="mail-app">
             <h3>mail app</h3>
-            <!-- <i class="fa-solid fa-envelope-open"></i> -->
+            <search-bar/>
             <mail-list :mails="mailsForDisplay" ></mail-list>
         </section>
     `,
