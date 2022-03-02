@@ -1,4 +1,6 @@
-import notTxt from '../cmps/note-txt.cmp.js'
+import noteTxt from '../cmps/note-txt.cmp.js'
+import noteImg from '../cmps/note-img.cmp.js'
+import noteTodos from '../cmps/note-todos.cmp.js'
 
 
 export default {
@@ -6,18 +8,23 @@ export default {
     props: ['notes'],
     template: `
         <section class="note-list">
-        <ul>
-            <li v-for="note in notes" :key="note.id">
-                <note-txt :info="note.info"/>
-            </li>
-        </ul>
+                <component :is="note.type"
+                           v-for="note in notes"
+                           :info="note.info" 
+                           @setTxt="setNote"/>
+
         </section>
     `,
     components: {
-        notTxt
+        noteTxt,
+        noteImg,
+        noteTodos
     },
     methods: {
-
+        setNote(text) {
+            console.log(text)
+        }
     },
-    computed: {}
+    computed: {
+    }
 }
