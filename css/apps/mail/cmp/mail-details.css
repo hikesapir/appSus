@@ -1,5 +1,7 @@
 .mail-details{
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    width: 100%;
+    /* padding: 25px; */
 }
 .mail-details .fa-user {
     font-size: 40px;
