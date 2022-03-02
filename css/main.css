@@ -10,8 +10,9 @@
 @import 'cmp/footer.css';
 
 /* APPS */
-@import 'apps/mail/cmp/mail-list.css';
 @import 'apps/mail/mail-app.css';
+@import 'apps/mail/cmp/mail-list.css';
+@import 'apps/mail/cmp/mail-details.css';
 
 @import 'apps/note/cmp/note-list.css';
 @import 'apps/note/note-app.css';

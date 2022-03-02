@@ -18,11 +18,9 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                <router-link  v-for="mail in mails" :key="mail.id" to="'/mail/'+mail.id" class="list-table" >                        
-                      
-                         <mail-preview :mail="mail" />
-                       
-                    </router-link>
+                    <tr  v-for="mail in mails" :key="mail.id" @click="seeDetails(mail.id)">             
+                     <mail-preview :mail="mail" />
+                    </tr>
                 </tbody>
             </table>
         </section>
@@ -40,7 +38,10 @@ export default {
     },
 
     methods: {
-
+        seeDetails(id) {
+            console.log(id);
+            this.$router.push(`/mail/${id}`)
+        }
     },
     computed: {
 

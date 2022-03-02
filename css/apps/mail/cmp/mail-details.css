@@ -1,0 +1,23 @@
+.mail-details{
+    border: 2px solid black;
+}
+.mail-details .fa-user {
+    font-size: 40px;
+}
+.mail-details .user-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    background-color: var(--clr-light-gray);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.mail-details .addressee{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+}
