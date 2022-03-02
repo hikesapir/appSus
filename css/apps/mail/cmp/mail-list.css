@@ -1,0 +1,9 @@
+/* .mail-list tr{
+    margin: 5px; */
+/* } */
+.mail-list td , .mail-list tr{
+    padding: 10px 20px;
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+    border-left:  1px solid #dddddd ;
+}
