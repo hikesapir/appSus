@@ -1,0 +1,9 @@
+/* layout */
+.mail-app{
+    display: flex;
+}
+
+.mail-list-conainer{
+    width: 100%;
+}
+

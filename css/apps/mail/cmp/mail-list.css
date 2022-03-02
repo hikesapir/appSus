@@ -1,28 +1,14 @@
-/* .mail-list tr{
-    margin: 5px; */
-/* } */
 
-table {
-    table-layout: fixed;
+
+.mail-list table {
     width: 100%;
     
 }
-.mail-list tr{
-    width: 100%;
-}
+
 .mail-list td , .mail-list tr{
-    /* padding: 10px 20px; */
     border-bottom: 1px solid #dddddd;
     text-align: left;
-    /* border-left:  1px solid #dddddd ; */
 }
 
-tbody{
-    width: 100%;
-}
 
-table #router-link {
-    display: inline-block; 
-    width: 100%;
-    /* background-color: blue; */
-  }
+

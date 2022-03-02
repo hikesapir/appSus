@@ -7,14 +7,13 @@ export default {
     props: ['mails'],
     template: `
         <section class="mail-list">
-            <h1>mail-list</h1>
             <table>
                 <thead>
                     <tr>
                         <td>id</td>
-                        <td>subject</td>
-                        <td>body</td>
-                        <td>sentAt</td>
+                        <td><h1>subject</h1></td>
+                        <td><h1>body</h1></td>
+                        <td><h1>sentAt</h1></td>
                     </tr>
                 </thead>
                 <tbody>
