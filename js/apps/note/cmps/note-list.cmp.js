@@ -8,11 +8,19 @@ export default {
     props: ['notes'],
     template: `
         <section class="note-list">
-                <component :is="note.type"
-                           v-for="note in notes"
+            <div class="note-container">
+                <div v-for="note in notes">
+                <component id="component"
+                            :is="note.type"
                            :info="note.info" 
                            @setTxt="setNote"/>
 
+                           <div class="actions">
+                <button @click="remove(note.id)">X</button>
+                </div>
+                </div>
+ 
+            </div>
         </section>
     `,
     components: {
@@ -23,6 +31,9 @@ export default {
     methods: {
         setNote(text) {
             console.log(text)
+        },
+        remove(id) {
+            this.$emit('remove', id);
         }
     },
     computed: {
