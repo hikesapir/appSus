@@ -8,18 +8,23 @@ export default {
     template: `
         <section class="mail-list">
             <h1>mail-list</h1>
-            <tbody>
-                <tr v-for="mail in mails" :key="mail.id">
-                <mail-preview :mail="mail" />
-                </tr>
-            </tbody>
-            <!-- <tbody class="books-table"> </tbody>
-            <ul>
-                <li v-for="mail in mails" :key="mail.id" >
-                    <h1>{{mail.id}}</h1>
-                    <mail-preview :mail="mail" />
-                </li>
-            </ul> -->
+            <table>
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>subject</td>
+                        <td>body</td>
+                        <td>sentAt</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <router-link  v-for="mail in mails" :key="mail.id" to="'/mail/'+mail.id" class="list-table" >                        
+                      
+                         <mail-preview :mail="mail" />
+                       
+                    </router-link>
+                </tbody>
+            </table>
         </section>
     `,
     components: {

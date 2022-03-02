@@ -64,7 +64,7 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAILS_KEY);
     if (!mails || !mails.length) {
         mails = [];
-        mails.push(_createMail('subject1', 'body1', 1646215512260));
+        mails.push(_createMail('subject1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet rem nulla sit consequatur odit nobis vel libero! Repellendus, quidem alias est officia veritatis, ex laudantium eius, facere excepturi impedit quaerat.', 1646215512260));
         mails.push(_createMail('subject2', 'body2', 1646215512260));
         mails.push(_createMail('subject3', 'body3', 1646215512260));
         mails.push(_createMail('subject4', 'body4', 1646215512260));
