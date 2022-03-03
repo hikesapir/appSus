@@ -1,7 +1,14 @@
 export default {
     template: `
         <section class="note-filter">
+
+
+
             <input type="text" v-model="filterBy.byTitle" @input="setFilter" placeholder="Search your note..">
+
+
+
+
             <input type="radio" id="all" value="" v-model="filterBy.byType" @change="setFilter">
             <label style="font-weight: bold" for="all">All</label> | 
             <input type="radio" id="txt" value="note-txt" v-model="filterBy.byType" @change="setFilter">
