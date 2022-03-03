@@ -13,8 +13,6 @@ export default {
             <input v-if="newNote.type === 'note-todos'" type="text" placeholder="add label" v-model="newNote.label">
             <input v-if="newNote.type === 'note-img'" type="text" placeholder="add url" v-model="newNote.url">
             <input v-if="newNote.type === 'note-video'" type="text" placeholder="add video" v-model="newNote.src">
-
-            <pre>{{newNote}}</pre>
         <button>Add new note</button>
         </form>
         </section>

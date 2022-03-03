@@ -1,16 +1,30 @@
 .note-list .note-container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    
+    width: 1200px;
+    column-gap: 100px;
+    margin: 0 auto;
+    column-count: 4;
 }
 
 .note-list .note-container > * {
     background-color: #facc33;
+    /* break-inside: avoid-column; */
+    width: 300px;
+    min-height: 200px;
+    display: inline-block;
+    margin: 10px 0px;
+    border-radius: 10px;
 }
+
 
 .note-list #component h1 {
     text-align: center;
+    font-size: 20px;
+}
+
+.note-list #component p {
+    padding: 0 15px;
+    direction: rtl;
+    text-align: right;
 }
 
 .note-add {
@@ -31,4 +45,16 @@
 .note-add form {
     display: flex;
     flex-direction: column;
+}
+
+.note-todos p {
+    cursor: pointer;
+}
+
+.note-todos .done {
+    text-decoration: line-through;
+}
+
+.note-todos p span {
+    font-size: 0.7rem;
 }

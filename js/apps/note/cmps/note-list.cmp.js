@@ -20,6 +20,7 @@ export default {
                            <div class="actions">
                 <button @click="remove(note.id)">X</button>
                 <button @click="edit(note)">Edit</button>
+                <button>Color</button>
                             </div>
                  </div>
         
