@@ -1,0 +1,64 @@
+.send-mail{
+    position: fixed;
+    background-color: var(--clr-light);
+    bottom: 0;
+    right: 25px;
+    width: 800px;
+    height: 500px;
+    border-radius: 9px 9px 0 0;
+    border: 1px solid var(--clr-dark);
+}
+.send-mail .header{
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 9px 9px 0 0;
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+}
+
+.send-mail .header h1{
+margin: 0;
+}
+
+.send-mail .header button{
+    font-size: 1.3rem;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: var(--clr-white);
+    cursor: pointer;
+}
+
+
+.send-mail input{
+    padding: 15px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    font-size: 1.2rem;
+}
+.send-mail  textarea{
+    outline: none;
+    resize: none;
+    width: 100%;
+    /* height: 100%; */
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.send-mail .body button{
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    border: none;
+    height: 35px;
+    width: 70px;
+    padding: 10px 15px;
+    color: #ffffff;
+    border-radius: 5px;
+    background-color: var(--clr-blue);
+}

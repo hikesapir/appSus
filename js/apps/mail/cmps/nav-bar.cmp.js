@@ -7,7 +7,7 @@ export default {
         <section class="nav-bar">
             <h1>nav -bar</h1>
             <ul>
-                <li> Compose</li>
+                <li @click="selected('compose')"> Compose</li>
                 <li class="active"><i class="fa-solid fa-inbox"></i> Inbox ({{unread}})</li>
                 <li><i class="fa-solid fa-star"></i> Starred</li>
                 <li><i class="fa-solid fa-paper-plane"></i> Sent</li>
@@ -28,9 +28,12 @@ export default {
     },
 
     methods: {
+        selected(nav) {
+            this.$emit('selected', nav)
+        }
 
     },
     computed: {
-   
+
     },
 }

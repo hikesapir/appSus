@@ -15,6 +15,7 @@
 @import 'apps/mail/cmp/mail-details.css';
 @import 'apps/mail/cmp/search-bar.css';
 @import 'apps/mail/cmp/nav-bar.css';
+@import 'apps/mail/cmp/send-mail.css';
 
 @import 'apps/note/cmp/note-list.css';
 @import 'apps/note/note-app.css';

@@ -2,23 +2,27 @@
 import { mailService } from "../services/mail-service.js";
 import mailList from "../cmps/mail-list.cmp.js";
 import navBar from "../cmps/nav-bar.cmp.js";
+import sendMail from "../cmps/send-mail.cmp.js";
 
 export default {
     name: 'mail-app',
     template: `
         <section class="mail-app">
-            <nav-bar :unread="unread"></nav-bar>
+            <nav-bar @selected="moveTo" :unread="unread"></nav-bar>
                <router-view @opened="recount"></router-view>
+               <send-mail v-if="openCompose" />
         </section>
     `,
     components: {
         mailList,
         navBar,
+        sendMail,
     },
     data() {
         return {
             mails: null,
             unread: null,
+            openCompose: false,
 
         }
     },
@@ -44,7 +48,11 @@ export default {
                     this.unread = count;
                 });
         },
- 
+        moveTo(nav) {
+            console.log(nav);
+            if (nav === 'compose') this.openCompose = !this.openCompose
+        },
+
     },
     computed: {
         mailsForDisplay() {

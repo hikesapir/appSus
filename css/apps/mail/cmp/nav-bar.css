@@ -20,6 +20,7 @@
 }
 
 .nav-bar li.active{
-    background-color: rgba(230, 137, 137, 0.938);
+    color: azure;
+    background-color: var(--clr-pink);
     border-radius: 0 50px 50px 0;
 }
