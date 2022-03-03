@@ -53,6 +53,7 @@ export default {
             })
 
         this.interval = setInterval(() => {
+            mailService.save(this.message)
             console.log('hey')
             console.log(this.message);
         }, 5000);

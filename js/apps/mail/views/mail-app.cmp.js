@@ -53,12 +53,13 @@ export default {
                 });
         },
         moveTo(nav) {
-            if (nav === 'compose') this.openCompose = !this.openCompose
+            if (nav === 'compose') this.closeMsgTeb()
             else this.filter = nav
             console.log(this.filter);
         },
         closeMsgTeb() {
-            this.openCompose = false
+            this.openCompose = !this.openCompose
+            this.recount()
         }
 
     },

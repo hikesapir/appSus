@@ -51,13 +51,13 @@ function get(mailId) {
 }
 
 function save(mail) {
-    console.log('saved');
+    // console.log('saved');
     if (mail.id) return storageService.put(MAILS_KEY, mail);
     else return storageService.post(MAILS_KEY, mail);
 }
 
 function sendMail(message) {
-    console.log(message.subject);
+    // console.log(message.subject);
     const mail = _createMail(message.subject, message.body, Date.now(), message.to, true, false)
     console.log(mail.subject);
     return storageService.post(MAILS_KEY, mail);
@@ -65,7 +65,7 @@ function sendMail(message) {
 
 function createDraft(message) {
     const draft = _createMail(message.subject, message.body, Date.now(), message.to, false, false, true)
-    return save(draft)
+    return storageService.post(MAILS_KEY, draft);
 }
 
 function _setNextPrevMailId(mail) {
