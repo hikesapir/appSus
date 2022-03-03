@@ -6,25 +6,26 @@ import searchBar from "../cmps/search-bar.cmp.js";
 
 export default {
     name: 'mail-list',
-    // props: ['mails'],
+    props: ['mails'],
     template: `
         <section v-if="mails" class="mail-list">
-        <search-bar @filter="filterBy" @sort="sortBy"/>
+            <!-- <pre>{{mails}}</pre> -->
+        <search-bar @filter="filterBy" @sort="sort"/>
             <table>
                 <thead class="thead">
                     <tr>
-                        <td>id</td>
+                        <td><input type="checkbox"></td>
+                        <td>starred</td>
                         <td><h1>subject</h1></td>
                         <td><h1>body</h1></td>
                         <td><h1>sentAt</h1></td>
                     </tr>
                 </thead>
                 <tbody>
-                     <mail-preview v-for="mail in mails" @remove="removeMail" @setRead="setRead" :key="mail.id" @select="seeDetails" :mail="mail" />
+                     <mail-preview v-for="mail in mailForDisplay" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
                 </tbody>
             </table>
         </section>
-        
         
     `,
     components: {
@@ -33,33 +34,27 @@ export default {
     },
     data() {
         return {
-            mails: null,
-
+            filter: 'all',
+            sortBy: 'date',
+            mult: 1,
         }
     },
     created() {
-        mailService.query()
-            .then(mails => this.mails = mails);
+
     },
 
     methods: {
         filterBy(val) {
-            mailService.query()
-                .then(mails => {
-                    if (val === 'all') this.mails = mails
-                    else this.mails = mails.filter(mail => {
-                        if (val === 'read') return mail.isRead
-                        else return !mail.isRead
-                    })
-                });
+            this.filter = val
         },
-        sortBy(sortBy, mult) {
-            if (sortBy === 'date') {
-                this.mails.sort((a, b) => (a.sentAt - b.sentAt) * mult)
-            } else if (sortBy === 'subject') {
-                this.mails.sort((a, b) => (a.subject.toUpperCase() > b.subject.toUpperCase() ? 1 : -1) * mult)
-            }
+        sort(sortBy, mult) {
+            this.sortBy = sortBy;
+            this.mult = mult;
 
+            // console.log(this.mailForDisplay);
+            // console.log('get it', sortBy, mult);
+
+            // console.log(this.mailForDisplay);
         },
         seeDetails(id) {
             mailService.get(id)
@@ -76,26 +71,39 @@ export default {
             mailService.remove(id)
                 .then(() => {
                     this.$emit('opened')
-                    mailService.query()
-                        .then(mails => this.mails = mails);
                 })
         },
         setRead(id) {
             mailService.get(id)
                 .then(mail => {
-                    console.log('get', mail);
                     mail.isRead = !mail.isRead
                     mailService.save(mail)
-                        .then((mail) => {
-                            this.$emit('opened')
-                            console.log(mail);
-                            mailService.query()
-                                .then(mails => this.mails = mails);
-                        })
+                        .then(() => this.$emit('opened'))
+                })
+        },
+        setStarred(id) {
+            mailService.get(id)
+                .then(mail => {
+                    mail.isStarred = !mail.isStarred
+                    mailService.save(mail)
+                        .then(() => this.$emit('opened'))
                 })
         }
     },
     computed: {
-
+        mailForDisplay() {
+            var mails;
+            if (this.filter === 'all') mails = this.mails
+            else mails = this.mails.filter(mail => {
+                if (this.filter === 'read') return mail.isRead
+                else return !mail.isRead
+            })
+            if (this.sortBy === 'date') {
+                mails.sort((a, b) => (a.sentAt - b.sentAt) * this.mult)
+            } else if (this.sortBy === 'subject') {
+                mails.sort((a, b) => (a.subject.toUpperCase() > b.subject.toUpperCase() ? 1 : -1) * this.mult)
+            }
+            return mails
+        }
     },
 }

@@ -34,8 +34,6 @@ export default {
             this.$emit('filter', this.filterBy)
         },
         sort(sortBy, mult) {
-
-            // console.log('sort by ', str, num);
             this.$emit('sort', sortBy, mult)
         }
 

@@ -4,7 +4,7 @@ import { utilService } from '../../../services/util-service.js';
 import { storageService } from '../../../services/async-storage-service.js';
 
 const MAILS_KEY = 'mailsDB';
-const Sent_MAILS_KEY = 'sentMailsDB';
+// const SENT_MAILS_KEY = 'sentMailsDB';
 _createMails();
 
 export const mailService = {
@@ -14,6 +14,7 @@ export const mailService = {
     get,
     getEmptyMail,
     sendMail,
+    // querySentMails,
 };
 
 const loggedinUser = {
@@ -24,6 +25,10 @@ const loggedinUser = {
 function query() {
     return storageService.query(MAILS_KEY);
 }
+
+// function querySentMails(){
+//     return storageService.query(SENT_MAILS_KEY);
+// }
 
 function remove(mailId) {
     return storageService.remove(MAILS_KEY, mailId);
@@ -42,8 +47,10 @@ function save(mail) {
 }
 
 function sendMail(message) {
-    const mail =_createMail(message.subject,message.body,Date.now(),message.to)
-    return storageService.post(Sent_MAILS_KEY, mail);
+    console.log(message.subject);
+    const mail = _createMail(message.subject, message.body, Date.now(), message.to, true, false)
+    console.log(mail.subject);
+    return storageService.post(MAILS_KEY, mail);
 }
 
 
@@ -56,14 +63,16 @@ function _setNextPrevMailId(mail) {
     })
 }
 
-function getEmptyMail(subject = '', body = '', sentAt = '', to = '') {
+function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = false, isInbox = true) {
     return {
         id: '',
         subject,
         body,
-        isRead: false,
         sentAt,
-        to
+        to,
+        isRead,
+        isInbox,
+        isStarred: false
     };
 }
 
@@ -82,8 +91,8 @@ function _createMails() {
     return mails;
 }
 
-function _createMail(subject, body, sentAt, to) {
-    const mail = getEmptyMail(subject, body, sentAt, to)
+function _createMail(subject, body, sentAt, to, isRead, isInbox) {
+    const mail = getEmptyMail(subject, body, sentAt, to, isRead, isInbox)
     mail.id = utilService.makeId()
     return mail;
 }
