@@ -11,12 +11,11 @@ export default {
                 <button @click="close">x</button>
             </div>
             <div class="body">
-                <input v-model=message.to type="email" required placeholder="To">
-                <input v-model=message.subject type="text" placeholder="Subject">
-                <textarea v-model=message.body name="body" id="body" cols="30" rows="14" placeholder="Your message">
-                </textarea>
+                    <input v-model=message.to type="email" required placeholder="To">
+                    <input v-model=message.subject type="text" placeholder="Subject">
+                    <textarea v-model=message.body name="body" id="body" cols="30" rows="14" placeholder="Your message">
+                    </textarea>
                 <div class="send-btn-container">
-                    
                     <button @click="send">send</button>
                 </div>
             </div>
@@ -28,15 +27,41 @@ export default {
     data() {
         return {
             message: {
-                to: '',
+                to: 'me',
                 subject: '',
                 body: '',
-            }
+
+                // id: '',
+                // subject,
+                // body,
+                // sentAt,
+                // to,
+                // isRead,
+                // isInbox,
+                // isStarred: false,
+                // isTrashed: false,
+                // isDraft,
+            },
+            interval: null,
+
         }
     },
     created() {
+        mailService.createDraft(this.message)
+            .then(mail=>{
+                this.message = mail
+            })
 
+        this.interval = setInterval(() => {
+            console.log('hey')
+            console.log(this.message);
+        }, 5000);
     },
+
+    unmounted() {
+        clearInterval(this.interval)
+    },
+
 
     methods: {
         send() {
@@ -44,7 +69,7 @@ export default {
                 .then(mail => console.log(mail))
                 .catch(err => console.log(err))
         },
-        close(){
+        close() {
             this.$emit('close')
         },
 

@@ -14,6 +14,7 @@ export const mailService = {
     get,
     getEmptyMail,
     sendMail,
+    createDraft,
     // querySentMails,
 };
 
@@ -50,6 +51,7 @@ function get(mailId) {
 }
 
 function save(mail) {
+    console.log('saved');
     if (mail.id) return storageService.put(MAILS_KEY, mail);
     else return storageService.post(MAILS_KEY, mail);
 }
@@ -61,6 +63,10 @@ function sendMail(message) {
     return storageService.post(MAILS_KEY, mail);
 }
 
+function createDraft(message) {
+    const draft = _createMail(message.subject, message.body, Date.now(), message.to, false, false, true)
+    return save(draft)
+}
 
 function _setNextPrevMailId(mail) {
     return storageService.query(MAILS_KEY).then(mails => {
@@ -71,7 +77,7 @@ function _setNextPrevMailId(mail) {
     })
 }
 
-function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = false, isInbox = true) {
+function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = false, isInbox = true, isDraft = false) {
     return {
         id: '',
         subject,
@@ -81,7 +87,8 @@ function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = fa
         isRead,
         isInbox,
         isStarred: false,
-        isTrashed: false
+        isTrashed: false,
+        isDraft,
     };
 }
 
@@ -100,8 +107,8 @@ function _createMails() {
     return mails;
 }
 
-function _createMail(subject, body, sentAt, to, isRead, isInbox) {
-    const mail = getEmptyMail(subject, body, sentAt, to, isRead, isInbox)
+function _createMail(subject, body, sentAt, to, isRead, isInbox, isDraft) {
+    const mail = getEmptyMail(subject, body, sentAt, to, isRead, isInbox, isDraft)
     mail.id = utilService.makeId()
     return mail;
 }
