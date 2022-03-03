@@ -223,3 +223,17 @@
 .note-todos p span {
     font-size: 0.7rem;
 }
+
+.note-edit {
+    position: fixed;
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--clr-light-gray2);
+    width: 400px;
+    height: 400px;
+    border: 3px solid var(--clr-dark);
+    border-radius: 10px;
+
+}

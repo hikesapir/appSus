@@ -2,7 +2,6 @@ import { noteService } from '../../note/services/note-service.js';
 import noteList from '../../note/cmps/note-list.cmp.js';
 import noteAdd from '../../note/cmps/note-add.cmp.js';
 import noteFilter from '../../note/cmps/note-filter.cmp.js'
-// import noteEdit from '../../note/cmps/note-edit.cmp.js';
 
 export default {
     template: `
@@ -11,7 +10,6 @@ export default {
             <note-filter @filtered="setFilter"/>
             <note-add @add="addNote" />
             <note-list :notes="notesToShow" @remove="removeNote" @edit="editNote" @pin="pinNote" @copy="copyNote"/>
-            <!-- <note-edit  v-if="openEdit"/> -->
         </div>
         </section>
     `,
@@ -19,12 +17,14 @@ export default {
         noteList,
         noteAdd,
         noteFilter,
-        // noteEdit
     },
     data() {
         return {
             notes: null,
-            filterBy: null,
+            filterBy: {
+                byTitle: '',
+                byType: ''
+            },
             openEdit: false
         };
     },
@@ -69,14 +69,14 @@ export default {
     },
     computed: {
         notesToShow() {
-            if (!this.filterBy || !this.filterBy.byType) return this.notes
-            console.log(this.filterBy)
+            if(!this.notes) return
             const regex = new RegExp(this.filterBy.byTitle, 'i');
+            if(!this.filterBy.byType) return this.notes.filter(note => regex.test(note.info.title || note.info.label || note.info.txt))
+
             return this.notes.filter(note => {
                 return regex.test(note.info.title || note.info.label || note.info.txt) &&
                 note.type === this.filterBy.byType
-
-                });
+            });
 
         }
     },

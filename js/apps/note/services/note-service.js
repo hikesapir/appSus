@@ -156,7 +156,7 @@ function _createNotes() {
                 info: {
                     backgroundColor: "#20c997",
                     src: '/js/apps/note/services/test.mp3',
-                    title: 'Test'
+                    title: 'LOREM IPSUM SONG'
                 
 
                 },
