@@ -6,6 +6,11 @@ export default {
     template: `
         <section class="search-bar">
             <input type="search">
+            <select @change="filter" v-model="filterBy" >
+            <option value="all">All</option>
+            <option value="read">Read</option>
+            <option value="unread">Unread</option>
+        </select>
             <i class="fa-solid fa-calendar-minus"></i>        
             <i class="fa-solid fa-calendar-plus"></i>   
         </section>
@@ -14,7 +19,7 @@ export default {
     },
     data() {
         return {
-
+            filterBy: 'all'
         }
     },
     created() {
@@ -22,9 +27,13 @@ export default {
     },
 
     methods: {
+        filter() {
+            console.log('filter by ', this.filterBy);
+            this.$emit('filter', this.filterBy)
+        }
 
     },
     computed: {
-   
+
     },
 }

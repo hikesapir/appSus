@@ -9,7 +9,7 @@ export default {
     // props: ['mails'],
     template: `
         <section v-if="mails" class="mail-list">
-        <search-bar></search-bar>
+        <search-bar @filter="filterBy"/>
             <table>
                 <thead class="thead">
                     <tr>
@@ -43,6 +43,18 @@ export default {
     },
 
     methods: {
+        filterBy(val) {
+            console.log('i was here');
+            mailService.query()
+            .then(mails => {
+                if (val==='all') this.mails = mails
+                else this.mails = mails.filter(mail=>{
+                    if (val==='read') return mail.isRead
+                    else return !mail.isRead
+                })
+            });
+            console.log(this.mails);
+        },
         seeDetails(id) {
             console.log(id);
             mailService.get(id)

@@ -8,7 +8,7 @@ export default {
     template: `
         <section class="mail-app">
             <nav-bar :unread="unread"></nav-bar>
-               <router-view @remove="removeMail" @opened="recount"></router-view>
+               <router-view @opened="recount"></router-view>
         </section>
     `,
     components: {
