@@ -31,7 +31,15 @@ function query() {
 // }
 
 function remove(mailId) {
-    return storageService.remove(MAILS_KEY, mailId);
+    return get(mailId)
+        .then(mail => {
+            if (mail.isTrashed) {
+                return storageService.remove(MAILS_KEY, mailId);
+            }
+            mail.isTrashed = true
+            console.log(mail);
+            save(mail)
+        })
 }
 
 function get(mailId) {
@@ -72,7 +80,8 @@ function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = fa
         to,
         isRead,
         isInbox,
-        isStarred: false
+        isStarred: false,
+        isTrashed: false
     };
 }
 
