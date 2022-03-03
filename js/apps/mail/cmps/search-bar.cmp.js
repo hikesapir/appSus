@@ -11,15 +11,18 @@ export default {
             <option value="read">Read</option>
             <option value="unread">Unread</option>
         </select>
-            <i class="fa-solid fa-calendar-minus"></i>        
-            <i class="fa-solid fa-calendar-plus"></i>   
+            <i @click="sort('date',1)" class="fa-solid fa-calendar-minus"></i>        
+            <i @click="sort('date',-1)" class="fa-solid fa-calendar-plus"></i>   
+            <i @click="sort('subject',1)" class="fa-solid fa-arrow-down-a-z"></i>
+            <i @click="sort('subject',-1)" class="fa-solid fa-arrow-up-z-a"></i>
         </section>
     `,
     components: {
     },
     data() {
         return {
-            filterBy: 'all'
+            filterBy: 'all',
+
         }
     },
     created() {
@@ -28,8 +31,12 @@ export default {
 
     methods: {
         filter() {
-            console.log('filter by ', this.filterBy);
             this.$emit('filter', this.filterBy)
+        },
+        sort(sortBy, mult) {
+
+            // console.log('sort by ', str, num);
+            this.$emit('sort', sortBy, mult)
         }
 
     },

@@ -64,10 +64,12 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAILS_KEY);
     if (!mails || !mails.length) {
         mails = [];
-        mails.push(_createMail('subject1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet rem nulla sit consequatur odit nobis vel libero! Repellendus, quidem alias est officia veritatis, ex laudantium eius, facere excepturi impedit quaerat.', 1646215512260));
-        mails.push(_createMail('subject2', 'body2', 1646215512260));
-        mails.push(_createMail('subject3', 'body3', 1646215512260));
-        mails.push(_createMail('subject4', 'body4', 1646215512260));
+        mails.push(_createMail('asubject1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet rem nulla sit consequatur odit nobis vel libero! Repellendus, quidem alias est officia veritatis, ex laudantium eius, facere excepturi impedit quaerat.', 1646215512260));
+        mails.push(_createMail('csubject2', 'body2', 1646215512260));
+        mails.push(_createMail('bsubject3', 'body3', 1646215512260));
+        mails.push(_createMail('fsubject4', 'body4', 1646215512260));
+        mails.push(_createMail('esubject5', 'body5', 1646273854871));
+        mails.push(_createMail('dsubject6', 'body6', 1616211177545));
         utilService.saveToStorage(MAILS_KEY, mails);
     }
     return mails;
