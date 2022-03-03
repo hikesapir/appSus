@@ -6,11 +6,13 @@ import noteFilter from '../../note/cmps/note-filter.cmp.js'
 
 export default {
     template: `
-        <section class="note-app main-layout">
+        <section class="note-app">
+            <div class="main-layout">
             <note-filter @filtered="setFilter"/>
             <note-add @add="addNote" />
-            <note-list :notes="notesToShow" @remove="removeNote" @edit="editNote"/>
+            <note-list :notes="notesToShow" @remove="removeNote" @edit="editNote" @pin="pinNote"/>
             <!-- <note-edit  v-if="openEdit"/> -->
+        </div>
         </section>
     `,
     components: {
@@ -47,6 +49,13 @@ export default {
         },
         editNote(id) {
             this.openEdit = true
+        },
+        pinNote(note) {
+            note.isPinned = !note.isPinned
+            noteService.save(note)
+            .then(() => {
+                this.notes.sort((n1, n2) => n2.isPinned - n1.isPinned)
+            })
         },
         setFilter(filterBy) {
             this.filterBy = filterBy
