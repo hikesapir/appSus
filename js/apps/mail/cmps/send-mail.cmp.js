@@ -8,7 +8,7 @@ export default {
         <section class="send-mail">
             <div class="header">
                 <h1>New Message</h1>
-                <button>x</button>
+                <button @click="close">x</button>
             </div>
             <div class="body">
                 <input v-model=message.to type="email" required placeholder="To">
@@ -43,6 +43,9 @@ export default {
             mailService.sendMail(this.message)
                 .then(mail => console.log(mail))
                 .catch(err => console.log(err))
+        },
+        close(){
+            this.$emit('close')
         },
 
     },

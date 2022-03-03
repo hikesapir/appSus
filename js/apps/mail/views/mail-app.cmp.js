@@ -9,8 +9,8 @@ export default {
     template: `
         <section class="mail-app">
             <nav-bar @selected="moveTo" :unread="unread"></nav-bar>
-               <router-view @opened="recount"></router-view>
-               <send-mail v-if="openCompose" />
+               <router-view :mails="mailsForDisplay" @opened="recount"></router-view>
+               <send-mail @close="closeMsgTeb" v-if="openCompose" />
         </section>
     `,
     components: {
@@ -23,6 +23,8 @@ export default {
             mails: null,
             unread: null,
             openCompose: false,
+            filter: 'inbox',
+            // sentMails: null,
 
         }
     },
@@ -49,21 +51,25 @@ export default {
                 });
         },
         moveTo(nav) {
-            console.log(nav);
             if (nav === 'compose') this.openCompose = !this.openCompose
+            else this.filter = nav
+            console.log(this.filter);
         },
+        closeMsgTeb() {
+            this.openCompose = false
+        }
 
     },
     computed: {
         mailsForDisplay() {
-            return this.mails;
-            // if (!this.filterBy) return this.cars;
-            // const regex = new RegExp(this.filterBy.vendor, 'i');
-            // return this.cars.filter(car => regex.test(car.vendor));
+            if (this.filter === 'inbox') return this.mails.filter(mail => mail.isInbox)
+            else if (this.filter === 'sent') return this.mails.filter(mail => !mail.isInbox)
+            // else if (this.filter === 'sent') {
+            //     return filter
+            // }
+            // return mailService.querySentMails();
         },
-        unreadMails1() {
-            return this.unread;
-        }
+
 
     },
 }

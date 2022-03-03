@@ -6,9 +6,10 @@ import searchBar from "../cmps/search-bar.cmp.js";
 
 export default {
     name: 'mail-list',
-    // props: ['mails'],
+    props: ['mails'],
     template: `
         <section v-if="mails" class="mail-list">
+            <!-- <pre>{{mails}}</pre> -->
         <search-bar @filter="filterBy" @sort="sortBy"/>
             <table>
                 <thead class="thead">
@@ -20,7 +21,7 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                     <mail-preview v-for="mail in mails" @remove="removeMail" @setRead="setRead" :key="mail.id" @select="seeDetails" :mail="mail" />
+                     <mail-preview v-for="mail in mailForDisplay" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
                 </tbody>
             </table>
         </section>
@@ -33,25 +34,16 @@ export default {
     },
     data() {
         return {
-            mails: null,
-
+            filter: 'all'
         }
     },
     created() {
-        mailService.query()
-            .then(mails => this.mails = mails);
+  
     },
 
     methods: {
         filterBy(val) {
-            mailService.query()
-                .then(mails => {
-                    if (val === 'all') this.mails = mails
-                    else this.mails = mails.filter(mail => {
-                        if (val === 'read') return mail.isRead
-                        else return !mail.isRead
-                    })
-                });
+            this.filter = val
         },
         sortBy(sortBy, mult) {
             if (sortBy === 'date') {
@@ -76,26 +68,24 @@ export default {
             mailService.remove(id)
                 .then(() => {
                     this.$emit('opened')
-                    mailService.query()
-                        .then(mails => this.mails = mails);
                 })
         },
         setRead(id) {
             mailService.get(id)
                 .then(mail => {
-                    console.log('get', mail);
                     mail.isRead = !mail.isRead
                     mailService.save(mail)
-                        .then((mail) => {
-                            this.$emit('opened')
-                            console.log(mail);
-                            mailService.query()
-                                .then(mails => this.mails = mails);
-                        })
+                        .then(() => this.$emit('opened'))
                 })
         }
     },
     computed: {
-
+        mailForDisplay() {
+            if (this.filter === 'all') return this.mails
+            else return this.mails.filter(mail => {
+                if (this.filter === 'read') return mail.isRead
+                else return !mail.isRead
+            })
+        }
     },
 }
