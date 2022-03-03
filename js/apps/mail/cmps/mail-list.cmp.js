@@ -44,7 +44,6 @@ export default {
 
     methods: {
         filterBy(val) {
-            console.log('i was here');
             mailService.query()
                 .then(mails => {
                     if (val === 'all') this.mails = mails
@@ -53,10 +52,8 @@ export default {
                         else return !mail.isRead
                     })
                 });
-            console.log(this.mails);
         },
         sortBy(sortBy, mult) {
-            console.log('sort by ', sortBy, mult);
             if (sortBy === 'date') {
                 this.mails.sort((a, b) => (a.sentAt - b.sentAt) * mult)
             } else if (sortBy === 'subject') {
@@ -65,7 +62,6 @@ export default {
 
         },
         seeDetails(id) {
-            console.log(id);
             mailService.get(id)
                 .then(mail => {
                     mail.isRead = true
@@ -90,10 +86,11 @@ export default {
                     console.log('get', mail);
                     mail.isRead = !mail.isRead
                     mailService.save(mail)
-                        .then((mails) => {
+                        .then((mail) => {
                             this.$emit('opened')
-                            console.log(mails);
-                            // this.mails = mails
+                            console.log(mail);
+                            mailService.query()
+                                .then(mails => this.mails = mails);
                         })
                 })
         }

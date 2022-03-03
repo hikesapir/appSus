@@ -26,16 +26,13 @@ export default {
         mailService.query()
             .then(mails => {
                 this.mails = mails
-                this.unreadMails()
+                this.recount()
             });
 
     },
 
     methods: {
         recount() {
-            this.unreadMails()
-        },
-        unreadMails() {
             mailService.query()
                 .then(mails => {
                     this.mails = mails
