@@ -5,8 +5,8 @@ export default {
         <section class="note-todos">
             <h1>{{info.label}}</h1>
             <ul>
-                <li v-for="todo in info.todos">
-                <p>{{todo.txt}}</p><p  v-if="todo.doneAt">{{formatDate(todo.doneAt)}}</p>
+                <li @click="onTodoTask(todo)" :class="{ done: todo.doneAt }" v-for="todo in info.todos">
+                <p>{{todo.txt}} <span v-if="todo.doneAt">{{formatDate(todo.doneAt)}}</span></p>
                 </li>
             </ul>
         </section>
@@ -19,9 +19,14 @@ export default {
     },
     methods: {
         formatDate(date) {
-            return new Date(date)
-        }
+            return `(בוצע ב: ${new Date(date).toLocaleDateString('he-IL')})`
+        },
+        onTodoTask(todo) {
+            if (todo.doneAt) todo.doneAt = null
+            else todo.doneAt = Date.now()
+        },
     },
+
     computed: {
 
     }
