@@ -16,8 +16,8 @@ export default {
             </div>
            <p> <i v-if="isDate" :class="{ pink: clicked === 'date'}"  @click="sort('date',1), isDate=!isDate " class="fa-solid fa-calendar-minus"></i>   </p>     
            <p> <i v-if="!isDate" :class="{ pink: clicked === 'date'}" @click="sort('date',-1), isDate=!isDate " class="fa-solid fa-calendar-plus"></i>   </p>
-           <p><i v-if="isAZ" :class="{ pink: clicked === 'subject'}" @click="sort('subject',1), isAZ=!isAZ" class="fa-solid fa-arrow-down-a-z"></i></p>
-           <p> <i v-if="!isAZ" :class="{ pink: clicked === 'subject'}" @click="sort('subject',-1), isAZ=!isAZ" class="fa-solid fa-arrow-up-z-a"></i></p>
+           <p><i v-if="!isAZ" :class="{ pink: clicked === 'subject'}" @click="sort('subject',-1), isAZ=!isAZ" class="fa-solid fa-arrow-down-a-z"></i></p>
+           <p> <i v-if="isAZ" :class="{ pink: clicked === 'subject'}" @click="sort('subject',1), isAZ=!isAZ" class="fa-solid fa-arrow-up-z-a"></i></p>
         </section>
     `,
     components: {
@@ -29,7 +29,7 @@ export default {
             isAZ: true,
             isDate: true,
             clicked:'',
-            
+
 
         }
     },

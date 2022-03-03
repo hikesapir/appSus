@@ -8,13 +8,13 @@ export default {
     template: `
         <!-- <section class="mail-preview"> -->
             <tr :class="openedMail">
-                <input type="checkbox">
-                <td v-if="!mail.isStarred"><i @click="starred" class="fa-regular fa-star"></i></td>
-                <td v-if="mail.isStarred"><i @click="starred" class="fa-solid fa-star"></i></td>
+                <td class="checkbox"> <input type="checkbox"></td>  
+                <td v-if="!mail.isStarred" class="star"><i @click="starred" class="fa-regular fa-star"></i></td>
+                <td v-if="mail.isStarred" class="star"><i @click="starred" class="fa-solid fa-star"></i></td>
                 <td @click="select"> {{mail.subject}} </td>
                 <td @click="select"> <long-text :txt="mail.body"/></td>
                 <td @mouseover="mouseOver" v-if="!isHover"> {{sentAt}}</td>
-                <td v-if="isHover" @mouseleave="mouseOver">
+                <td class="actions" v-if="isHover" @mouseleave="mouseOver">
                     <i @click="removeMail" class="fa-solid fa-trash-can"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open"></i>

@@ -14,11 +14,11 @@ export default {
             <table>
                 <thead class="thead">
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>starred</td>
-                        <td><h1>subject</h1></td>
-                        <td><h1>body</h1></td>
-                        <td><h1>sentAt</h1></td>
+                        <th style="text-align: center;"><input type="checkbox"></th>
+                        <th style="text-align: center;">starred</th>
+                        <th><h1>subject</h1></th>
+                        <th><h1>body</h1></th>
+                        <th><h1>sentAt</h1></th>
                     </tr>
                 </thead>
                 <tbody>
