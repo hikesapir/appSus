@@ -11,7 +11,7 @@ export default {
                 <li @click="selected('starred')" ><i class="fa-solid fa-star"></i> Starred</li>
                 <li @click="selected('sent')"><i class="fa-solid fa-paper-plane"></i> Sent</li>
                 <li><i class="fa-solid fa-file"></i> Drafts</li>
-                <li><i class="fa-solid fa-trash-can"></i> Trash</li>
+                <li @click="selected('trash')"><i class="fa-solid fa-trash-can"></i> Trash</li>
             </ul>
         </section>
     `,

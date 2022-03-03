@@ -63,9 +63,10 @@ export default {
     computed: {
         mailsForDisplay() {
             if (!this.mails) return null
-            if (this.filter === 'inbox') return this.mails.filter(mail => mail.isInbox)
-            else if (this.filter === 'sent') return this.mails.filter(mail => !mail.isInbox)
+            if (this.filter === 'inbox') return this.mails.filter(mail => mail.isInbox&&!mail.isTrashed)
+            else if (this.filter === 'sent') return this.mails.filter(mail => !mail.isInbox&&!mail.isTrashed)
             else if (this.filter === 'starred') return this.mails.filter(mail => mail.isStarred)
+            else if (this.filter === 'trash') return this.mails.filter(mail => mail.isTrashed)
         },
 
 
