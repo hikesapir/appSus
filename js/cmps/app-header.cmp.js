@@ -3,7 +3,7 @@ export default {
         <header class="app-header">
         <div class="header-container">
             <div @click="test" class="logo">
-                <img  src="../../img/logo.png"/>
+                <img  src="img/logo.png"/>
             </div>
             <nav class="nav-bar">
                 <router-link to="/">Home</router-link>
