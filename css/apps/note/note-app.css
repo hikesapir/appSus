@@ -1,3 +1,4 @@
 .note-app {
     background-color: var(--clr-light-gray2);
+    min-height: 70vh;
 }

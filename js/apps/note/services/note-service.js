@@ -10,10 +10,13 @@ export const noteService = {
     get,
     save,
     remove,
-    newNote
+    newNote,
+    saveAllNotes
 };
 
-
+function saveAllNotes(notes) {
+    return utilService.saveToStorage(NOTES_KEY, notes)
+} 
 
 function query() {
     return storageService.query(NOTES_KEY);
@@ -39,7 +42,7 @@ function newNote(note) {
     } else if (note.type === 'note-img') {
         currNote = _createImgNote(note.url, note.txt);
     } else if (note.type === 'note-todos') {
-        currNote = _createTodoNote(note.url, note.txt);
+        currNote = _createTodoNote(note.label, note.txt);
     } else if (note.type === 'note-video') {
         console.log('ger here');
         currNote = _createVidNote(note.src, note.txt);
@@ -47,6 +50,7 @@ function newNote(note) {
 
     currNote.id = utilService.makeId();
     currNote.info.backgroundColor = utilService.getRandomClr()
+    currNote.isPinned = true;
     return storageService.post(NOTES_KEY, currNote);
 }
 
@@ -139,7 +143,7 @@ function _createNotes() {
                 }
             },
             {
-                id: "n107",
+                id: "n108",
                 type: "note-txt",
                 isPinned: false,
                 info: {
@@ -186,8 +190,6 @@ function _createTodoNote(label, txt) {
         }
     };
 }
-
-// _createVidNote('https://www.youtube.com/watch?v=ozj4T5M5GTk&ab_channel=KitchenNightmares', 'meow')
 
 function _createVidNote(src, title) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;

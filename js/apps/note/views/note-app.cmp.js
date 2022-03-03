@@ -18,7 +18,7 @@ export default {
     components: {
         noteList,
         noteAdd,
-        noteFilter
+        noteFilter,
         // noteEdit
     },
     data() {
@@ -30,7 +30,7 @@ export default {
     },
     created() {
         noteService.query()
-            .then(notes => this.notes = notes);
+            .then(notes => this.notes = notes)
     },
     methods: {
         removeNote(id) {
@@ -52,10 +52,9 @@ export default {
         },
         pinNote(note) {
             note.isPinned = !note.isPinned
+            this.notes.sort((n1, n2) => n2.isPinned - n1.isPinned)
+            noteService.saveAllNotes(this.notes)
             noteService.save(note)
-            .then(() => {
-                this.notes.sort((n1, n2) => n2.isPinned - n1.isPinned)
-            })
         },
         setFilter(filterBy) {
             this.filterBy = filterBy
@@ -63,9 +62,14 @@ export default {
     },
     computed: {
         notesToShow() {
-            if (!this.filterBy) return this.notes
+            if (!this.filterBy || !this.filterBy.byType) return this.notes
+            console.log(this.filterBy)
             const regex = new RegExp(this.filterBy.byTitle, 'i');
-            return this.notes.filter(note => regex.test(note.info.title || note.info.label || note.info.txt));
+            return this.notes.filter(note => {
+                return regex.test(note.info.title || note.info.label || note.info.txt) &&
+                note.type === this.filterBy.byType
+
+                });
 
         }
     },
