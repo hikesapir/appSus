@@ -9,10 +9,16 @@ export default {
         <!-- <section class="mail-preview"> -->
             <tr :class="openedMail">
                 <input type="checkbox">
-                <td>{{mail.id}}</td>
-                <td> {{mail.subject}} </td>
-                <td> <long-text :txt="mail.body"/></td>
-                <td> {{sentAt}}</td>
+                <td v-if="!isStarred"><i @click="starred" class="fa-regular fa-star"></i></td>
+                <td v-if="isStarred"><i class="fa-solid fa-star"></i></td>
+                <td @click="select"> {{mail.subject}} </td>
+                <td @click="select"> <long-text :txt="mail.body"/></td>
+                <td @mouseover="mouseOver" v-if="!isHover"> {{sentAt}}</td>
+                <td v-if="isHover" @mouseleave="mouseOver">
+                    <i @click="removeMail" class="fa-solid fa-trash-can"></i>
+                    <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope"></i>
+                    <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open"></i>
+                </td>
             </tr>
         <!-- </section> -->
     `,
@@ -21,14 +27,31 @@ export default {
     },
     data() {
         return {
-
+            isHover:false,
+            isStarred:false,
+            // isRead:false,
         }
     },
     created() {
 
     },
     methods: {
-
+        mouseOver(){
+            this.isHover = !this.isHover;   
+        },
+        select(){
+            this.$emit('select', this.mail.id)
+        },
+        removeMail() {
+            this.$emit('remove', this.mail.id)
+        },
+        starred(){
+            this.isStarred =!this.isStarred
+        },
+        setRead(){
+            console.log('clicked');
+            this.$emit('setRead', this.mail.id)
+        }
     },
     computed: {
         sentAt() {

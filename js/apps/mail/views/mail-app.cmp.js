@@ -8,7 +8,7 @@ export default {
     template: `
         <section class="mail-app">
             <nav-bar :unread="unread"></nav-bar>
-               <router-view @test="test"></router-view>
+               <router-view @remove="removeMail" @opened="recount"></router-view>
         </section>
     `,
     components: {
@@ -28,32 +28,26 @@ export default {
                 this.mails = mails
                 this.unreadMails()
             });
-            
+
     },
 
     methods: {
-        test(e) {
-            console.log(e);
+        recount() {
             this.unreadMails()
-            this.hey()
         },
         unreadMails() {
             mailService.query()
-            .then(mails => {
-                this.mails = mails
-                var count = 0
-                this.mails.forEach(mail => {
-                    if (!mail.isRead) count++
-                })
-                console.log(this.mails);
-                this.unread = count;
-            });
-          
-            // console.log();
+                .then(mails => {
+                    this.mails = mails
+                    var count = 0
+                    this.mails.forEach(mail => {
+                        if (!mail.isRead) count++
+                    })
+                    console.log(this.mails);
+                    this.unread = count;
+                });
         },
-        hey(){
-            console.log('hey',this.unreadMails1);
-        }
+ 
     },
     computed: {
         mailsForDisplay() {
@@ -63,7 +57,7 @@ export default {
             // return this.cars.filter(car => regex.test(car.vendor));
         },
         unreadMails1() {
-          return this.unread;
+            return this.unread;
         }
 
     },

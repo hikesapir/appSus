@@ -20,7 +20,7 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                     <mail-preview  v-for="mail in mails" :key="mail.id" @click="seeDetails(mail.id)" :mail="mail" />
+                     <mail-preview v-for="mail in mails" @remove="removeMail" @setRead="setRead" :key="mail.id" @select="seeDetails" :mail="mail" />
                 </tbody>
             </table>
         </section>
@@ -44,14 +44,36 @@ export default {
 
     methods: {
         seeDetails(id) {
+            console.log(id);
             mailService.get(id)
                 .then(mail => {
                     mail.isRead = true
                     mailService.save(mail)
-                    .then(()=>{
-                        this.$router.push(`/mail/${id}`)
-                        this.$emit('test', 1)
-                    })
+                        .then(() => {
+                            this.$router.push(`/mail/${id}`)
+                            this.$emit('opened')
+                        })
+                })
+        },
+        removeMail(id) {
+            mailService.remove(id)
+                .then(() => {
+                    this.$emit('opened')
+                    mailService.query()
+                        .then(mails => this.mails = mails);
+                })
+        },
+        setRead(id) {
+            mailService.get(id)
+                .then(mail => {
+                    console.log('get', mail);
+                    mail.isRead = !mail.isRead
+                    mailService.save(mail)
+                        .then((mails) => {
+                            this.$emit('opened')
+                            console.log(mails);
+                            // this.mails = mails
+                        })
                 })
         }
     },
