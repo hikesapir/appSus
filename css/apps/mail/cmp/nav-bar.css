@@ -1,3 +1,25 @@
 .nav-bar{
-    width: 300px;
+    width: 200px;
+    font-size: 1.2rem;
+    margin-right: 30px;
+}
+.nav-bar li{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 15px 0;
+    height: 40px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.nav-bar li:hover{
+    background-color: rgba(235, 235, 235, 0.938);
+    border-radius: 0 50px 50px 0;
+
+}
+
+.nav-bar li.active{
+    background-color: rgba(230, 137, 137, 0.938);
+    border-radius: 0 50px 50px 0;
 }
