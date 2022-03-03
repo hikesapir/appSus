@@ -2,6 +2,7 @@ import noteTxt from '../cmps/note-txt.cmp.js';
 import noteImg from '../cmps/note-img.cmp.js';
 import noteTodos from '../cmps/note-todos.cmp.js';
 import noteVideo from '../cmps/note-video.cmp.js';
+import noteAudio from '../cmps/note-audio.cmp.js';
 import { noteService } from "../services/note-service.js";
 
 import noteEdit from '../../note/cmps/note-edit.cmp.js';
@@ -10,9 +11,9 @@ export default {
 
     props: ['notes'],
     template: `
-            <!-- <transition name="fade" mode="out-in"> -->
         <section class="note-list">
             <div class="note-container">
+                <!-- <transition name="fade" mode="out-in"> -->
                 <div class="current-note" :style="{ backgroundColor: note.info.backgroundColor }" v-for="note in notes">
                     <span :style="{ opacity: note.isPinned ? 1 : 0 }" class="pin"><i class="fa-solid fa-thumbtack"></i></span>
                     <component  id="component"
@@ -25,6 +26,7 @@ export default {
                     <ul class="actions">
                         <li @click="remove(note.id)"><i class="fa-solid fa-trash-can"></i></li>
                         <li @click="pin(note)"><i class="fa-solid fa-thumbtack"></i></li>
+                        <li @click="copy(note)"><i class="fa-solid fa-copy"></i></li>
                         <li @click="edit(note)"><i class="fa-solid fa-pen-to-square"></i></li>
                         <li @click="openPalette"><i class="fa-solid fa-palette"></i></li>
                         <div @mouseleave="openPalette" class="palette-container" v-if="onColor">
@@ -45,6 +47,7 @@ export default {
         noteImg,
         noteTodos,
         noteVideo,
+        noteAudio,
         noteEdit,
         noteService
     },
@@ -76,9 +79,6 @@ export default {
         openPalette() {
             this.onColor = !this.onColor
         },
-        onRed(note) {
-            note.info.backgroundColor = 'red'
-        },
         switchColor(note, color) {
             if(color === 'blue') note.info.backgroundColor = 'blue'
             else if (color === 'red') note.info.backgroundColor = 'red'
@@ -88,6 +88,9 @@ export default {
         },
         pin(note) {
             this.$emit('pin', note)
+        },
+        copy(note) {
+            this.$emit('copy', note)
         }
 
     },

@@ -10,7 +10,7 @@ export default {
             <div class="main-layout">
             <note-filter @filtered="setFilter"/>
             <note-add @add="addNote" />
-            <note-list :notes="notesToShow" @remove="removeNote" @edit="editNote" @pin="pinNote"/>
+            <note-list :notes="notesToShow" @remove="removeNote" @edit="editNote" @pin="pinNote" @copy="copyNote"/>
             <!-- <note-edit  v-if="openEdit"/> -->
         </div>
         </section>
@@ -55,6 +55,13 @@ export default {
             this.notes.sort((n1, n2) => n2.isPinned - n1.isPinned)
             noteService.saveAllNotes(this.notes)
             noteService.save(note)
+        },
+        copyNote(note) {
+            noteService.duplicateNote(note)
+            .then(() => {
+                noteService.query()
+                    .then(notes => this.notes = notes);
+            });
         },
         setFilter(filterBy) {
             this.filterBy = filterBy
