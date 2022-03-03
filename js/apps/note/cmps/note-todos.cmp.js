@@ -22,8 +22,7 @@ export default {
             return `(בוצע ב: ${new Date(date).toLocaleDateString('he-IL')})`
         },
         onTodoTask(todo) {
-            if (todo.doneAt) todo.doneAt = null
-            else todo.doneAt = Date.now()
+            this.$emit('done', todo)
         },
     },
 

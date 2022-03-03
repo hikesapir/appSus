@@ -24,8 +24,21 @@
 
 .note-list .note-container .pin {
     font-size: 20px;
-    margin-left: 10px;
+    margin-left: 5px;    
 }
+.note-list .note-container .pin i {
+    transform: rotate(-45deg);
+    color: white;
+}
+
+/* .note-add form button i{
+    transform: rotate(0deg);
+    transition: rotate 5s;
+}
+
+.note-add form button i:hover {
+    transform: rotate(180deg);
+} */
 
 .note-list .note-container .actions {
     display: flex;
@@ -145,7 +158,7 @@
     width: 300px;
 }
 
-.note-add form .input-container input:focus {
+.note-add form .input-container input:focus, .note-filter input[type="text"]:focus {
     outline: none;
 }
 
@@ -166,6 +179,37 @@
 .note-add form button {
     cursor: pointer;
     font-size: 30px
+}
+
+.note-filter {
+    display: flex;
+    gap: 10px;
+    padding-top: 30px;
+}
+
+.note-filter input[type="text"] {
+    border: none;
+    background-color: transparent;
+    align-self: center;
+    border-bottom: 2px solid var(--clr-blue);
+    height: 20px;
+    width: 150px;
+}
+
+.note-filter input[type="text"]::placeholder {
+    font-size: 17px;
+    font-family: cairo;
+    color: var(--clr-dark);
+}
+
+.note-filter input[type="radio"] {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.note-filter label {
+    cursor: pointer;
 }
 
 .note-todos p {
