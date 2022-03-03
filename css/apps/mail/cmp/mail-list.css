@@ -9,6 +9,7 @@
 }
 
 .mail-list td {
+    /* display: flex; */
     border: 0;
 
 }
@@ -34,4 +35,11 @@
 .mail-list .raed{
     font-weight: normal;
     background-color: var(--clr-light-gray2);
+}
+
+/* mail preview */
+
+
+.mail-list tbody .fa-solid.fa-star{
+    color: rgb(255, 187, 0);
 }

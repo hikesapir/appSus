@@ -6,12 +6,12 @@ export default {
     template: `
         <section class="nav-bar">
             <ul>
-                <li @click="selected('compose')"> Compose</li>
-                <li class="active"  @click="selected('inbox')"><i class="fa-solid fa-inbox"></i> Inbox ({{unread}})</li>
-                <li @click="selected('starred')" ><i class="fa-solid fa-star"></i> Starred</li>
-                <li @click="selected('sent')"><i class="fa-solid fa-paper-plane"></i> Sent</li>
-                <li @click="selected('drafts')"><i class="fa-solid fa-file"></i> Drafts</li>
-                <li @click="selected('trash')"><i class="fa-solid fa-trash-can"></i> Trash</li>
+                <li class="compose" @click="selected('compose')"> <i class="fa-solid fa-plus"></i>Compose</li>
+                <li :class="{ active: select === 'inbox'}" @click="selected('inbox')"><i class="fa-solid fa-inbox"></i> Inbox ({{unread}})</li>
+                <li :class="{ active: select === 'starred'}" @click="selected('starred')" ><i class="fa-solid fa-star"></i> Starred</li>
+                <li :class="{ active: select === 'sent'}" @click="selected('sent')"><i class="fa-solid fa-paper-plane"></i> Sent</li>
+                <li :class="{ active: select === 'drafts'}" @click="selected('drafts')"><i class="fa-solid fa-file"></i> Drafts</li>
+                <li :class="{ active: select === 'trash'}" @click="selected('trash')"><i class="fa-solid fa-trash-can"></i> Trash</li>
             </ul>
         </section>
     `,
@@ -19,7 +19,8 @@ export default {
     },
     data() {
         return {
-            isActive: true
+            isActive: true,
+            select: 'inbox'
         }
     },
     created() {
@@ -28,6 +29,8 @@ export default {
 
     methods: {
         selected(nav) {
+            this.select = nav
+            this.$router.push(`/mail`)
             this.$emit('selected', nav)
         }
 
