@@ -9,8 +9,8 @@ export default {
     props: ['mails'],
     template: `
         <section v-if="mails" class="mail-list">
-            <!-- <pre>{{mails}}</pre> -->
         <search-bar @filter="filterBy" @sort="sort"/>
+        <hr>
             <table>
                 <thead class="thead">
                     <tr>
@@ -35,6 +35,7 @@ export default {
     data() {
         return {
             filter: 'all',
+            inputSearch: '',
             sortBy: 'date',
             mult: 1,
         }
@@ -44,17 +45,15 @@ export default {
     },
 
     methods: {
-        filterBy(val) {
-            this.filter = val
+        filterBy(filter, inputSearch) {
+            this.filter = filter
+            this.inputSearch = inputSearch
+            console.log(this.inputSearch);
+
         },
         sort(sortBy, mult) {
             this.sortBy = sortBy;
             this.mult = mult;
-
-            // console.log(this.mailForDisplay);
-            // console.log('get it', sortBy, mult);
-
-            // console.log(this.mailForDisplay);
         },
         seeDetails(id) {
             mailService.get(id)
@@ -93,10 +92,12 @@ export default {
     computed: {
         mailForDisplay() {
             var mails;
-            if (this.filter === 'all') mails = this.mails
+            const regex = new RegExp(this.inputSearch, 'i');
+            if (this.filter === 'all') mails = this.mails.filter(mail => regex.test(mail.subject))
+         
             else mails = this.mails.filter(mail => {
-                if (this.filter === 'read') return mail.isRead
-                else return !mail.isRead
+                if (this.filter === 'read') return mail.isRead && regex.test(mail.subject)
+                else return !mail.isRead && regex.test(mail.subject)
             })
             if (this.sortBy === 'date') {
                 mails.sort((a, b) => (a.sentAt - b.sentAt) * this.mult)

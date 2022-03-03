@@ -1,6 +1,6 @@
 .nav-bar{
     width: 200px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-right: 100px;
 }
 .nav-bar li{
@@ -29,5 +29,8 @@
     color: var(--clr-pink);
 }
 .nav-bar .compose{
-    font-size: 1.5rem;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1.4rem;
+    border: 1px solid black;
 }

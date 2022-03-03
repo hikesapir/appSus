@@ -29,7 +29,7 @@ export default {
 
     methods: {
         selected(nav) {
-            this.select = nav
+           if (nav !=='compose') this.select = nav
             this.$router.push(`/mail`)
             this.$emit('selected', nav)
         }

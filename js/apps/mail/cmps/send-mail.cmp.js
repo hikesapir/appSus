@@ -8,7 +8,7 @@ export default {
         <section class="send-mail">
             <div class="header">
                 <h1>New Message</h1>
-                <button @click="close">x</button>
+                <button @click="close">X</button>
             </div>
             <div class="body">
                     <input v-model=message.to type="email" required placeholder="To">
