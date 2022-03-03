@@ -10,22 +10,22 @@ export default {
     template: `
         <section v-if="mails" class="mail-list">
             <!-- <pre>{{mails}}</pre> -->
-        <search-bar @filter="filterBy" @sort="sortBy"/>
+        <search-bar @filter="filterBy" @sort="sort"/>
             <table>
                 <thead class="thead">
                     <tr>
-                        <td>id</td>
+                        <td><input type="checkbox"></td>
+                        <td>starred</td>
                         <td><h1>subject</h1></td>
                         <td><h1>body</h1></td>
                         <td><h1>sentAt</h1></td>
                     </tr>
                 </thead>
                 <tbody>
-                     <mail-preview v-for="mail in mailForDisplay" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
+                     <mail-preview v-for="mail in mailForDisplay" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
                 </tbody>
             </table>
         </section>
-        
         
     `,
     components: {
@@ -34,24 +34,27 @@ export default {
     },
     data() {
         return {
-            filter: 'all'
+            filter: 'all',
+            sortBy: 'date',
+            mult: 1,
         }
     },
     created() {
-  
+
     },
 
     methods: {
         filterBy(val) {
             this.filter = val
         },
-        sortBy(sortBy, mult) {
-            if (sortBy === 'date') {
-                this.mails.sort((a, b) => (a.sentAt - b.sentAt) * mult)
-            } else if (sortBy === 'subject') {
-                this.mails.sort((a, b) => (a.subject.toUpperCase() > b.subject.toUpperCase() ? 1 : -1) * mult)
-            }
+        sort(sortBy, mult) {
+            this.sortBy = sortBy;
+            this.mult = mult;
 
+            // console.log(this.mailForDisplay);
+            // console.log('get it', sortBy, mult);
+
+            // console.log(this.mailForDisplay);
         },
         seeDetails(id) {
             mailService.get(id)
@@ -77,15 +80,30 @@ export default {
                     mailService.save(mail)
                         .then(() => this.$emit('opened'))
                 })
+        },
+        setStarred(id) {
+            mailService.get(id)
+                .then(mail => {
+                    mail.isStarred = !mail.isStarred
+                    mailService.save(mail)
+                        .then(() => this.$emit('opened'))
+                })
         }
     },
     computed: {
         mailForDisplay() {
-            if (this.filter === 'all') return this.mails
-            else return this.mails.filter(mail => {
+            var mails;
+            if (this.filter === 'all') mails = this.mails
+            else mails = this.mails.filter(mail => {
                 if (this.filter === 'read') return mail.isRead
                 else return !mail.isRead
             })
+            if (this.sortBy === 'date') {
+                mails.sort((a, b) => (a.sentAt - b.sentAt) * this.mult)
+            } else if (this.sortBy === 'subject') {
+                mails.sort((a, b) => (a.subject.toUpperCase() > b.subject.toUpperCase() ? 1 : -1) * this.mult)
+            }
+            return mails
         }
     },
 }

@@ -62,12 +62,10 @@ export default {
     },
     computed: {
         mailsForDisplay() {
+            if (!this.mails) return null
             if (this.filter === 'inbox') return this.mails.filter(mail => mail.isInbox)
             else if (this.filter === 'sent') return this.mails.filter(mail => !mail.isInbox)
-            // else if (this.filter === 'sent') {
-            //     return filter
-            // }
-            // return mailService.querySentMails();
+            else if (this.filter === 'starred') return this.mails.filter(mail => mail.isStarred)
         },
 
 

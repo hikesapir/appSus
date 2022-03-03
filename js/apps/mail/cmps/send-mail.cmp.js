@@ -12,7 +12,7 @@ export default {
             </div>
             <div class="body">
                 <input v-model=message.to type="email" required placeholder="To">
-                <input v-model=message.Subject type="text" placeholder="Subject">
+                <input v-model=message.subject type="text" placeholder="Subject">
                 <textarea v-model=message.body name="body" id="body" cols="30" rows="14" placeholder="Your message">
                 </textarea>
                 <div class="send-btn-container">

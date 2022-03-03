@@ -9,8 +9,8 @@ export default {
         <!-- <section class="mail-preview"> -->
             <tr :class="openedMail">
                 <input type="checkbox">
-                <td v-if="!isStarred"><i @click="starred" class="fa-regular fa-star"></i></td>
-                <td v-if="isStarred"><i class="fa-solid fa-star"></i></td>
+                <td v-if="!mail.isStarred"><i @click="starred" class="fa-regular fa-star"></i></td>
+                <td v-if="mail.isStarred"><i @click="starred" class="fa-solid fa-star"></i></td>
                 <td @click="select"> {{mail.subject}} </td>
                 <td @click="select"> <long-text :txt="mail.body"/></td>
                 <td @mouseover="mouseOver" v-if="!isHover"> {{sentAt}}</td>
@@ -46,7 +46,8 @@ export default {
             this.$emit('remove', this.mail.id)
         },
         starred(){
-            this.isStarred =!this.isStarred
+            this.$emit('starred', this.mail.id)
+            // this.isStarred =!this.isStarred
         },
         setRead(){
             console.log('clicked');

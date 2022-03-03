@@ -47,7 +47,9 @@ function save(mail) {
 }
 
 function sendMail(message) {
-    const mail = _createMail(message.subject, message.body, Date.now(), message.to, false)
+    console.log(message.subject);
+    const mail = _createMail(message.subject, message.body, Date.now(), message.to, true, false)
+    console.log(mail.subject);
     return storageService.post(MAILS_KEY, mail);
 }
 
@@ -61,15 +63,16 @@ function _setNextPrevMailId(mail) {
     })
 }
 
-function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isInbox = true) {
+function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = false, isInbox = true) {
     return {
         id: '',
         subject,
         body,
         sentAt,
         to,
-        isRead: false,
+        isRead,
         isInbox,
+        isStarred: false
     };
 }
 
@@ -88,8 +91,8 @@ function _createMails() {
     return mails;
 }
 
-function _createMail(subject, body, sentAt, to, isInbox) {
-    const mail = getEmptyMail(subject, body, sentAt, to, isInbox)
+function _createMail(subject, body, sentAt, to, isRead, isInbox) {
+    const mail = getEmptyMail(subject, body, sentAt, to, isRead, isInbox)
     mail.id = utilService.makeId()
     return mail;
 }
