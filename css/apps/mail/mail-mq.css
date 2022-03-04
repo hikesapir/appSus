@@ -9,17 +9,56 @@
 
 /* MEDIUM */
 @media (min-width: 830px){
-
+   
+    .mail-list table{
+        /* width: 800px; */
+    }
+    .mail-list table  .subject-col {
+        
+        /* width: 100px; */
+        /* Change it as per your requirement. */
+        /* overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; */
+    }
+    .mail-list table  .body-col {
+        /* display: block; */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* width: 90px; */
+    }
+    .mail-list table  .time-col {
+        /* width: 105px;
+        background-color: green; */
+    }
+    
 }
 
 
 /* LARGE */
-@media (min-width:1225px) {
-    .mail-list table thead .checkbox-col {
-        /* background-color: aqua; */
-        /* border-collapse: collapse;
-        text-align: left; */
-        /* min-width: 400px; */
-        /* width: 900px; */
+@media (min-width:1150px) {
+    .mail-list table{
+        width: 100%;
+        /* table-layout: fixed; */
+    }
+    .mail-list table  .checkbox-col {
+        width: 5%;
+    }
+    .mail-list table  .star-col {
+        width: 5%;
+    }
+    .mail-list table  .from-col {
+        width: 10%;
+    }
+    .mail-list table  .subject-col {
+     
+        width: 10%;
+    }
+    .mail-list table  .body-col {
+        width: 55%;
+    }
+    .mail-list table  .time-col {
+        width: 15%;
+        background-color: aqua;
     }
 }

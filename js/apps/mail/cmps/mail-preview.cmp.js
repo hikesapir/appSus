@@ -7,15 +7,15 @@ export default {
     props: ['mail'],
     template: `
         <!-- <section class="mail-preview"> -->
-            <tr @mouseover="mouseOver"  @mouseleave="mouseLeve" :class="[openedMail, checked]">
-                <td class="checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox"></td>  
-                <td v-if="!mail.isStarred" class="star"><i @click="starred" class="fa-regular fa-star"></i></td>
-                <td v-if="mail.isStarred" class="star"><i @click="starred" class="fa-solid fa-star"></i></td>
-                <td @click="select"> {{mail.from}} </td>
-                <td @click="select"> {{mail.subject}} </td>
-                <td @click="select"> <long-text :txt="mail.body"/></td>
-                <td  v-if="!isHover"> {{sentAt}}</td>
-                <td class="actions" v-if="isHover">
+            <tr  @mouseover="mouseOver"  @mouseleave="mouseLeve" :class="[openedMail, checked]">
+                <td  class="checkbox-col checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox"></td>  
+                <td v-if="!mail.isStarred" class="star-col star"><i @click="starred" class="fa-regular fa-star"></i></td>
+                <td v-if="mail.isStarred" class="star-col star"><i @click="starred" class="fa-solid fa-star"></i></td>
+                <td @click="select" class="from-col"> {{mail.from}} </td>
+                <td @click="select" class="subject-col"> {{mail.subject}} </td>
+                <td @click="select" class="body-col"> <long-text :txt="mail.body"/></td>
+                <td  v-if="!isHover" class="time-col"> {{sentAt}}</td>
+                <td class="time-col actions" v-if="isHover">
                     <i @click="removeMail" class="fa-solid fa-trash-can"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open"></i>

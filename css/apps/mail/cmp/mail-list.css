@@ -9,8 +9,6 @@
 .mail-list table {
     border-collapse: collapse;
     text-align: left;
-    min-width: 400px;
-    width: 100%;
 }
 
 .mail-list tbody{
