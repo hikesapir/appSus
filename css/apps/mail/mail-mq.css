@@ -9,39 +9,17 @@
 
 /* MEDIUM */
 @media (min-width: 830px){
-   
-    .mail-list table{
-        /* width: 800px; */
-    }
-    .mail-list table  .subject-col {
-        
-        /* width: 100px; */
-        /* Change it as per your requirement. */
-        /* overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; */
-    }
-    .mail-list table  .body-col {
-        /* display: block; */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        /* width: 90px; */
-    }
-    .mail-list table  .time-col {
-        /* width: 105px;
-        background-color: green; */
-    }
-    
+
 }
 
 
 /* LARGE */
-@media (min-width:1150px) {
+@media (min-width:1225px) {
     .mail-list table{
-        width: 100%;
-        /* table-layout: fixed; */
+        width: 200px;
+        table-layout: auto;
     }
-    .mail-list table  .checkbox-col {
+    /* .mail-list table  .checkbox-col {
         width: 5%;
     }
     .mail-list table  .star-col {
@@ -51,14 +29,27 @@
         width: 10%;
     }
     .mail-list table  .subject-col {
-     
-        width: 10%;
-    }
+        display: inline-block;
+        
+        width: 100%;
+    } */
     .mail-list table  .body-col {
-        width: 55%;
+        display: block;
+        overflow: hidden;
+        /* white-space: nowrap;  */
+        text-overflow: ellipsis; 
+        
+        display: inline-block;
+        width: 100%;
     }
-    .mail-list table  .time-col {
+    /* .mail-list table  .time-col {
         width: 15%;
-        background-color: aqua;
     }
+    .ellipsis{
+        display: inline-block;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        width: 80%;
+    } */
 }

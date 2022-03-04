@@ -13,7 +13,8 @@ export default {
                 <td v-if="mail.isStarred" class="star-col star"><i @click="starred" class="fa-solid fa-star"></i></td>
                 <td @click="select" class="from-col"> {{mail.from}} </td>
                 <td @click="select" class="subject-col"> {{mail.subject}} </td>
-                <td @click="select" class="body-col"> <long-text :txt="mail.body"/></td>
+                <!-- <td @click="select" class="body-col"> <long-text :txt="mail.body"/></td> -->
+                <td @click="select" class="body-col"> {{mail.body}}</td>
                 <td  v-if="!isHover" class="time-col"> {{sentAt}}</td>
                 <td class="time-col actions" v-if="isHover">
                     <i @click="removeMail" class="fa-solid fa-trash-can"></i>
