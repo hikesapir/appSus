@@ -3,7 +3,7 @@ import mailApp from './apps/mail/views/mail-app.cmp.js';
 import noteApp from './apps/note/views/note-app.cmp.js';
 import bookApp from './apps/book/views/book-app.cmp.js';
 import bookDetails from './apps/book/cmps/book-details.cmp.js';
-import bookAdd from './apps/book/cmps/book-details.cmp.js';
+import bookAdd from './apps/book/cmps/book-add.cmp.js';
 import mailDetails from './apps/mail/cmps/mail-details.cmp.js';
 import mailList from './apps/mail/cmps/mail-list.cmp.js';
 
@@ -45,10 +45,6 @@ const routes = [
         component: bookAdd
 
     }
-
-
-
-
 
 ];
 

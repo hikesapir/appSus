@@ -8,23 +8,26 @@ import readReviews from '../cmps/read-reviews.cmp.js';
 export default {
     template: `
         <section v-if="book" class="book-details">
-            <div>
-            <router-link :to="'/book/'+book.prevBookId">Prev Book</router-link> | 
-            <router-link to="/book">Go Back</router-link> |
-            <router-link :to="'/book/'+book.nextBookId">Next Book</router-link>
-            </div>
-            <img :src="book.thumbnail">
-            <h1>{{book.title}} | by: {{book.authors[0]}}<span>{{checkBookDate}}</span></h1>
+            <div class="book-details-container">
+                <div class="book-details-paging">
+                     <router-link :to="'/book/'+book.prevBookId"><i class="fa-solid fa-arrow-left-long"></i></router-link> | 
+                      <router-link to="/book">Go Back</router-link> |
+                      <router-link :to="'/book/'+book.nextBookId"><i class="fa-solid fa-arrow-right-long"></i></router-link>
+                </div>
+                <hr>
+            <img class="book-img" :src="book.thumbnail">
+            <h1>{{formattedTitle}} | by: {{book.authors[0]}}<span>{{checkBookDate}}</span></h1>
             <h2>{{book.subtitle}}</h2>
             <h3>Categories: <span v-for="category in book.categories">{{category}}</span></h3>
             <p>Page count: {{book.pageCount}} <span>{{checkCount}}</span></p>
             <!-- <long-text :txt="book.description" /> -->
-            <div class="price flex justify-center align-center">
-            <h1 :class="checkPrice">Price: {{formattedPrice}} </h1> <img class="sale" v-if="checkSale" width="40" src="./images/sale.png">
-            </div>
+                  <div class="price flex justify-center align-center">
+                         <h1 :class="checkPrice">Price: {{formattedPrice}} </h1> <img class="sale" v-if="checkSale" width="40" src="./images/sale.png">
+                     </div>
             <review-add v-if="addReview" @save="setReview" @close="addReview = !addReview"/>
             <read-reviews v-if="showReviews && book.reviews" :reviews="book.reviews" @remove="removeReview"/>
             <a @click="showReviews = !showReviews">Show Reviews</a> | <a @click="addReview = !addReview">Add Review</a>
+        </div>
         </section>
     `,
     components: {
@@ -88,6 +91,9 @@ export default {
             var currYear = new Date().getFullYear();
             if (currYear - this.book.publishedDate > 10) return ' - Veteran Book';
             else if (currYear - this.book.publishedDate < 1) return ' - New!';
+        },
+        formattedTitle() {
+            return this.book.title.charAt(0).toUpperCase() + this.book.title.slice(1);
         },
         formattedPrice() {
             return new Intl.NumberFormat(this.book.listPrice.currencyCode,
