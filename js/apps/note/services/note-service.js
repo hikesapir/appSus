@@ -51,14 +51,14 @@ function newNote(note) {
 
     currNote.id = utilService.makeId();
     currNote.info.backgroundColor = utilService.getRandomClr();
-    currNote.isPinned = true;
+    currNote.isPinned = false;
     return storageService.post(NOTES_KEY, currNote);
 }
 
-function duplicateNote(note) {
+function duplicateNote(note, noteIdx) {
     var duplicateNote = { ...note };
     duplicateNote.id = utilService.makeId();
-    return storageService.post(NOTES_KEY, duplicateNote);
+    return storageService.duplicatePost(NOTES_KEY ,duplicateNote, noteIdx);
 }
 
 function _createNotes() {
@@ -70,7 +70,7 @@ function _createNotes() {
                 type: "note-img",
                 isPinned: true,
                 info: {
-                    backgroundColor: "#d63384",
+                    backgroundColor: "lightcoral",
                     url: "https://s7.gifyu.com/images/65eibq.gif",
                     title: ""
                 },
@@ -80,7 +80,7 @@ function _createNotes() {
                 type: "note-todos",
                 isPinned: false,
                 info: {
-                    backgroundColor: "#0d6efd",
+                    backgroundColor: "lightgreen",
                     label: "משימות",
                     todos: [
                         { txt: "ללמד canvas כמה שעות לפני הספרינט", doneAt: 312312312313 },
@@ -95,7 +95,7 @@ function _createNotes() {
                 type: "note-txt",
                 isPinned: false,
                 info: {
-                    backgroundColor: "#ffc107",
+                    backgroundColor: "#ffdc72",
                     txt: "לורם איפסום דולור סיט אמט, קונסקטטור אדיפיסינג אלית קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף לפרומי בלוף־קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה ש”יצמה ברורק“. להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. ושבעגט לבם סולגק. בראיט ולחת צורק מונחף, בגורמי מג׳מש. תרבנך וסתעד לכנו סתשם השמה – לתכי מורגם בורק? לתיג ישבעס."
 
                 }
@@ -116,7 +116,7 @@ function _createNotes() {
                 type: "note-video",
                 isPinned: false,
                 info: {
-                    backgroundColor: "#df8eb6",
+                    backgroundColor: "lightsalmon",
                     src: "https://www.youtube.com/embed/Z3TIhMGQ_8k",
                     title: ""
                 }
@@ -126,7 +126,7 @@ function _createNotes() {
                 type: "note-img",
                 isPinned: false,
                 info: {
-                    backgroundColor: "#df8eb6",
+                    backgroundColor: "lightpink",
                     url: "https://i0.wp.com/www.tals-cooking.com/wp-content/uploads/2008/06/DSC3843-3-scaled.jpg?resize=1024%2C683&ssl=1",
                     title: "במיה ברוטב עגבניות"
                 },
@@ -137,7 +137,7 @@ function _createNotes() {
                 type: "note-todos",
                 isPinned: false,
                 info: {
-                    backgroundColor: "#ffc107",
+                    backgroundColor: "#ffdc72",
                     label: "מתכון לשקשוקה",
                     todos: [
                         { txt: "בקערה קטנה מערבבים את חומרי התיבול ומניחים בצד", doneAt: 312312312313 },
@@ -154,7 +154,7 @@ function _createNotes() {
                 type: "note-audio",
                 isPinned: false,
                 info: {
-                    backgroundColor: "#20c997",
+                    backgroundColor: "lightgreen",
                     src: 'js/apps/note/services/test.mp3',
                     title: 'LOREM IPSUM SONG'
                 
@@ -194,7 +194,7 @@ function _createTodoNote(label, txt) {
         info: {
             label,
             todos: [
-                { txt, doneAt: new Date(Date.now()) }
+                { txt, doneAt: null }
             ]
         }
     };

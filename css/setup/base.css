@@ -8,6 +8,7 @@ html {
 
 body {
     margin: 0;
+    overflow-x: hidden;
 }
 
 img {
@@ -36,4 +37,22 @@ h6 {
 .main-layout {
     max-width: 1400px;
     margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+
+}
+  ::-webkit-scrollbar-thumb {
+    background: var(--clr-pink);
+    border-radius: 10px;
+}
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c5307a
 }

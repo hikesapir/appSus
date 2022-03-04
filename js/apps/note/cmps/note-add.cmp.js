@@ -16,6 +16,7 @@ export default {
                     
                     <input  type="text" placeholder="write some text.." v-model="newNote.txt">
                     <button><i class="fa-solid fa-plus"></i></button>
+                    <!-- <button><i class="fa-solid fa-magnifying-glass"></i> -->
                      <ul class="options">
                     <li @click="newNote.type = 'note-txt'"><i class="fa-solid fa-font"></i></li>
                     <li @click="newNote.type = 'note-img'"><i class="fa-solid fa-image"></i></li>
@@ -40,6 +41,7 @@ export default {
     },
     methods: {
         addNote() {
+            if(!this.newNote.txt) return
             this.$emit('add', {...this.newNote})
         },
         

@@ -6,7 +6,8 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
+    duplicatePost
 }
 
 function query(entityType) {
@@ -28,6 +29,17 @@ function post(entityType, newEntity) {
             return newEntity;
         })
 }
+
+function duplicatePost(entityType, newEntity, noteIdx) {
+    newEntity.id = utilService.makeId()
+    return query(entityType)
+        .then(entities => {
+            entities.splice(noteIdx, 0, newEntity);
+            _save(entityType, entities)
+            return newEntity;
+        })
+}
+
 
 function postMany(entityType, newEntities) {
     return query(entityType)

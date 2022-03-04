@@ -44,7 +44,11 @@ export default {
             noteService.newNote(note)
                 .then(() => {
                     noteService.query()
-                        .then(notes => this.notes = notes);
+                        .then(notes => {
+                            this.notes = notes.sort((n1, n2) => n2.isPinned - n1.isPinned)
+                            noteService.saveAllNotes(this.notes)
+                        })
+                        
                 });
         },
         editNote(id) {
@@ -57,7 +61,8 @@ export default {
             noteService.save(note)
         },
         copyNote(note) {
-            noteService.duplicateNote(note)
+           const noteIdx =  this.notes.findIndex(currNote => currNote.id === note.id)
+            noteService.duplicateNote(note, noteIdx)
             .then(() => {
                 noteService.query()
                     .then(notes => this.notes = notes);
