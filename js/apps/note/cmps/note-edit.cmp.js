@@ -10,10 +10,10 @@ export default {
         <form @submit.prevent="editNote">
 
             <div class="edit-container">
-                <textarea ref="input" v-if="note.type === 'note-txt'" cols="35" rows="20" v-model="editedNote.textarea"></textarea>
+                <textarea ref="input" v-if="note.type === 'note-txt'" cols="25" rows="20" v-model="editedNote.textarea"></textarea>
                 <input class="title" ref="input" v-else type="text" placeholder="write some text.." v-model="editedNote.txt">
                 <div v-if="note.type === 'note-todos'" v-for="todo in note.info.todos">
-                <textarea class="todos" type="text" v-model="todo.txt"></textarea><span @click="onTodoTask(todo)">T</span>
+                <textarea class="todos" type="text" v-model="todo.txt"></textarea><span @click="onTodoTask(todo, note)"><i class="fa-solid fa-circle-check"></i></span>
                 </div>
                 <input class="url" v-if="note.type === 'note-img'" type="text" placeholder="Add here image url" v-model="editedNote.url">
                 <input class="url" v-if="note.type === 'note-video'" type="text" placeholder="Add here youtube video" v-model="editedNote.src">
@@ -21,7 +21,6 @@ export default {
              </div>
 
         </form>
-            
         </section>
     `
     ,
@@ -55,11 +54,13 @@ export default {
                 this.note.info.src = newSrc
                 this.note.info.title = this.editedNote.txt
             }
-            this.modal = false
+            this.modal = this.openModal()
             noteService.save(this.note)
         },
-        onTodoTask(todo) {
-            this.$emit('done', todo)
+        onTodoTask(todo, note) {
+            // console.log(note)
+            console.log('child todo:', todo)
+            this.$emit('done', todo, note)
         },
         openModal() {
             this.$emit('close')
