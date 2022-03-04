@@ -90,6 +90,7 @@ function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = fa
         isStarred: false,
         isTrashed: false,
         isDraft,
+        isChacked:false
     };
 }
 

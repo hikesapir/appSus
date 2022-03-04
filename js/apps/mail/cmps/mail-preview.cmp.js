@@ -7,14 +7,14 @@ export default {
     props: ['mail'],
     template: `
         <!-- <section class="mail-preview"> -->
-            <tr :class="openedMail">
-                <td class="checkbox"> <input type="checkbox"></td>  
+            <tr @mouseover="mouseOver"  @mouseleave="mouseLeve" :class="[openedMail, checked]">
+                <td class="checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox"></td>  
                 <td v-if="!mail.isStarred" class="star"><i @click="starred" class="fa-regular fa-star"></i></td>
                 <td v-if="mail.isStarred" class="star"><i @click="starred" class="fa-solid fa-star"></i></td>
                 <td @click="select"> {{mail.subject}} </td>
                 <td @click="select"> <long-text :txt="mail.body"/></td>
-                <td @mouseover="mouseOver" v-if="!isHover"> {{sentAt}}</td>
-                <td class="actions" v-if="isHover" @mouseleave="mouseOver">
+                <td  v-if="!isHover"> {{sentAt}}</td>
+                <td class="actions" v-if="isHover">
                     <i @click="removeMail" class="fa-solid fa-trash-can"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open"></i>
@@ -27,31 +27,37 @@ export default {
     },
     data() {
         return {
-            isHover:false,
-            isStarred:false,
-            // isRead:false,
+            isHover: false,
+            isStarred: false,
+            // isChecked: false,
         }
     },
     created() {
 
     },
     methods: {
-        mouseOver(){
-            this.isHover = !this.isHover;   
+        mouseOver() {
+            this.isHover = true
         },
-        select(){
+        mouseLeve() {
+            this.isHover = false
+        },
+        select() {
             this.$emit('select', this.mail.id)
         },
         removeMail() {
             this.$emit('remove', this.mail.id)
         },
-        starred(){
+        starred() {
             this.$emit('starred', this.mail.id)
-            // this.isStarred =!this.isStarred
         },
-        setRead(){
+        setRead() {
             console.log('clicked');
             this.$emit('setRead', this.mail.id)
+        },
+        check() {
+            this.$emit('check', this.mail)
+            console.log('its chacked', this.mail.isChecked);
         }
     },
     computed: {
@@ -68,8 +74,12 @@ export default {
             return display
 
         },
-        openedMail(){
-            return (this.mail.isRead)? 'raed':'unread'
+        openedMail() {
+            return (this.mail.isRead) ? 'raed' : 'unread'
+        },
+        checked(){
+            return (this.mail.isChecked) ? 'checked' : ''
+
         }
     }
 }

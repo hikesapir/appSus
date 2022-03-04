@@ -7,12 +7,12 @@
 
 /* table layout */
 .mail-list table {
-    /* margin-top: 5px; */
-    width: 100%;
+    /* width: 100%; */
     border-collapse: collapse;
     text-align: left;
-    min-width: 40px;
-
+    min-width: 400px;
+    table-layout: auto;
+    width: 100%;
 }
 
 .mail-list tbody{
@@ -25,14 +25,17 @@
 }
 
 .mail-list table th{
-    padding: 9px 15px;
+    padding: 7px 15px;
 }
 
 .mail-list table td{
-    padding: 5px 15px;
+    padding: 3px 10px;
+    white-space: nowrap; 
 }
 
 .mail-list tbody tr{
+    
+    font-size: 0.9rem;
     border-bottom: 1px solid #dddddd;
 }
 
@@ -72,3 +75,9 @@
     text-align: center;
 
 }
+
+.mail-list .checked{
+    background-color: lightcyan;
+    border: 1px solid blue;
+}
+

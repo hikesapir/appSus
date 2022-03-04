@@ -7,15 +7,26 @@ export default {
     props: [],
     template: `
     <section v-if="mail" class="mail-details">
-        <button @click="backToMails">back</button>
-        <button @click="removeMail">remove</button>
+        <div class="actions">
+            <button @click="backToMails"><i class="fa-solid fa-arrow-left-long"></i></button>
+            <button @click="removeMail"><i class="fa-solid fa-trash-can"></i></button> 
+            <button v-if="!mail.isRead" @click="setRead"><i class="fa-solid fa-envelope"></i></button> 
+            <button v-if="mail.isRead" @click="setRead"><i  class="fa-solid fa-envelope-open"></i></button> 
+            <button  v-if="!mail.isStarred"  @click="starred" class="star"><i class="fa-regular fa-star"></i></button>
+            <button v-if="mail.isStarred" @click="starred"  class="star"><i class="fa-solid fa-star"></i></button>
+            <div class="nav-page">
+                <button> <i class="fa-solid fa-chevron-left"></i></button> 
+                1 of 12
+                <button><i class="fa-solid fa-chevron-right"></i></button> 
+            </div>
+        </div>
         <hr>
-        <h1>{{mail.subject}}</h1>
+        <h1 class="subject">{{mail.subject}}</h1>
         <div class="addressee">
             <div class="user-icon"><i class="fa-solid fa-user"></i></div>
             <div>
-                <p>from: s@gmail.com</p>
-                <p>to: me</p>
+                <p>from: {{mail.from}}</p>
+                <p>to: {{mail.to}}</p>
             </div>
         </div>
         <p>{{mail.body}}</p>

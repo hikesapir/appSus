@@ -3,6 +3,29 @@
     width: 100%;
     /* padding: 25px; */
 }
+
+.mail-details .actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mail-details .actions .nav-page{
+    display: flex;
+    align-items: center;
+
+}
+.mail-details .actions button{
+    font-size: 1.3rem;
+    background-color: rgba(0, 255, 255, 0);
+    border: none;
+}
+
+.mail-details .subject{
+    font-size: 1.6rem;
+    margin: 15px;
+    text-decoration: underline;
+}
+
 .mail-details .fa-user {
     font-size: 40px;
 }

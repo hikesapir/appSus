@@ -48,7 +48,6 @@ export default {
                     this.mails.forEach(mail => {
                         if (!mail.isRead) count++
                     })
-                    console.log(this.mails);
                     this.unread = count;
                 });
         },

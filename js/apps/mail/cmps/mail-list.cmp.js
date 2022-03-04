@@ -12,9 +12,16 @@ export default {
         <search-bar @filter="filterBy" @sort="sort"/>
         <hr>
             <table>
+                <colgroup>
+                    <col style="width:5%">
+                    <col style="width:5%">
+                    <col style="width:20%">
+                    <col style="width:50%">
+                    <col style="width:20%">
+                </colgroup>
                 <thead class="thead">
                     <tr>
-                        <th style="text-align: center;"><input type="checkbox"></th>
+                        <th style="text-align: center;">checkbox</th>
                         <th style="text-align: center;">starred</th>
                         <th><h1>subject</h1></th>
                         <th><h1>body</h1></th>
@@ -22,7 +29,7 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                     <mail-preview v-for="mail in mailForDisplay" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
+                     <mail-preview v-for="mail in mailForDisplay" @check="check" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
                 </tbody>
             </table>
         </section>
@@ -87,6 +94,9 @@ export default {
                     mailService.save(mail)
                         .then(() => this.$emit('opened'))
                 })
+        },
+        check(mail) {
+             mailService.save(mail)
         }
     },
     computed: {
@@ -94,7 +104,7 @@ export default {
             var mails;
             const regex = new RegExp(this.inputSearch, 'i');
             if (this.filter === 'all') mails = this.mails.filter(mail => regex.test(mail.subject))
-         
+
             else mails = this.mails.filter(mail => {
                 if (this.filter === 'read') return mail.isRead && regex.test(mail.subject)
                 else return !mail.isRead && regex.test(mail.subject)
