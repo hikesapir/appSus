@@ -77,12 +77,13 @@ function _setNextPrevMailId(mail) {
     })
 }
 
-function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = false, isInbox = true, isDraft = false) {
+function getEmptyMail(subject = '', body = '', sentAt = '', to = '', isRead = false, isInbox = true, isDraft = false, from = '') {
     return {
         id: '',
         subject,
         body,
         sentAt,
+        from,
         to,
         isRead,
         isInbox,
@@ -96,12 +97,13 @@ function _createMails() {
     let mails = utilService.loadFromStorage(MAILS_KEY);
     if (!mails || !mails.length) {
         mails = [];
-        mails.push(_createMail('asubject1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet rem nulla sit consequatur odit nobis vel libero! Repellendus, quidem alias est officia veritatis, ex laudantium eius, facere excepturi impedit quaerat.', 1646215512260));
-        mails.push(_createMail('csubject2', 'body2', 1646215512260));
-        mails.push(_createMail('bsubject3', 'body3', 1646215512260));
-        mails.push(_createMail('fsubject4', 'body4', 1646215512260));
-        mails.push(_createMail('esubject5', 'body5', 1646273854871));
-        mails.push(_createMail('dsubject6', 'body6', 1616211177545));
+        mails.push(_createMail('test', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet rem nulla sit consequatur odit nobis vel libero! Repellendus, quidem alias est officia veritatis, ex laudantium eius, facere excepturi impedit quaerat.', 1616211177545 ));
+        mails.push(_createMail('New messages from Matan Crispel', ' hey, We deleted your folders in Dropbox by Thursday. please don\'t forget DO NOT COPY YOUR GIT FOLDER TO THE DROPBOX', 1646215512260));
+        mails.push(_createMail('CSSBattle', 'please join me to CSSBattle 🙏🙏🙏 \n Roy ', 1646215512260));
+        mails.push(_createMail('Sign in to CSSBattle', 'We received a request to sign in to CSSBattle using this email address. If you want to sign in with your user@appsus.com account, click this link: Sign in to CSSBattle If you did not request this link, you can safely ignore this email. Thanks, Your CSSBattle team', 1646215582260));
+        mails.push(_createMail('Check your McAfee report now!', 'Your protection at work This is your monthly security report Thank you for letting us keep you safe.', 1646273854871));
+        mails.push(_createMail('Your acceptance on order google API', 'Order Number:6424-7519-71   Subtotal:130$ for useing google maps API ', 1646215512260));
+        mails.push(_createMail('For Roy ', ' You did really good job!! YOU ARE THE BEST CO thet I could ask for 💪  ', 1646352375050));
         utilService.saveToStorage(MAILS_KEY, mails);
     }
     return mails;

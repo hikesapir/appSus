@@ -37,7 +37,7 @@ export default {
             filter: 'all',
             inputSearch: '',
             sortBy: 'date',
-            mult: 1,
+            mult: -1,
         }
     },
     created() {

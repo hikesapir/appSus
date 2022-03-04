@@ -28,7 +28,7 @@ export default {
             inputSearch: '',
             isAZ: true,
             isDate: true,
-            clicked:'',
+            clicked:'date',
 
 
         }
