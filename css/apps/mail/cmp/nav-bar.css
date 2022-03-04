@@ -1,9 +1,9 @@
-.nav-bar{
+.app-header .header-container .nav-bar{
     width: 200px;
     font-size: 1.1rem;
     margin-right: 200px;
 }
-.nav-bar li{
+.app-header .header-container .nav-bar li{
     display: flex;
     align-items: center;
     gap: 5px;
@@ -13,22 +13,22 @@
     cursor: pointer;
 }
 
-.nav-bar li:hover{
+.app-header .header-container .nav-bar li:hover{
     background-color: rgba(235, 235, 235, 0.938);
     border-radius: 0 50px 50px 0;
 
 }
 
-.nav-bar li.active{
+.app-header .header-container .nav-bar li.active{
     color: azure;
     background-color: var(--clr-pink);
     border-radius: 0 50px 50px 0;
 }
 
-.nav-bar .fa-solid.fa-plus{
+.app-header .header-container .nav-bar .fa-solid.fa-plus{
     color: var(--clr-pink);
 }
-.nav-bar .compose{
+.app-header .header-container .nav-bar .compose{
     border-radius: 20px;
     padding: 10px;
     font-size: 1.4rem;
