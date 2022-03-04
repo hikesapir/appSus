@@ -24,7 +24,7 @@ function makeId(length = 8) {
 }
 
 function getRandomClr() {
-    const colors = ['#ffc107', '#df8eb6', '#0dcaf0', '#ffc107'];
+    const colors = ['lightcoral', 'lightgreen', '#ffdc72', '#0dcaf0', 'lightsalmon', 'lightpink' ];
 
     var idx = getRandomInt(0, colors.length - 1);
     var randomClr = colors[idx];

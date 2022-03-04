@@ -39,7 +39,7 @@ export default {
                 </div>
             </div>
         <!-- </transition> -->
-            <note-edit :note="currNote" v-if="openEdit" @done="doneAt($event, note)"/>
+            <note-edit :note="currNote" v-if="openEdit" @done="doneAt($event, note)" @close="closeModal"/>
         </section>
     `,
     components: {
@@ -67,9 +67,11 @@ export default {
         },
         edit(note) {
             this.currNote = note
-            console.log(this.currNote);
             this.openEdit = true;
             // this.$emit('edit', id)
+        },
+        closeModal() {
+            this.openEdit = false
         },
         doneAt(todo, note) {
             if (todo.doneAt) todo.doneAt = null
@@ -80,10 +82,10 @@ export default {
             this.onColor = !this.onColor
         },
         switchColor(note, color) {
-            if(color === 'blue') note.info.backgroundColor = 'blue'
-            else if (color === 'red') note.info.backgroundColor = 'red'
-            else if (color === 'yellow') note.info.backgroundColor = 'yellow'
-            else if (color === 'green') note.info.backgroundColor = 'green'
+            if(color === 'blue') note.info.backgroundColor = '#0dcaf0'
+            else if (color === 'red') note.info.backgroundColor = 'lightpink'
+            else if (color === 'yellow') note.info.backgroundColor = '#ffdc72'
+            else if (color === 'green') note.info.backgroundColor = 'lightgreen'
             noteService.save(note)
         },
         pin(note) {

@@ -28,8 +28,10 @@
     margin-left: 5px;    
 }
 .note-list .note-container .pin i {
-    transform: rotate(-45deg);
-    color: white;
+    transform: rotate(-45deg) translate(0, -20px);
+    color: #464646;
+    position: absolute;
+    font-size: 50px;
 }
 
 .note-list .note-container .actions {
@@ -46,30 +48,37 @@
 
 .note-list .note-container .actions .palette-container {
     position: absolute;
-    width: 132px;
-    top: 40px;
+    bottom: 40px;
     left: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .note-list .note-container .actions .palette-container >* {
-    margin-left: 3px;
+    margin-left: 5px;
     cursor: pointer;
+    border: 1px solid var(--clr-dark)
+    
 }
 
 .note-list .note-container .actions .palette-container .red {
-    background-color: red;
+    background-color: lightpink;
 }
 
 .note-list .note-container .actions .palette-container .yellow {
-    background-color: yellow;
+    background-color: #ffdc72;
 }
 
 .note-list .note-container .actions .palette-container .blue {
-    background-color: blue;
+    background-color: #0dcaf0;
 }
 
 .note-list .note-container .actions .palette-container .green {
-    background-color: green;
+    background-color: lightgreen;
 }
 
 .note-list .note-container .actions .palette-container button {
@@ -169,6 +178,17 @@
     border: none;
 }
 
+.note-add form .search {
+    left: -80px;
+    font-size: 25px;
+    /* top: 50%; */
+}
+
+.note-add form .plus-search {
+    display: flex;
+    
+}
+
 .note-add form button {
     cursor: pointer;
     font-size: 30px
@@ -176,8 +196,20 @@
 
 .note-filter {
     display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: auto;
+    padding-top: 30px !important;
+    flex-direction: column;
+    gap: 15px;
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.note-filter .type-options {
+    display: flex;
     gap: 10px;
-    padding-top: 30px;
 }
 
 .note-filter input[type="text"] {
@@ -186,7 +218,7 @@
     align-self: center;
     border-bottom: 2px solid var(--clr-blue);
     height: 20px;
-    width: 150px;
+    width: 200px
 }
 
 .note-filter input[type="text"]::placeholder {
@@ -261,6 +293,11 @@
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
+}
+
+.note-edit form .edit-container, .note-edit form button {
+    align-self: center;
+    padding: 5px 20px;
 }
 
 .note-edit form .edit-container>* {

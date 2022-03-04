@@ -7,7 +7,7 @@
 }
 
 .fade-enter-active {
-    transition: all 0.5s ease-in;
+    transition: all 0.3s ease-in;
 }
 
 .fade-leave-from {
@@ -19,5 +19,20 @@
 }
 
 .fade-leave-active {
-    transition: all 0.5 ease-in;
+    transition: all 0.3 ease;
+}
+
+
+.nav-enter-from {
+    opacity: 0;
+    transform: translateX(150px);
+}
+
+.nav-enter-to {
+   opacity: 1;
+   transform: translateX(0);
+}
+
+.nav-enter-active {
+    transition: all 0.5s
 }

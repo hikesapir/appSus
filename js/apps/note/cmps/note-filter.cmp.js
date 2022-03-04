@@ -3,12 +3,12 @@ export default {
         <section class="note-filter">
 
 
-
+            
             <input type="text" v-model="filterBy.byTitle" @input="setFilter" placeholder="Search your note..">
 
 
 
-
+        <div class="type-options"> |
             <input type="radio" id="all" value="" v-model="filterBy.byType" @change="setFilter">
             <label style="font-weight: bold" for="all">All</label> | 
             <input type="radio" id="txt" value="note-txt" v-model="filterBy.byType" @change="setFilter">
@@ -19,6 +19,8 @@ export default {
             <label for="todos"><i class="fa-solid fa-list"></i></label> |
             <input type="radio" id="video" value="note-video" v-model="filterBy.byType" @change="setFilter">
             <label for="video"><i class="fa-brands fa-youtube"></i></label> |
+
+    </div>
         </section>
     `,
     data() {

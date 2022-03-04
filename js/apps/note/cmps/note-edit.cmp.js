@@ -5,7 +5,7 @@ export default {
     props: ['note'],
     template: `
     
-        <section :style="{ backgroundColor: note.info.backgroundColor }" class="note-edit">
+        <section v-if="modal" :style="{ backgroundColor: note.info.backgroundColor }" class="note-edit">
             <span  class="exit" @click="openModal"><i class="fa-solid fa-x"></i></span>
         <form @submit.prevent="editNote">
 
@@ -17,7 +17,7 @@ export default {
                 </div>
                 <input class="url" v-if="note.type === 'note-img'" type="text" placeholder="Add here image url" v-model="editedNote.url">
                 <input class="url" v-if="note.type === 'note-video'" type="text" placeholder="Add here youtube video" v-model="editedNote.src">
-                <button>EDIT</button>
+                <button>SAVE</button>
              </div>
 
         </form>
@@ -34,7 +34,7 @@ export default {
                 src: null,
                 textarea:  this.note.info.txt
             },
-            openModal: false
+            modal: true
         }
     },
     methods: {
@@ -55,14 +55,14 @@ export default {
                 this.note.info.src = newSrc
                 this.note.info.title = this.editedNote.txt
             }
-        
+            this.modal = false
             noteService.save(this.note)
         },
         onTodoTask(todo) {
             this.$emit('done', todo)
         },
         openModal() {
-            this.$emit('close', openModal)
+            this.$emit('close')
         }
     },
     comptuted: {
