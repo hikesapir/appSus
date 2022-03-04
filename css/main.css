@@ -20,3 +20,6 @@
 @import 'apps/note/note-app.css';
 @import 'apps/note/cmp/note-list.css';
 @import 'apps/note/cmp/note-animations.css';
+
+@import 'apps/book/book-app.css';
+@import 'apps/book/book-list.css';

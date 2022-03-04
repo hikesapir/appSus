@@ -1,0 +1,15 @@
+.book-list .book-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-list .book-list-container .book-container {
+    display: flex;
+    justify-content: center;
+}
+
+.book-filter {
+    display: flex;
+}
