@@ -67,7 +67,7 @@ export default {
     methods: {
         send() {
             mailService.sendMail(this.message)
-                .then(mail => console.log(mail))
+                .then(mail => this.close())
                 .catch(err => console.log(err))
         },
         close() {

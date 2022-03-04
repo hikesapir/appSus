@@ -11,6 +11,7 @@ export default {
                 <td class="checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox"></td>  
                 <td v-if="!mail.isStarred" class="star"><i @click="starred" class="fa-regular fa-star"></i></td>
                 <td v-if="mail.isStarred" class="star"><i @click="starred" class="fa-solid fa-star"></i></td>
+                <td @click="select"> {{mail.from}} </td>
                 <td @click="select"> {{mail.subject}} </td>
                 <td @click="select"> <long-text :txt="mail.body"/></td>
                 <td  v-if="!isHover"> {{sentAt}}</td>

@@ -12,20 +12,24 @@ export default {
         <search-bar @filter="filterBy" @sort="sort"/>
         <hr>
             <table>
-                <colgroup>
+                <!-- <colgroup>
                     <col style="width:5%">
                     <col style="width:5%">
-                    <col style="width:20%">
+                    <col style="width:10%">
+                    <col style="width:10%">
                     <col style="width:50%">
                     <col style="width:20%">
-                </colgroup>
+                </colgroup> -->
                 <thead class="thead">
                     <tr>
-                        <th style="text-align: center;">checkbox</th>
-                        <th style="text-align: center;">starred</th>
-                        <th><h1>subject</h1></th>
-                        <th><h1>body</h1></th>
-                        <th><h1>sentAt</h1></th>
+                        <th class="checkbox-col" style="text-align: center;"></th>
+                        <th class="star-col" style="text-align: center;"></th>
+                        <!-- <th style="text-align: center;">checkbox</th>
+                        <th style="text-align: center;">starred</th> -->
+                        <th class="from-col"><h1>from</h1></th>
+                        <th class="subject-col"><h1>subject</h1></th>
+                        <th class="body-col"><h1>body</h1></th>
+                        <th class="time-col"><h1>sentAt</h1></th>
                     </tr>
                 </thead>
                 <tbody>

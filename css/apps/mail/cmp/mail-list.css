@@ -7,11 +7,9 @@
 
 /* table layout */
 .mail-list table {
-    /* width: 100%; */
     border-collapse: collapse;
     text-align: left;
     min-width: 400px;
-    table-layout: auto;
     width: 100%;
 }
 
@@ -20,12 +18,14 @@
 }
 
 .mail-list thead tr{
+    background-color: var(--clr-white);
+
     font-weight: bold;
     border-bottom: 1px solid var(--clr-dark);
 }
 
 .mail-list table th{
-    padding: 7px 15px;
+    padding: 7px 10px;
 }
 
 .mail-list table td{
@@ -34,7 +34,6 @@
 }
 
 .mail-list tbody tr{
-    
     font-size: 0.9rem;
     border-bottom: 1px solid #dddddd;
 }

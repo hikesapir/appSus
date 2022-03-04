@@ -6,25 +6,24 @@
 }
 
 .search-bar .search{
+    background-color: var(--clr-white);
     padding: 20px;
     border: none;
     border-radius: 9px 0 0 9px;
-    background-color:var(--clr-light-gray2);
     outline: none;
     min-width: 500px;
     font-size: 1.1rem;
-    /* height: 60px; */
 }
 
 .search-bar select{
     margin-right: 30px;
-    /* height: 60px; */
     font-size: 1.1rem;
     padding: 19.1px;
     border: none;
     outline: none;
     border-radius: 0 9px 9px 0;
-    background-color:var(--clr-light-gray2);
+    background-color: var(--clr-white);
+
     
 }
 

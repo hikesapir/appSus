@@ -14,7 +14,7 @@
 }
 
 .mail-app .nav-bar li:hover{
-    background-color: rgba(235, 235, 235, 0.938);
+    background-color: var(--clr-white);
     border-radius: 0 50px 50px 0;
 
 }
