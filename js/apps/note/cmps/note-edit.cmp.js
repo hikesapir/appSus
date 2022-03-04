@@ -5,15 +5,18 @@ export default {
     props: ['note'],
     template: `
     
-        <section class="note-edit">
-            <span @click=""><i class="fa-solid fa-x"></i></span>
+        <section :style="{ backgroundColor: note.info.backgroundColor }" class="note-edit">
+            <span  class="exit" @click="openModal"><i class="fa-solid fa-x"></i></span>
         <form @submit.prevent="editNote">
 
-            <div class="edit-container"> 
-                <input  type="text" placeholder="write some text.." v-model="editedNote.txt">
-                <input v-if="note.type === 'note-todos'" type="text" placeholder="add label" v-model="editedNote.label">
-                <input v-if="note.type === 'note-img'" type="text" placeholder="add url" v-model="editedNote.url">
-                <input v-if="note.type === 'note-video'" type="text" placeholder="add video" v-model="editedNote.src">
+            <div class="edit-container">
+                <textarea ref="input" v-if="note.type === 'note-txt'" cols="35" rows="20" v-model="editedNote.textarea"></textarea>
+                <input class="title" ref="input" v-else type="text" placeholder="write some text.." v-model="editedNote.txt">
+                <div v-if="note.type === 'note-todos'" v-for="todo in note.info.todos">
+                <textarea class="todos" type="text" v-model="todo.txt"></textarea><span @click="onTodoTask(todo)">T</span>
+                </div>
+                <input class="url" v-if="note.type === 'note-img'" type="text" placeholder="Add here image url" v-model="editedNote.url">
+                <input class="url" v-if="note.type === 'note-video'" type="text" placeholder="Add here youtube video" v-model="editedNote.src">
                 <button>EDIT</button>
              </div>
 
@@ -25,25 +28,24 @@ export default {
     data() {
         return {
             editedNote: {
-                label: null,
-                txt: null,
+                todos: null,
+                txt: this.note.info.title || this.note.info.label,
                 url: null,
-                src: null
-            }
+                src: null,
+                textarea:  this.note.info.txt
+            },
+            openModal: false
         }
     },
     methods: {
         editNote() {
-            if(this.note.info.txt) this.note.info.txt = this.editedNote.txt
-            if(this.editedNote.label) {
-                this.note.info.label = this.editedNote.label
-                this.note.info.todos[0].txt = this.editedNote.txt
-            }
-            if(this.editedNote.url) {
+            if(this.note.type === 'note-txt') this.note.info.txt = this.editedNote.textarea
+            else if (this.note.type === 'note-img') {
                 this.note.info.title = this.editedNote.txt
                 this.note.info.url = this.editedNote.url
-            }
-            if(this.editedNote.src) {
+            } else if(this.note.type === 'note-todos') {
+                this.note.info.label = this.editedNote.txt
+            } else if (this.note.type === 'note-video') {
                 const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
                 const match = this.editedNote.src.match(regExp);
             
@@ -53,10 +55,20 @@ export default {
                 this.note.info.src = newSrc
                 this.note.info.title = this.editedNote.txt
             }
+        
             noteService.save(this.note)
+        },
+        onTodoTask(todo) {
+            this.$emit('done', todo)
+        },
+        openModal() {
+            this.$emit('close', openModal)
         }
     },
     comptuted: {
         
+    },
+    mounted() {
+        this.$refs.input.focus();
     }
 }

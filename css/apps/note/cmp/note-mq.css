@@ -1,0 +1,48 @@
+@media (max-width: 1400px) {
+    .note-list .note-container {
+        column-count: 3;
+        width: 850px
+    }
+}
+
+@media (max-width: 1060px) {
+
+    .note-list .note-container{
+        width: 750px;
+        column-gap: 50px;
+    }
+    .note-list .note-container > * {
+        width: 250px;
+    }
+}
+
+@media (max-width: 840px) {
+    .note-list .note-container{
+        width: 600px;
+        column-gap: 50px;
+    }
+    .note-list .note-container > * {
+        width: 200px;
+    }
+}
+
+@media (max-width: 690px) {
+ 
+    .note-list .note-container {
+        column-count: 2;
+        width: 350px;
+        column-gap: 10px;
+    }
+
+    .note-add form .input-container input {
+        width: 270px;
+    }
+
+    .note-add .options i {
+        font-size: 20px;
+    }
+
+    .note-list .note-container > * {
+        width: 150px;
+    }
+}
