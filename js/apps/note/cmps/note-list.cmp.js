@@ -39,7 +39,7 @@ export default {
                 </div>
             </div>
         <!-- </transition> -->
-            <note-edit :note="currNote" v-if="openEdit" @done="doneAt($event, note)" @close="closeModal"/>
+            <note-edit :note="currNote" v-if="openEdit" @done="doneAt" @close="closeModal"/>
         </section>
     `,
     components: {
@@ -68,12 +68,13 @@ export default {
         edit(note) {
             this.currNote = note
             this.openEdit = true;
-            // this.$emit('edit', id)
         },
         closeModal() {
             this.openEdit = false
         },
         doneAt(todo, note) {
+            console.log('parent todo', todo)
+            console.log('note:', note)
             if (todo.doneAt) todo.doneAt = null
             else todo.doneAt = Date.now()
             noteService.save(note)

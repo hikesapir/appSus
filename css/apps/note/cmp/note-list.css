@@ -300,10 +300,6 @@
     padding: 5px 20px;
 }
 
-.note-edit form .edit-container>* {
-    /* margin-bottom: 50px; */
-}
-
 .note-edit form .edit-container .title {
     text-align: center;
     font-family: rubik-title;
