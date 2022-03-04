@@ -155,7 +155,7 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     backgroundColor: "#20c997",
-                    src: '/js/apps/note/services/test.mp3',
+                    src: 'js/apps/note/services/test.mp3',
                     title: 'LOREM IPSUM SONG'
                 
 

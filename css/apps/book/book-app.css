@@ -1,0 +1,83 @@
+.book-list-container {
+    gap: 40px;
+    margin: 30px 100px;
+
+}
+
+.book-container {
+    background-color: whitesmoke;    
+    cursor: pointer;
+    padding: 20px;
+    box-shadow: 5px 5px 15px 1px #333;
+    width: 200px;
+    height: 300px;
+    text-align: center;
+}
+
+.book-container p {
+    font-style: italic;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+.book-details {
+    min-height: 70vh;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+
+}
+
+.book-preview img {
+    width: 100px;
+}
+
+.book-details img {
+    width: 200px;
+}
+
+.book-details .sale {
+    width: 25px;
+}
+
+.book-filter {
+    border-bottom: 1px solid grey;
+    padding: 20px;
+    gap: 10px;
+}
+
+.book-filter :last-child {
+    align-self: center;
+}
+
+.book-filter form > * {
+    margin: 10px;
+}
+
+.book-filter input[type="number"] {
+    width: 60px
+}
+
+.review-add {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.review-add form {
+    gap: 10px;
+}
+
+.review-add form >*:not(textarea) {
+    align-self: baseline;
+}
