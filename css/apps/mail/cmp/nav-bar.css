@@ -1,9 +1,9 @@
-.nav-bar{
+.mail-app .nav-bar{
     width: 200px;
     font-size: 1.1rem;
-    margin-right: 200px;
+    margin-right: 20px;
 }
-.nav-bar li{
+.mail-app  .nav-bar li{
     display: flex;
     align-items: center;
     gap: 5px;
@@ -13,22 +13,22 @@
     cursor: pointer;
 }
 
-.nav-bar li:hover{
+.mail-app .nav-bar li:hover{
     background-color: rgba(235, 235, 235, 0.938);
     border-radius: 0 50px 50px 0;
 
 }
 
-.nav-bar li.active{
+.mail-app .nav-bar li.active{
     color: azure;
     background-color: var(--clr-pink);
     border-radius: 0 50px 50px 0;
 }
 
-.nav-bar .fa-solid.fa-plus{
+.mail-app .nav-bar .fa-solid.fa-plus{
     color: var(--clr-pink);
 }
-.nav-bar .compose{
+.mail-app .nav-bar .compose{
     border-radius: 20px;
     padding: 10px;
     font-size: 1.4rem;
