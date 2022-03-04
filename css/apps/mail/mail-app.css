@@ -2,6 +2,7 @@
 .mail-app{
     display: flex;
     padding: 25px;
+    min-height: 70vh;
 }
 
 

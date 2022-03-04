@@ -3,8 +3,8 @@
     background-color: var(--clr-light);
     bottom: 0;
     right: 25px;
-    width: 800px;
-    height: 500px;
+    width: 650px;
+    height: 550px;
     border-radius: 9px 9px 0 0;
     border: 1px solid var(--clr-dark);
 }
@@ -39,7 +39,7 @@ margin: 0;
     outline: none;
     font-size: 1.2rem;
 }
-.send-mail  textarea{
+.send-mail textarea{
     outline: none;
     resize: none;
     width: 100%;
@@ -49,15 +49,23 @@ margin: 0;
     font-size: 1.1rem;
 }
 
-.send-mail .body button{
+.send-mail .send-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+
+.send-mail .send-btn-container .trash{
+    border: none;
+    font-size: 1.5rem;
+}
+
+.send-mail .send-btn-container .send{
     cursor: pointer;
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
     border: none;
     height: 35px;
     width: 70px;
-    padding: 10px 15px;
     color: #ffffff;
     border-radius: 5px;
     background-color: var(--clr-blue);

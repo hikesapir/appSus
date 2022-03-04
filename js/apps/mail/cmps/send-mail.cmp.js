@@ -16,7 +16,8 @@ export default {
                     <textarea v-model=message.body name="body" id="body" cols="30" rows="14" placeholder="Your message">
                     </textarea>
                 <div class="send-btn-container">
-                    <button @click="send">send</button>
+                    <button class="send" @click="send">send</button>
+                    <button class="trash" @click="removeMail"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>
 
@@ -27,7 +28,7 @@ export default {
     data() {
         return {
             message: {
-                to: 'me',
+                to: '',
                 subject: '',
                 body: '',
 
@@ -48,13 +49,14 @@ export default {
     },
     created() {
         mailService.createDraft(this.message)
-            .then(mail=>{
+            .then(mail => {
+                mail.isTrashed = true
                 this.message = mail
+                console.log(this.message);
             })
 
         this.interval = setInterval(() => {
             mailService.save(this.message)
-            console.log('hey')
             console.log(this.message);
         }, 5000);
     },
@@ -62,8 +64,6 @@ export default {
     unmounted() {
         clearInterval(this.interval)
     },
-
-
     methods: {
         send() {
             mailService.sendMail(this.message)
@@ -73,7 +73,14 @@ export default {
         close() {
             this.$emit('close')
         },
-
+        removeMail() {
+            console.log(this.message.id);
+            mailService.remove(this.message.id)
+                .then(() => {
+                    // this.$emit('opened')
+                    this.close()
+                })
+        },
     },
     computed: {
 

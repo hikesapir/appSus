@@ -1,9 +1,9 @@
 .mail-app .nav-bar{
     width: 200px;
     font-size: 1.1rem;
-    margin-right: 20px;
+    margin-right: 30px;
 }
-.mail-app  .nav-bar li{
+.mail-app .nav-bar li{
     display: flex;
     align-items: center;
     gap: 5px;

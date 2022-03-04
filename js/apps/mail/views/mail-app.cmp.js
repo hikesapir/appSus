@@ -68,7 +68,7 @@ export default {
             if (this.filter === 'inbox') return this.mails.filter(mail => mail.isInbox && !mail.isTrashed)
             else if (this.filter === 'sent') return this.mails.filter(mail => !mail.isInbox && !mail.isTrashed && !mail.isDraft)
             else if (this.filter === 'starred') return this.mails.filter(mail => mail.isStarred)
-            else if (this.filter === 'trash') return this.mails.filter(mail => mail.isTrashed)
+            else if (this.filter === 'trash') return this.mails.filter(mail => mail.isTrashed && !mail.isDraft)
             else if (this.filter === 'drafts') return this.mails.filter(mail => mail.isDraft)
         },
 

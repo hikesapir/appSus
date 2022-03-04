@@ -1,7 +1,5 @@
 .mail-details{
-    /* border: 2px solid black; */
     width: 100%;
-    /* padding: 25px; */
 }
 
 .mail-details .actions{
@@ -9,12 +7,17 @@
     align-items: center;
     justify-content: space-between;
 }
+.mail-details .actions .fa-solid.fa-chevron-left{
+    margin-left: 20px;
+}
+
 .mail-details .actions .nav-page{
     display: flex;
     align-items: center;
 
 }
 .mail-details .actions button{
+    cursor: pointer;
     font-size: 1.3rem;
     background-color: rgba(0, 255, 255, 0);
     border: none;
@@ -23,8 +26,12 @@
 .mail-details .subject{
     font-size: 1.6rem;
     margin: 15px;
-    text-decoration: underline;
 }
+.mail-details .mail-header{
+    display: flex;
+    justify-content: space-between;
+}
+
 
 .mail-details .fa-user {
     font-size: 40px;
@@ -33,7 +40,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* text-align: center; */
     background-color: var(--clr-light-gray);
     border-radius: 50%;
     width: 60px;
@@ -44,5 +50,5 @@
     display: flex;
     align-items: center;
     gap: 30px;
-
+    margin: 15px;
 }

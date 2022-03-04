@@ -4,24 +4,28 @@ import { mailService } from "../services/mail-service.js";
 
 export default {
     name: 'mail-details',
-    props: [],
+    props: ['mails'],
     template: `
-    <section v-if="mail" class="mail-details">
+    <section v-if="mail && mails" class="mail-details">
+        <!-- {{mails}} -->
         <div class="actions">
-            <button @click="backToMails"><i class="fa-solid fa-arrow-left-long"></i></button>
-            <button @click="removeMail"><i class="fa-solid fa-trash-can"></i></button> 
-            <button v-if="!mail.isRead" @click="setRead"><i class="fa-solid fa-envelope"></i></button> 
-            <button v-if="mail.isRead" @click="setRead"><i  class="fa-solid fa-envelope-open"></i></button> 
-            <button  v-if="!mail.isStarred"  @click="starred" class="star"><i class="fa-regular fa-star"></i></button>
-            <button v-if="mail.isStarred" @click="starred"  class="star"><i class="fa-solid fa-star"></i></button>
+                <button @click="backToMails" title="Back"><i class="fa-solid fa-arrow-left-long"></i></button>
             <div class="nav-page">
-                <button> <i class="fa-solid fa-chevron-left"></i></button> 
-                1 of 12
-                <button><i class="fa-solid fa-chevron-right"></i></button> 
+                <button @click="removeMail" title="Remove"><i class="fa-solid fa-trash-can"></i></button> 
+                <button v-if="mail.isRead" title="Mark as unread" @click="setRead"><i class="fa-solid fa-envelope"></i></button> 
+                <!-- <button v-if="!mail.isRead" title="Mark as unread" @click="setRead"><i  class="fa-solid fa-envelope-open"></i></button>  -->
+                <button  v-if="!mail.isStarred" title="Not starred" @click="setStarred" class="star"><i class="fa-regular fa-star"></i></button>
+                <button v-if="mail.isStarred" title="Starred" @click="setStarred" class="star"><i class="fa-solid fa-star"></i></button>
+                <router-link :to="'/mail/'+mail.prevMailId"><button title="Previous"> <i class="fa-solid fa-chevron-left"></i></button> </router-link>
+               <span>{{mailIdx}} of {{mails.length}}</span>
+                <router-link :to="'/mail/'+mail.nextMailId"><button title="Next"><i class="fa-solid fa-chevron-right"></i></button> </router-link>
             </div>
         </div>
         <hr>
-        <h1 class="subject">{{mail.subject}}</h1>
+        <div class="mail-header">
+            <h1 class="subject">{{mail.subject}}</h1>
+            <h4 class="date">{{date}}</h4>
+        </div>
         <div class="addressee">
             <div class="user-icon"><i class="fa-solid fa-user"></i></div>
             <div>
@@ -29,6 +33,7 @@ export default {
                 <p>to: {{mail.to}}</p>
             </div>
         </div>
+        <hr>
         <p>{{mail.body}}</p>
     </section>
     <section v-else class="loading">
@@ -43,23 +48,81 @@ export default {
         }
     },
     created() {
-        const id = this.$route.params.mailId
-        mailService.get(id)
-            .then(mail => this.mail = mail)
-
+        // console.log(this.mails);
+        // console.log(this.mail);
+        // this.loadMail()
     },
 
     methods: {
+        loadMail() {
+            mailService.get(this.mailId)
+                .then(mail => {
+                    mail.isRead = true
+                    mailService.save(mail)
+                        .then(() => {
+                            this.$emit('opened')
+                            this.mail = mail
+                        })
+
+                })
+
+        },
         backToMails() {
             this.$router.push(`/mail/list`)
         },
         removeMail() {
             mailService.remove(this.mail.id)
-                .then(() => this.$router.push(`/mail/list`))
-        }
+                .then(() => {
+                    this.$emit('opened')
+                    this.$router.push(`/mail/list`)
+                })
+        },
+        setRead() {
+            mailService.get(this.mail.id)
+                .then(mail => {
+                    mail.isRead = !mail.isRead
+                    mailService.save(mail)
+                        .then(() => {
+                            this.$emit('opened')
+                            this.$router.push(`/mail/list`)
+                        })
+                })
+        },
+        setStarred() {
+            this.mail.isStarred = !this.mail.isStarred
+            mailService.get(this.mail.id)
+                .then(mail => {
+                    mail.isStarred = !mail.isStarred
+                    mailService.save(mail)
+                        .then(() => this.$emit('opened'))
+                })
+        },
 
     },
     computed: {
+        mailId() {
+            return this.$route.params.mailId
+        },
+        date() {
+            let date = new Date(this.mail.sentAt);
+            let options = {
+                weekday: "long", year: "numeric", month: "short",
+                day: "numeric", hour: "2-digit", minute: "2-digit"
+            }
+            return date.toLocaleTimeString("en-us", options)
+        },
+        mailIdx() {
+            return this.mails.findIndex(mail => mail.id === this.mailId) + 1
+        }
+
+    },
+    watch: {
+        mailId: {
+            handler() {
+                this.loadMail()
+            },
+            immediate: true
+        }
 
     },
 }
