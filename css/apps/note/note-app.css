@@ -2,3 +2,7 @@
     background-color: var(--clr-light-gray2);
     min-height: 70vh;
 }
+
+.note-app iframe, audio {
+    width: 100%;
+}

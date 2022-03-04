@@ -6,7 +6,7 @@ export default {
             <h1>{{info.label}}</h1>
             <ul>
                 <li @click="onTodoTask(todo)" :class="{ done: todo.doneAt }" v-for="todo in info.todos">
-                <p>{{todo.txt}} <span v-if="todo.doneAt">{{formatDate(todo.doneAt)}}</span></p>
+                <p :class="{ flow: currWidth }" >{{todo.txt}} <span v-if="todo.doneAt">{{formatDate(todo.doneAt)}}</span></p>
                 </li>
             </ul>
         </section>
@@ -15,6 +15,7 @@ export default {
     },
     data() {
         return {
+            currWidth: false
         }
     },
     methods: {
@@ -24,8 +25,17 @@ export default {
         onTodoTask(todo) {
             this.$emit('done', todo)
         },
+        checkWidth() {
+            if(window.innerWidth < 690) this.currWidth = true
+            else this.currWidth = false
+        }
     },
-
+    created() {
+        window.addEventListener("resize", this.checkWidth);
+      },
+      destroyed() {
+        window.removeEventListener("resize", this.checkWidth);
+      },
     computed: {
 
     }

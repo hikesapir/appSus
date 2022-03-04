@@ -39,7 +39,7 @@ export default {
                 </div>
             </div>
         <!-- </transition> -->
-            <note-edit :note="currNote" v-if="openEdit"/>
+            <note-edit :note="currNote" v-if="openEdit" @done="doneAt($event, note)"/>
         </section>
     `,
     components: {
