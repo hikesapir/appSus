@@ -1,6 +1,6 @@
 export default {
     template: `
-        <section class="book-filter flex ">
+        <section class="book-filter">
             <form @submit.prevent="setFilter">
             <label>
             Search By Name

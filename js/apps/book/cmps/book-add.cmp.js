@@ -3,12 +3,17 @@ import { bookService } from '../services/books-service.js';
 
 export default {
     template: `
-        <section style="min-height: 70vh" class="book-add">
-            <h1>Search Book</h1>
-            <input type="text" v-model="search"><button @click="searchBooks">Search</button>
-            <ul v-if="books">
+        <section class="book-add">
+            <div class="add-container">
+                <h1>Search your favorite Book!</h1>
+                <div class="search-container">
+                    <input placeholder="Search.." type="text" v-model="search">
+                        <span @click="searchBooks"><i class="fa-solid fa-magnifying-glass"></i></span>
+                 </div>
+            </div>
+            <ul class="new-books" v-if="books">
                 <li v-for="book in books">
-                <p>{{book.volumeInfo.title}}</p><button @click="saveBook(book)">+</button>
+                <div><p>{{book.volumeInfo.title}} </p><span @click="saveBook(book)"><i class="fa-solid fa-plus"></i></span></div>
                 </li>
 
             </ul>
