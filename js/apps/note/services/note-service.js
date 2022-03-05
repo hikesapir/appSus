@@ -14,7 +14,7 @@ export const noteService = {
     saveAllNotes,
     duplicateNote,
     getEvPos,
-    NOTES_KEY
+    mailNote
 };
 
 function saveAllNotes(notes) {
@@ -58,6 +58,11 @@ function newNote(note) {
     currNote.info.backgroundColor = utilService.getRandomClr();
     currNote.isPinned = false;
     return storageService.post(NOTES_KEY, currNote);
+}
+
+function mailNote(mailnote) {
+    mailnote.id = utilService.makeId()
+    return storageService.post(NOTES_KEY, mailnote);
 }
 
 function duplicateNote(note, noteIdx) {

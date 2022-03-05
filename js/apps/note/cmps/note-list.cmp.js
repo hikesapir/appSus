@@ -4,8 +4,8 @@ import noteTodos from '../cmps/note-todos.cmp.js';
 import noteVideo from '../cmps/note-video.cmp.js';
 import noteAudio from '../cmps/note-audio.cmp.js';
 import noteCanvas from '../cmps/note-canvas.cmp.js';
+import noteMail from '../cmps/note-mail.cmp.js';
 import { noteService } from "../services/note-service.js";
-import { utilService } from '../../../services/util-service.js';
 
 import noteEdit from '../../note/cmps/note-edit.cmp.js';
 
@@ -20,7 +20,7 @@ export default {
                  v-for="note in notes"
                  :key="note.id"
                  :id = "note.id"
-                 draggable="true"
+                 draggable="false"
                  ref="dcomponent"
                  @dragstart="startDrag($event, note)"
                  @drop="onDrop($event, note)"
@@ -64,8 +64,8 @@ export default {
         noteAudio,
         noteEdit,
         noteCanvas,
+        noteMail,
         noteService,
-        utilService
     },
     data() {
         return {
@@ -80,48 +80,36 @@ export default {
     },
     methods: {
         
-        startDrag(ev, note){
-            this.currDiv = this.$refs.dcomponent.find(div => div.id === note.id)
+        // startDrag(ev, note){
+        //     this.currDiv = this.$refs.dcomponent.find(div => div.id === note.id)
             
-            ev.dataTransfer.dragEffect = 'true'
-            ev.dataTransfer.effectAllowed = 'move';
-            ev.dataTransfer.setData('note', this.currDiv);
-            // this.elem = ev.target
+        //     ev.dataTransfer.dragEffect = 'true'
+        //     ev.dataTransfer.effectAllowed = 'move';
+        //     ev.dataTransfer.setData('note', this.currDiv);
+        //     // this.elem = ev.target
             
-        },
+        // },
 
 
-        onDrop (ev) {
+        // onDrop (ev) {
 
-           const from = this.notes.find(note => this.currDiv.id === note.id)
-           const toIdx = this.notes.findIndex(note => ev.toElement.id === note.id)
-            const fromIdx = this.notes.findIndex(note => this.currDiv.id === note.id)
-            console.log(from)
-            if(toIdx < 0|| fromIdx < 0) return 
-            else {
-
-                // noteService.saveAllNotes(this.notes)
-                // .then(notes => console.log(notes))
-                noteService.query()
-                .then(notes => {
-                    notes.splice(toIdx, 0, from)
-                    notes.splice(fromIdx, 1)
-                    noteService.saveAllNotes(notes)
-                    this.notes = notes
-                })   
-                // utilService.saveToStorage(noteService.NOTES_KEY, this.notes)
-                // noteService.query()
-                // .then(notes => {this.notes = notes
-                    
-      
-
-
-
-                //     })
-               console.log('hi')
-                ev.dataTransfer.getData('note');
-            }
-        },
+        //    const from = this.notes.find(note => this.currDiv.id === note.id)
+        //    const toIdx = this.notes.findIndex(note => ev.toElement.id === note.id)
+        //     const fromIdx = this.notes.findIndex(note => this.currDiv.id === note.id)
+        //     console.log(from)
+        //     if(toIdx < 0|| fromIdx < 0) return 
+        //     else {
+        //         noteService.query()
+        //         .then(notes => {
+        //             notes.splice(toIdx, 0, from)
+        //             notes.splice(fromIdx, 1)
+        //             noteService.saveAllNotes(notes)
+        //             this.notes = notes
+        //         })
+        //        console.log('hi')
+        //         ev.dataTransfer.getData('note');
+        //     }
+        // },
 
         setNote(text) {
             console.log(text);
