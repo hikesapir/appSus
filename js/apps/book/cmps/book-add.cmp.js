@@ -35,7 +35,6 @@ export default {
         searchBooks() {
             bookService.getNewBooks(this.search)
             .then(books => {
-                console.log(books);
                 this.books = books
             })
         },

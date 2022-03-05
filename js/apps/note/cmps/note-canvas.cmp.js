@@ -4,8 +4,8 @@ export default {
     props: ['info'],
     template: `
         <section class="note-canvas">
-            <h1>{{info.txt}}</h1>
-            <canvas style="background-color: white" height="230" id="canvas"></canvas>
+            <h1>{{info.title}}</h1>
+            <canvas style="background-color: white" height="230" :id="'canvas' + info.canvasId"></canvas>
         </section>
     `,
     components: {
@@ -20,8 +20,8 @@ export default {
         }
     },
     mounted() {
-        this.canvas = document.getElementById("canvas");
-        this.ctx = canvas.getContext("2d");  
+            this.canvas = document.getElementById("canvas" + this.info.canvasId);
+            this.ctx = this.canvas.getContext("2d");  
             this.canvas.addEventListener('mousemove', this.onMove);
             this.canvas.addEventListener('mousedown', this.onDown);
             this.canvas.addEventListener('mouseup', this.onUp);    
@@ -34,7 +34,7 @@ export default {
             setInterval(()=> {
                 const imgCanvas = this.canvas.toDataURL()
                 this.$emit('canvas', imgCanvas)
-            },10000)
+            },3000)
         },
         methods: {
             

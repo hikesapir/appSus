@@ -69,6 +69,10 @@
     background-color: lightpink;
 }
 
+.note-list .note-container .actions .palette-container .pink {
+    background-color: lightsalmon;
+}
+
 .note-list .note-container .actions .palette-container .yellow {
     background-color: #ffdc72;
 }
@@ -325,4 +329,9 @@
 
 .note-edit form .edit-container textarea:focus {
     outline: none;
+    
+}
+
+.note-canvas {
+    cursor: url(../../../../img/pencil.cur), auto;
 }

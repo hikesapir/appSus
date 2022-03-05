@@ -53,13 +53,13 @@ export default {
                 const newSrc = `https://www.youtube.com/embed/${id}`;
                 this.note.info.src = newSrc
                 this.note.info.title = this.editedNote.txt
+            } else if (this.note.type === 'note-canvas' || this.note.type === 'note-audio') {
+                this.note.info.title = this.editedNote.txt
             }
             this.modal = this.openModal()
             noteService.save(this.note)
         },
         onTodoTask(todo, note) {
-            // console.log(note)
-            console.log('child todo:', todo)
             this.$emit('done', todo, note)
         },
         openModal() {
