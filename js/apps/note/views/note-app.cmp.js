@@ -127,7 +127,6 @@ export default {
     watch: {
         '$route.query': {
             handler() {
-                console.log('watching');
                 const mail = this.$route.query;
                 if (Object.keys(mail).length === 0) return
                 this.saveMailAsNote(mail)

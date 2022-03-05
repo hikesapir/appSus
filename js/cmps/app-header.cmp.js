@@ -33,7 +33,6 @@ export default {
     },
     computed: {
         opennav() {
-            // console.log(this.isNavBarOpen);
             return (this.openNav) ? 'open ' : ''
         }
     }

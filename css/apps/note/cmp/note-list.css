@@ -199,7 +199,7 @@
 
 .note-filter {
     display: flex;
-    margin: 40px auto;
+    margin: 0 auto 40px auto;
     padding-top: 30px !important;
     flex-direction: column;
     gap: 15px;
