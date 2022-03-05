@@ -1,4 +1,5 @@
 import { noteService } from '../../note/services/note-service.js';
+import { eventBus } from '../../../services/eventBus-service.js';
 import noteList from '../../note/cmps/note-list.cmp.js';
 import noteAdd from '../../note/cmps/note-add.cmp.js';
 import noteFilter from '../../note/cmps/note-filter.cmp.js';
@@ -130,6 +131,7 @@ export default {
                 const mail = this.$route.query;
                 if (Object.keys(mail).length === 0) return
                 this.saveMailAsNote(mail)
+                eventBus.emit('show-msg', { txt: 'Added mail note!', type: 'success' });
             },
             immediate: true
         }

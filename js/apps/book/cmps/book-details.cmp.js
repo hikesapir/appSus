@@ -1,5 +1,6 @@
 import { bookService } from '../services/books-service.js';
 import { utilService } from '../../../services/util-service.js';
+import { eventBus } from '../../../services/eventBus-service.js';
 import reviewAdd from '../cmps/review-add.cmp.js';
 import readReviews from '../cmps/read-reviews.cmp.js';
 
@@ -68,17 +69,16 @@ export default {
             newReview.id = utilService.makeId();
             this.book.reviews.push(newReview);
             bookService.save(this.book)
-                .then(book => {
-                    // eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'success' });
+                .then(() => {
+                    eventBus.emit('show-msg', { txt: 'Saved succesfully', type: 'success' });
                 });
         },
         removeReview(id) {
             this.book = bookService.removeReview(id, this.book);
-            // const idx = this.book.reviews.findIndex(review => review.id === id);
-            // this.book.reviews.splice(idx, 1);
+
             bookService.save(this.book)
                 .then(() => {
-                    // eventBus.emit('show-msg', { txt: 'Removed succesfully', type: 'success' });
+                    eventBus.emit('show-msg', { txt: 'Removed succesfully', type: 'success' });
                 });
         }
     },

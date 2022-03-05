@@ -1,3 +1,5 @@
+import { eventBus } from '../../../services/eventBus-service.js'
+
 export default {
     template: `
         <section class="note-add">
@@ -42,7 +44,7 @@ export default {
     },
     methods: {
         addNote() {
-            if(!this.newNote.txt) return
+            if(!this.newNote.txt) return eventBus.emit('show-msg', { txt: 'Cannot add blank note!', type: 'error' })
             this.$emit('add', {...this.newNote})
         },
         

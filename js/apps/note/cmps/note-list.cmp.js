@@ -5,6 +5,7 @@ import noteVideo from '../cmps/note-video.cmp.js';
 import noteAudio from '../cmps/note-audio.cmp.js';
 import noteCanvas from '../cmps/note-canvas.cmp.js';
 import noteMail from '../cmps/note-mail.cmp.js';
+import noteMap from '../cmps/note-map.cmp.js';
 import { noteService } from "../services/note-service.js";
 
 import noteEdit from '../../note/cmps/note-edit.cmp.js';
@@ -65,7 +66,8 @@ export default {
         noteEdit,
         noteCanvas,
         noteMail,
-        noteService,
+        noteMap,
+        noteService
     },
     data() {
         return {

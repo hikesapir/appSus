@@ -2,9 +2,11 @@ import { eventBus } from '../services/eventBus-service.js';
 
 export default {
     template: `
+    <transition name="nav">
         <section v-if="msg" class="user-msg" :class="msg.type">
             <p>{{msg.txt}}</p>
         </section>
+    </transition>
     `,
     data() {
         return {
@@ -19,7 +21,7 @@ export default {
             this.msg = msg;
             setTimeout(() => {
                 this.msg = null;
-            }, 3000);
+            }, 5000);
         }
     },
     unmounted() {

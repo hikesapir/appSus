@@ -15,7 +15,7 @@ const options = {
     components: {
         appHeader,
         appFooter,
-        // userMsg
+        userMsg
     }
 };
 

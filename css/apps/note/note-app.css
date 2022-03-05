@@ -6,3 +6,7 @@
 .note-app iframe, audio, canvas {
     width: 100%;
 }
+
+#map {
+    overflow: auto !important;
+}

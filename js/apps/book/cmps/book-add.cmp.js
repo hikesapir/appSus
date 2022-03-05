@@ -42,7 +42,7 @@ export default {
         saveBook(book) {
             bookService.saveNewBook(book)
             this.$router.push('/book')
-            eventBus.emit('show-msg', 'Book saved')
+            eventBus.emit('show-msg', { txt: 'Added new book!', type: 'success' });
         }
     },
     
