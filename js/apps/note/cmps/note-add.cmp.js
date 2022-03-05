@@ -22,6 +22,7 @@ export default {
                     <li @click="newNote.type = 'note-img'"><i class="fa-solid fa-image"></i></li>
                     <li @click="newNote.type = 'note-todos'"><i class="fa-solid fa-list"></i></li>
                     <li @click="newNote.type = 'note-video'"><i class="fa-brands fa-youtube"></i></li>
+                    <li @click="newNote.type = 'note-canvas'"><i class="fa-solid fa-pencil"></i></li>
         </ul>
                  </div>
         

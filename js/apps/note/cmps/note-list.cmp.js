@@ -33,6 +33,7 @@ export default {
                         <li @click="openPalette"><i class="fa-solid fa-palette"></i></li>
                         <div @mouseleave="openPalette" class="palette-container" v-if="onColor">
                             <button class="red" @click="switchColor(note, 'red')"></button>
+                            <button class="pink" @click="switchColor(note, 'pink')"></button>
                             <button class="yellow" @click="switchColor(note, 'yellow')"></button>
                             <button class="blue" @click="switchColor(note, 'blue')"></button>
                             <button class="green" @click="switchColor(note, 'green')"></button>
@@ -76,8 +77,7 @@ export default {
             this.openEdit = false
         },
         doneAt(todo, note) {
-            console.log('parent todo', todo)
-            console.log('note:', note)
+
             if (todo.doneAt) todo.doneAt = null
             else todo.doneAt = Date.now()
             noteService.save(note)
@@ -87,7 +87,8 @@ export default {
         },
         switchColor(note, color) {
             if(color === 'blue') note.info.backgroundColor = '#0dcaf0'
-            else if (color === 'red') note.info.backgroundColor = 'lightpink'
+            else if (color === 'red') note.info.backgroundColor = 'lightcoral'
+            else if (color === 'pink') note.info.backgroundColor = 'lightsalmon'
             else if (color === 'yellow') note.info.backgroundColor = '#ffdc72'
             else if (color === 'green') note.info.backgroundColor = 'lightgreen'
             noteService.save(note)
