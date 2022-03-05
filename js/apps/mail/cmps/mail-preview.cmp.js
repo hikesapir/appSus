@@ -6,7 +6,6 @@ export default {
     name: 'mail-preview',
     props: ['mail'],
     template: `
-        <!-- <section class="mail-preview"> -->
             <tr  @mouseover="mouseOver"  @mouseleave="mouseLeve" :class="[openedMail, checked]">
                 <td  class="checkbox-col checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox" title="Select"></td>  
                 <td v-if="!mail.isStarred" title="Not starred" @click="starred" class="star-col star"><i  class="fa-regular fa-star"></i></td>
@@ -16,7 +15,8 @@ export default {
                 <td @click="select" class="body-col"> <long-text :txt="mail.body"/></td>
                 <td  v-if="!isHover" class="time-col"> {{sentAt}}</td>
                 <td class="time-col actions" v-if="isHover">
-                    <i @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
+                    <i v-if="!mail.isTrashed" @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
+                    <i v-if="mail.isTrashed" @click="restoreMail" class="fa-solid fa-trash-can-arrow-up" title="Restore"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope" title="Mark as unread"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open" title="Mark as read"></i>
                     <router-link :to="{ path: '/note', query: { from:mail.from,date:mail.sentAt ,subject:mail.subject, body:mail.body}}">
@@ -24,7 +24,6 @@ export default {
                     </router-link>
                 </td>
             </tr>
-        <!-- </section> -->
     `,
     components: {
         longText,
@@ -55,15 +54,13 @@ export default {
             this.$emit('starred', this.mail.id)
         },
         setRead() {
-            console.log('clicked');
             this.$emit('setRead', this.mail.id)
         },
         check() {
             this.$emit('check', this.mail)
-            console.log('its checked', this.mail.isChecked);
         },
-        saveAsNote() {
-            // return this.$route.to( {name: ''}
+        restoreMail(){
+            this.$emit('restore', this.mail)
         }
     },
     computed: {
@@ -87,8 +84,5 @@ export default {
             return (this.mail.isChecked) ? 'checked' : ''
 
         },
-        qureyParms() {
-            return `/note/${this.mail.from}/${this.mail.sentAt}/${this.mail.subject}/${this.mail.body}`
-        }
     }
 }

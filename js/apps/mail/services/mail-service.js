@@ -4,7 +4,6 @@ import { utilService } from '../../../services/util-service.js';
 import { storageService } from '../../../services/async-storage-service.js';
 
 const MAILS_KEY = 'mailsDB';
-// const SENT_MAILS_KEY = 'sentMailsDB';
 _createMails();
 
 export const mailService = {
@@ -54,20 +53,17 @@ function get(mailId) {
 }
 
 function save(mail) {
-    // console.log('saved');
     if (mail.id) return storageService.put(MAILS_KEY, mail);
     else return storageService.post(MAILS_KEY, mail);
 }
 
 function sendMail(message) {
-    // console.log(message.subject);
     const mail = _createMail(message.subject, message.body, Date.now(), 'me', message.to, true, false)
     console.log(mail.subject);
     return storageService.post(MAILS_KEY, mail);
 }
 
 function createDraft(message) {
-    // return getEmptyMail('',' message.body', Date.now(), 'me', 'message.to', false, false, true)
     const draft = _createMail(message.subject, message.body, Date.now(), 'me', message.to, false, false, true)
     return storageService.post(MAILS_KEY, draft);
 }
