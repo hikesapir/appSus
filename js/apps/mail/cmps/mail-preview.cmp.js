@@ -15,7 +15,7 @@ export default {
                 <td @click="select" class="body-col"> <long-text :txt="mail.body"/></td>
                 <td  v-if="!isHover" class="time-col"> {{sentAt}}</td>
                 <td class="time-col actions" v-if="isHover">
-                    <i v-if="!mail.isTrashed" @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
+                    <i  @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
                     <i v-if="mail.isTrashed" @click="restoreMail" class="fa-solid fa-trash-can-arrow-up" title="Restore"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope" title="Mark as unread"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open" title="Mark as read"></i>

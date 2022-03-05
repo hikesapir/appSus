@@ -13,7 +13,6 @@ export default {
             </div>
            
             <div class="body">
-                {{draft}}
                     <input v-model=message.to type="email"  placeholder="To" required>
                     <input v-model=message.subject type="text" placeholder="Subject">
                     <textarea v-model=message.body name="body" id="body" cols="30" rows="14" placeholder="Your message">
@@ -63,7 +62,7 @@ export default {
         String.prototype.isEmpty = function () {
             return (this.length === 0 || !this.trim());
         };
-        
+      
         if (this.message.to.isEmpty() && this.message.subject.isEmpty() && this.message.body.isEmpty()) {
             mailService.remove(this.message.id)
         }

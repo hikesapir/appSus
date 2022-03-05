@@ -10,7 +10,7 @@ export default {
         <section class="mail-app main-screen">
             <nav-bar :open="opennav" @selected="moveTo" :unread="unread"></nav-bar>
                <router-view :mails="mailsForDisplay" @darft="darft" @openNavBar="openNavBar" @recount="recount"></router-view>
-                   <send-mail @close="closeMsgTeb" v-if="openCompose" :draft="draftContent" />
+                   <send-mail @close="closeMsgTeb" v-if="openCompose" :draft="getDraft" />
         </section>
     `,
     components: {
@@ -63,9 +63,9 @@ export default {
             this.isNavBarOpen = !this.isNavBarOpen
         },
         darft(mail) {
-            console.log(mail);
             this.draftContent = mail
-            
+            console.log(this.draftContent);
+
             this.closeMsgTeb()
         }
 
@@ -83,6 +83,9 @@ export default {
         opennav() {
             console.log(this.isNavBarOpen);
             return (this.isNavBarOpen) ? 'open ' : ''
+        },
+        getDraft(){
+            return this.draftContent
         }
 
     },
