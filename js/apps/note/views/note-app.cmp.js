@@ -85,5 +85,15 @@ export default {
 
         }
     },
+    watch:{
+        mailCtx:{
+            handler(){
+                noteService.query()
+                .then(notes => this.notes = notes)
+            },
+            immediate: true
+
+        }
+    }
 
 };
