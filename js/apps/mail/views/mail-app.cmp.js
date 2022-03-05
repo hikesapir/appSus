@@ -8,8 +8,8 @@ export default {
     name: 'mail-app',
     template: `
         <section class="mail-app">
-            <nav-bar @selected="moveTo" :unread="unread"></nav-bar>
-               <router-view :mails="mailsForDisplay" @opened="recount"></router-view>
+            <nav-bar :open="opennav" @selected="moveTo" :unread="unread"></nav-bar>
+               <router-view :mails="mailsForDisplay" @openNavBar="openNavBar" @opened="recount"></router-view>
                <!-- <keep-alive> -->
                    <send-mail @close="closeMsgTeb" v-if="openCompose" />
                <!-- </keep-alive> -->
@@ -27,7 +27,7 @@ export default {
             openCompose: false,
             filter: 'inbox',
             // sentMails: null,
-
+            isNavBarOpen: false,
         }
     },
     created() {
@@ -59,6 +59,9 @@ export default {
         closeMsgTeb() {
             this.openCompose = !this.openCompose
             this.recount()
+        },
+        openNavBar() {
+            this.isNavBarOpen = !this.isNavBarOpen
         }
 
     },
@@ -71,7 +74,10 @@ export default {
             else if (this.filter === 'trash') return this.mails.filter(mail => mail.isTrashed && !mail.isDraft)
             else if (this.filter === 'drafts') return this.mails.filter(mail => mail.isDraft)
         },
-
+        opennav() {
+            console.log(this.isNavBarOpen);
+            return (this.isNavBarOpen) ? 'open' : ''
+        }
 
     },
 }

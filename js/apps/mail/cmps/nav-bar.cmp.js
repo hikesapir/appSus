@@ -2,9 +2,9 @@
 
 export default {
     name: 'nav-bar',
-    props: ['unread'],
+    props: ['unread','open'],
     template: `
-        <section class="nav-bar">
+        <section class="nav-bar" :class="open">
             <ul>
                 <li class="compose" @click="selected('compose')"> <i class="fa-solid fa-plus"></i>Compose</li>
                 <li :class="{ active: select === 'inbox'}" @click="selected('inbox')"><i class="fa-solid fa-inbox"></i> Inbox ({{unread}})</li>

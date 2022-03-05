@@ -4,6 +4,9 @@
     padding: 25px;
     min-height: 70vh;
     background-color: var(--clr-light-gray2);
+    position: relative;
 }
 
-
+.flex{
+    display: flex;
+}

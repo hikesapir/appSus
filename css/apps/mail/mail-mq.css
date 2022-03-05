@@ -1,55 +1,94 @@
-/* mobile only */
-@media (max-width:580px){
-
-}
-    /* small */
-@media (min-width:580px) {
-
-}
-
-/* MEDIUM */
-@media (min-width: 830px){
-
-}
 
 
 /* LARGE */
-@media (min-width:1225px) {
-    .mail-list table{
-        width: 200px;
-        table-layout: auto;
-    }
-    /* .mail-list table  .checkbox-col {
-        width: 5%;
-    }
-    .mail-list table  .star-col {
-        width: 5%;
-    }
-    .mail-list table  .from-col {
-        width: 10%;
+@media (max-width:1140px) {
+
+    .mail-list table  .body-col {
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap; 
+        text-overflow: ellipsis; 
+        width: 20vw;
     }
     .mail-list table  .subject-col {
         display: inline-block;
-        
-        width: 100%;
-    } */
-    .mail-list table  .body-col {
-        display: block;
         overflow: hidden;
-        /* white-space: nowrap;  */
-        text-overflow: ellipsis; 
-        
-        display: inline-block;
-        width: 100%;
-    }
-    /* .mail-list table  .time-col {
-        width: 15%;
-    }
-    .ellipsis{
-        display: inline-block;
         white-space: nowrap; 
-        overflow: hidden;
         text-overflow: ellipsis; 
-        width: 80%;
-    } */
+        width: 25vw;
+    } 
+
+    .search-bar .search{
+        padding: 15px;
+        min-width: 300px;
+    }
+    
+    .search-bar select{
+        margin-right: 30px;
+        padding: 14.3px;
+    }
+}
+
+
+/* MEDIUM */
+@media (max-width: 950px){
+    .mail-app .nav-bar{
+        display: none;
+        position: absolute;
+        top: 92px;
+        background-color: var(--clr-light-gray2);
+        padding: 0 15px 0 0;
+    }
+
+    .mail-app .nav-bar.open{
+        display: block;
+    }
+
+    .search-bar .search{
+        padding: 5px;
+        min-width: 250px;
+    }
+    
+    .search-bar select{
+        margin-right: 30px;
+        padding: 4.3px;
+    }
+    .search-bar i{
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+    .search-bar .fa-solid.fa-magnifying-glass{
+        display: none;
+    }
+ 
+}
+
+   /* small */
+@media (max-width:610px){
+    .mail-list table .body-col {
+        display: none;
+        /* background-color: blue; */
+    }
+} 
+/* mobile only */
+@media (max-width:515px){
+    .mail-list table  .star-col {
+        display: none;
+    }
+    .search-bar .search{
+        min-width: 130px;       
+        font-size: 0.7rem;
+    }
+    
+    .search-bar select{
+        font-size: 0.7rem;
+    }
+
+    .mail-list table  .body-col {
+        width: 96px;
+    }
+    .mail-list table  .subject-col {   
+        width: 92px;
+    } 
+
 }

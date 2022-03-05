@@ -4,8 +4,8 @@ export default {
     name: 'long-text',
     props: ['txt'],
     template: `
-        <p>{{description}} {{readMore}}
-        </p>
+        {{description}} {{readMore}}
+        
      `,
 
     data() {

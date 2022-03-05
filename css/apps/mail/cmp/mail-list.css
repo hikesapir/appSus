@@ -1,129 +1,87 @@
 
-.mail-list table {
-    /* border-collapse: collapse;
-    text-align: left;
-    min-width: 400px;
-    width: 100%; */
-    max-width: 100%; 
-    background-color: aqua;
-
+.mail-list{
+    width: 100%;
+}
+.mail-list hr{
+    margin: 0;
 }
 
-    .mail-list table  .body-col {
-        display: inline-block;
-        /* width: 100%; */
-        /* display: block; */
-        overflow: hidden;
-        white-space: nowrap; 
-        text-overflow: ellipsis; 
-        /* min-width: 200px; */
-    }
-
-    .mail-list table  .time-col {
-        width: 105px;
-    }
-
-/* .mail-list tbody tr{
-    font-size: 0.9rem;
-    border-bottom: 1px solid #dddddd;
-} */
-
-
-
-
-/* original */
-
-/* .mail-list{
-    width: 100%;
-} */
-/* .mail-list hr{
-    margin: 0;
-} */
-
 /* table layout */
-/* .mail-list table {
+
+.mail-list table {
+    min-width: 340px;
     border-collapse: collapse;
     text-align: left;
-    min-width: 400px;
     width: 100%;
-
-} */
-/* .mail-list table  .time-col {
+}
+.mail-list table  .time-col {
     width: 105px;
-} */
-/* .mail-list table  .body-col {
-    background-color: aqua;
-    min-width: 100px;
-    display: block;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-} */
+}
 
-/* .mail-list tbody{
+
+.mail-list tbody{
     cursor: pointer;
-} */
+}
 
-/* .mail-list thead tr{
+.mail-list thead tr{
     background-color: var(--clr-white);
-
     font-weight: bold;
     border-bottom: 1px solid var(--clr-dark);
-} */
+}
 
-/* .mail-list table th{
+.mail-list table th{
     padding: 7px 10px;
-} */
+}
 
-/* .mail-list table td{
-    padding: 3px 10px;
+.mail-list table td{
+    padding: 9px 10px;
     white-space: nowrap; 
-} */
+}
 
-/* .mail-list tbody tr{
+.mail-list tbody tr{
     font-size: 0.9rem;
     border-bottom: 1px solid #dddddd;
-} */
+}
 
-/* .mail-list tbody tr:hover{
+.mail-list tbody tr:hover{
     box-shadow: 0px 10px 13px -7px #000000, 0px 0px 5px 2px rgba(0,0,0,0.43);
     transform: scale(1,1);
-} */
+}
 
 /* actions table */
-/* .mail-list .unread{
+.mail-list .unread{
     font-weight: bold;
     background-color: var(--clr-white);
-} */
+}
 
-/* .mail-list .raed{
+.mail-list .raed{
     font-weight: normal;
     background-color: var(--clr-light-gray2);
-} */
+}
 
 
 /* mail preview */
-/* .mail-list tbody .fa-solid.fa-star{
+.mail-list tbody .fa-solid.fa-star{
     color: rgb(255, 187, 0);
-} */
+}
 
-/* .mail-list .actions i{
+.mail-list .actions i{
     font-size: 1.3rem;
     margin-inline-end: 15px;
-} */
+}
 
-/* .mail-list .star{
+.mail-list .star{
     font-size: 1.3rem;
     text-align: center;
-} */
+}
 
-/* .mail-list .checkbox{
+.mail-list .checkbox{
     text-align: center;
 
-} */
-/* 
+}
+
 .mail-list .checked{
     background-color: lightcyan;
     border: 1px solid blue;
-} */
+}
 

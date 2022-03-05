@@ -60,7 +60,6 @@ export default {
             console.log(this.message);
         }, 5000);
     },
-
     unmounted() {
         clearInterval(this.interval)
     },

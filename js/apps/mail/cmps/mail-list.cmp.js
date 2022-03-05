@@ -9,17 +9,17 @@ export default {
     props: ['mails'],
     template: `
         <section v-if="mails" class="mail-list">
-        <search-bar @filter="filterBy" @sort="sort"/>
+        <search-bar @openNavBar="openNavBar" @filter="filterBy" @sort="sort"/>
         <hr>
             <table>
-                <!-- <colgroup>
-                    <col style="width:5%">
-                    <col style="width:5%">
-                    <col style="width:10%">
-                    <col style="width:10%">
-                    <col style="width:50%">
-                    <col style="width:20%">
-                </colgroup> -->
+                <colgroup>
+                    <col class="checkbox-col" >
+                    <col class="star-col">
+                    <col class="from-col">
+                    <col class="subject-col">
+                    <col class="body-co">
+                    <col class="time-col">
+                </colgroup>
                 <thead class="thead">
                     <tr>
                         <th class="checkbox-col" style="text-align: center;"></th>
@@ -101,7 +101,10 @@ export default {
         },
         check(mail) {
              mailService.save(mail)
-        }
+        },
+        openNavBar(){
+            this.$emit('openNavBar')
+        },
     },
     computed: {
         mailForDisplay() {
