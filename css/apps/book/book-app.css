@@ -16,12 +16,25 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    background-color: #333;
+    background-color: var(--clr-dark);
     color: white;
+    border-radius: 10px;
+}
+
+.review-container a {
+    cursor: pointer;
+    color: var(--clr-pink);
+}
+
+.review-add span {
+    cursor: pointer;
+    float: right;
 }
 
 .review-add form {
     gap: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .review-add form >*:not(textarea) {

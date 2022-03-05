@@ -11,7 +11,7 @@ export default {
                 </div>
             </div>
             
-            <router-link title="Add a new book!" to="/book/add"><i class="fa-solid fa-plus"></i></router-link>
+            <router-link class="add-new-book" title="Add a new book!" to="/book/add">Add New Book</router-link>
         </section>
     `,
     data() {

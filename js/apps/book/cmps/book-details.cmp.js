@@ -15,18 +15,22 @@ export default {
                       <router-link :to="'/book/'+book.nextBookId"><i class="fa-solid fa-arrow-right-long"></i></router-link>
                 </div>
                 <hr>
-            <img class="book-img" :src="book.thumbnail">
+                <div class="img-container">
+                    <img class="book-img" :src="book.thumbnail">
+
+                    <img class="sale" v-if="checkSale" width="40" src="img/sale.png">
+                </div>
             <h1>{{formattedTitle}} | by: {{book.authors[0]}}<span>{{checkBookDate}}</span></h1>
             <h2>{{book.subtitle}}</h2>
             <h3>Categories: <span v-for="category in book.categories">{{category}}</span></h3>
             <p>Page count: {{book.pageCount}} <span>{{checkCount}}</span></p>
             <!-- <long-text :txt="book.description" /> -->
                   <div class="price flex justify-center align-center">
-                         <h1 :class="checkPrice">Price: {{formattedPrice}} </h1> <img class="sale" v-if="checkSale" width="40" src="./images/sale.png">
+                         <h1 :class="checkPrice">Price: {{formattedPrice}} </h1>
                      </div>
             <review-add v-if="addReview" @save="setReview" @close="addReview = !addReview"/>
             <read-reviews v-if="showReviews && book.reviews" :reviews="book.reviews" @remove="removeReview"/>
-            <a @click="showReviews = !showReviews">Show Reviews</a> | <a @click="addReview = !addReview">Add Review</a>
+            <div class="review-container"><a @click="showReviews = !showReviews">Show Reviews</a> | <a @click="addReview = !addReview">Add Review</a></div>
         </div>
         </section>
     `,
