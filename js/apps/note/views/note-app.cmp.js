@@ -36,7 +36,7 @@ export default {
         noteService.query()
             .then(notes => this.notes = notes)
 
-            // console.log(this.$route.params);
+            console.log(this.$route.params);
     },
     methods: {
         removeNote(id) {

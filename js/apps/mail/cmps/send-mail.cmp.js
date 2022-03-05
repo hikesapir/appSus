@@ -6,21 +6,23 @@ export default {
     props: [],
     template: `
         <section class="send-mail">
+        <form @submit.prevent="send" >
             <div class="header">
                 <h1>New Message</h1>
                 <button @click="close">X</button>
             </div>
+           
             <div class="body">
-                    <input v-model=message.to type="email" required placeholder="To">
+                    <input v-model=message.to type="email"  placeholder="To" required>
                     <input v-model=message.subject type="text" placeholder="Subject">
                     <textarea v-model=message.body name="body" id="body" cols="30" rows="14" placeholder="Your message">
                     </textarea>
                 <div class="send-btn-container">
-                    <button class="send" @click="send">send</button>
+                    <button class="send">send</button>
                     <button class="trash" @click="removeMail" title="Trash" ><i class="fa-solid fa-trash-can"></i></button>
+                </form>
                 </div>
             </div>
-
         </section>
     `,
     components: {
@@ -75,7 +77,7 @@ export default {
     methods: {
         send() {
             mailService.sendMail(this.message)
-                .then(mail => this.close())
+                .then(() => this.close())
                 .catch(err => console.log(err))
         },
         close() {

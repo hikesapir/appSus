@@ -1,3 +1,4 @@
+import { eventBus } from '../../../services/eventBus-service.js';
 import { bookService } from '../services/books-service.js';
 
 
@@ -41,6 +42,7 @@ export default {
         saveBook(book) {
             bookService.saveNewBook(book)
             this.$router.push('/book')
+            eventBus.emit('show-msg', 'Book saved')
         }
     },
     

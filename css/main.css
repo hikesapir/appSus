@@ -8,6 +8,8 @@
 @import 'cmp/main-header.css';
 @import 'cmp/homepage.css';
 @import 'cmp/footer.css';
+@import 'cmp/user-msg.css';
+
 
 /* APPS */
 @import 'apps/mail/mail-app.css';

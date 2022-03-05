@@ -28,7 +28,7 @@ const routes = [
         ]
     },
     {
-        path: '/note/:mailCtx?',
+        path: '/note/:from?/:date?/:subject?/:body?',
         component: noteApp
     },
     {
