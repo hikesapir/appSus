@@ -28,7 +28,8 @@ const routes = [
         ]
     },
     {
-        path: '/note/:from?/:date?/:subject?/:body?',
+        // path: '/note/:from?/:date?/:subject?/:body?',
+        path: '/note',
         component: noteApp
     },
     {

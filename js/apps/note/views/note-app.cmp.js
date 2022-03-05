@@ -34,7 +34,6 @@ export default {
         noteService.query()
             .then(notes => this.notes = notes)
 
-            console.log(this.$route.params);
     },
     methods: {
         removeNote(id) {
@@ -74,6 +73,28 @@ export default {
         },
         setFilter(filterBy) {
             this.filterBy = filterBy
+        },
+        saveMailAsNote(mail) {
+            this.mailNote = {
+                type: "note-mail",
+                isPinned: true,
+                info: {
+                    backgroundColor: 'white',
+                    from: mail.from,
+                    subject: mail.subject,
+                    body: mail.body,
+                }
+            }
+            return noteService.mailNote(this.mailNote)
+                .then(mail => {
+                    return noteService.query()
+                        .then(notes => {
+                            this.notes = notes
+                            this.$router.push('/note');
+                            return notes
+                        })
+
+                })
         }
     },
     computed: {
@@ -88,32 +109,17 @@ export default {
             });
 
         },
-        getMailCtx() {
-            
-            if(!this.$route.params) return
-            console.log(this.$route.params)
-             this.mailNote = {
-                    type: "note-mail",
-                    isPinned: true,
-                    info: {
-                        backgroundColor: 'white',
-                        from: this.$route.params.from,
-                        subject: this.$route.params.subject,
-                        body: this.$route.params.subject,
-                        
-                    }
-                }
 
-                return noteService.mailNote(this.mailNote)
-        }
     },
     watch: {
-        mailCtx: {
+        '$route.query': {
             handler() {
-
+                console.log('watching');
+                const mail = this.$route.query;
+                if (Object.keys(mail).length === 0) return
+                this.saveMailAsNote(mail)
             },
-            // immediate: true
-
+            immediate: true
         }
     }
 

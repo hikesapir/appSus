@@ -87,11 +87,12 @@ export default {
             this.mails.forEach(mail => {
                 if (mail.isChecked) {
                     // mail.isChecked = false                   
-                    this.removeMail(mail.id)
-                    // console.log('remove',mail.id);
-                    // mailService.remove(mail.id)
+                    // this.removeMail(mail.id)
+                    console.log('remove',mail.id);
+                    mailService.remove(mail.id)
                 }
             })
+            this.$emit('opened')
         },
         setRead(id) {
             mailService.get(id)
