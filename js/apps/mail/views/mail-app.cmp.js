@@ -46,7 +46,7 @@ export default {
                     this.mails = mails
                     var count = 0
                     this.mails.forEach(mail => {
-                        if (!mail.isRead) count++
+                        if (mail.isInbox && !mail.isRead) count++
                     })
                     this.unread = count;
                 });

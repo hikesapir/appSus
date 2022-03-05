@@ -27,6 +27,8 @@
         margin-right: 30px;
         padding: 14.3px;
     }
+
+
 }
 
 
@@ -61,6 +63,9 @@
         display: none;
     }
 
+    .search-bar .fa-solid.fa-bars{
+        display: block;
+    }
     /* send mail */
  
     .send-mail{

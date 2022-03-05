@@ -30,6 +30,7 @@
 .search-bar i{
     font-size: 2.1875rem;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .search-bar .pink{
@@ -37,10 +38,11 @@
     
 }
 
-.search-bar .fa-solid.fa-bars{
-    /* margin-left: 20px ; */
-}
 
+
+.search-bar .fa-solid.fa-bars{
+    display: none;
+}
 
 
 

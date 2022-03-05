@@ -8,18 +8,17 @@ export default {
     template: `
         <!-- <section class="mail-preview"> -->
             <tr  @mouseover="mouseOver"  @mouseleave="mouseLeve" :class="[openedMail, checked]">
-                <td  class="checkbox-col checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox"></td>  
-                <td v-if="!mail.isStarred" class="star-col star"><i @click="starred" class="fa-regular fa-star"></i></td>
+                <td  class="checkbox-col checkbox"> <input @change="check" v-model="mail.isChecked" type="checkbox" title="Select"></td>  
+                <td v-if="!mail.isStarred" title="Not starred" @click="starred" class="star-col star"><i  class="fa-regular fa-star"></i></td>
                 <td v-if="mail.isStarred" class="star-col star"><i @click="starred" class="fa-solid fa-star"></i></td>
                 <td @click="select" class="from-col"> {{mail.from}} </td>
                 <td @click="select" class="subject-col"> {{mail.subject}} </td>
                 <td @click="select" class="body-col"> <long-text :txt="mail.body"/></td>
-                <!-- <td @click="select" class="body-col"> {{mail.body}}</td> -->
                 <td  v-if="!isHover" class="time-col"> {{sentAt}}</td>
                 <td class="time-col actions" v-if="isHover">
-                    <i @click="removeMail" class="fa-solid fa-trash-can"></i>
-                    <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope"></i>
-                    <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open"></i>
+                    <i @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
+                    <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope" title="Mark as unread"></i>
+                    <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open" title="Mark as read"></i>
                 </td>
             </tr>
         <!-- </section> -->

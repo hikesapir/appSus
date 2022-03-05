@@ -17,7 +17,7 @@ export default {
                     </textarea>
                 <div class="send-btn-container">
                     <button class="send" @click="send">send</button>
-                    <button class="trash" @click="removeMail"><i class="fa-solid fa-trash-can"></i></button>
+                    <button class="trash" @click="removeMail" title="Trash" ><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>
 

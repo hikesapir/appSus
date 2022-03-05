@@ -118,8 +118,8 @@ export default {
             })
             if (this.sortBy === 'date') {
                 mails.sort((a, b) => (a.sentAt - b.sentAt) * this.mult)
-            } else if (this.sortBy === 'subject') {
-                mails.sort((a, b) => (a.subject.toUpperCase() > b.subject.toUpperCase() ? 1 : -1) * this.mult)
+            } else if (this.sortBy === 'from') {
+                mails.sort((a, b) => (a.from.toUpperCase() > b.from.toUpperCase() ? 1 : -1) * this.mult)
             }
             return mails
         }
