@@ -3,6 +3,6 @@
     min-height: 70vh;
 }
 
-.note-app iframe, audio {
+.note-app iframe, audio, canvas {
     width: 100%;
 }
