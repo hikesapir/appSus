@@ -24,18 +24,19 @@ export default {
                     <tr>
                         <th class="checkbox-col" style="text-align: center;"></th>
                         <th class="star-col" style="text-align: center;"></th>
-                        <!-- <th style="text-align: center;">checkbox</th>
-                        <th style="text-align: center;">starred</th> -->
-                        <th class="from-col"><h1>from</h1></th>
-                        <th class="subject-col"><h1>subject</h1></th>
-                        <th class="body-col"><h1>body</h1></th>
-                        <th class="time-col"><h1>sentAt</h1></th>
+                        <th class="from-col"><h1>From</h1></th>
+                        <th class="subject-col"><h1>Subject</h1></th>
+                        <th class="body-col"><h1></h1></th>
+                        <th class="time-col"><h1>
+                        <i v-if="someChecked" @click="removeMails" class="fa-solid fa-trash-can" title="Remove"></i>
+                        </h1></th>
                     </tr>
                 </thead>
                 <tbody>
                      <mail-preview v-for="mail in mailForDisplay" @check="check" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
                 </tbody>
             </table>
+           {{someChecked}}
         </section>
         
     `,
@@ -60,7 +61,6 @@ export default {
             this.filter = filter
             this.inputSearch = inputSearch
             console.log(this.inputSearch);
-
         },
         sort(sortBy, mult) {
             this.sortBy = sortBy;
@@ -83,6 +83,15 @@ export default {
                     this.$emit('opened')
                 })
         },
+        removeMails() {
+            this.mails.forEach(mail => {
+                if (mail.isChecked) {
+                    // mail.isChecked = false                   
+                    console.log('remove',mail.id);
+                    mailService.remove(mail.id)
+                }
+            })
+        },
         setRead(id) {
             mailService.get(id)
                 .then(mail => {
@@ -100,9 +109,9 @@ export default {
                 })
         },
         check(mail) {
-             mailService.save(mail)
+            mailService.save(mail)
         },
-        openNavBar(){
+        openNavBar() {
             this.$emit('openNavBar')
         },
     },
@@ -122,6 +131,9 @@ export default {
                 mails.sort((a, b) => (a.from.toUpperCase() > b.from.toUpperCase() ? 1 : -1) * this.mult)
             }
             return mails
+        },
+        someChecked() {
+            return (this.mails.some(mail => mail.isChecked)) ? true : false
         }
     },
 }

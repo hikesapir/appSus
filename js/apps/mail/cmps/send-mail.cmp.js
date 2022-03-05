@@ -57,10 +57,19 @@ export default {
 
         this.interval = setInterval(() => {
             mailService.save(this.message)
-            console.log(this.message);
+            console.log('save?');
         }, 5000);
     },
     unmounted() {
+        // it will return true for strings containing only whitespace
+        String.prototype.isEmpty = function () {
+            return (this.length === 0 || !this.trim());
+        };
+        console.log(' '.isEmpty());
+        if (this.message.to.isEmpty() || this.message.subject.isEmpty() || this.message.body.isEmpty) {
+            mailService.remove(this.message.id)
+        }
+        // console.log(' '.isEmpty());
         clearInterval(this.interval)
     },
     methods: {
