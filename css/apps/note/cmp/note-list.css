@@ -200,9 +200,7 @@
 
 .note-filter {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-    margin: auto;
+    margin: 40px auto;
     padding-top: 30px !important;
     flex-direction: column;
     gap: 15px;
@@ -222,7 +220,7 @@
     align-self: center;
     border-bottom: 2px solid var(--clr-blue);
     height: 20px;
-    width: 200px
+    width: 100%
 }
 
 .note-filter input[type="text"]::placeholder {

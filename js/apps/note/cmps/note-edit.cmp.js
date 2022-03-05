@@ -53,7 +53,7 @@ export default {
                 const newSrc = `https://www.youtube.com/embed/${id}`;
                 this.note.info.src = newSrc
                 this.note.info.title = this.editedNote.txt
-            } else if (this.note.type === 'note-canvas' || this.note.type === 'note-audio') {
+            } else if (this.note.type === 'note-canvas' || this.note.type === 'note-audio' || this.note.type === 'note-map') {
                 this.note.info.title = this.editedNote.txt
             }
             this.modal = this.openModal()

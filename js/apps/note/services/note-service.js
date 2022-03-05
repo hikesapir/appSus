@@ -14,7 +14,8 @@ export const noteService = {
     saveAllNotes,
     duplicateNote,
     getEvPos,
-    mailNote
+    mailNote,
+    connectGoogleApi
 };
 
 function saveAllNotes(notes) {
@@ -85,6 +86,17 @@ function _createNotes() {
                     title: ""
                 },
             },
+
+            {
+                id: "110",
+                type: "note-map",
+                isPinned: true,
+                info: {
+                    title: 'Coding Academy Offices',
+                    backgroundColor: '#b984ff'
+                }
+            },
+
             {
                 id: "n102",
                 type: "note-todos",
@@ -186,7 +198,6 @@ function _createNotes() {
 
             },
 
-
         ];
     }
     utilService.saveToStorage(NOTES_KEY, notes);
@@ -264,6 +275,19 @@ function getEvPos(ev) {
 };
 
 
+function connectGoogleApi() {
+    const API_KEY = "AIzaSyCA9etZf8SnsRatEQMlaktafVWQPYz52lc"; 
+    if (window.google) return Promise.resolve();
+    var elGoogleApi = document.createElement("script");
+    elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`;
+    elGoogleApi.async = true;
+    document.body.append(elGoogleApi);
+  
+    return new Promise((resolve, reject) => {
+      elGoogleApi.onload = resolve;
+      elGoogleApi.onerror = () => reject("Google script failed to load");
+    });
+  }
 
 
 
