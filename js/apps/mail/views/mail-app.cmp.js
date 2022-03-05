@@ -26,7 +26,6 @@ export default {
             unread: null,
             openCompose: false,
             filter: 'inbox',
-            // sentMails: null,
             isNavBarOpen: false,
         }
     },

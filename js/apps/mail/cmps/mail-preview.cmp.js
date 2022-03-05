@@ -19,7 +19,9 @@ export default {
                     <i @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope" title="Mark as unread"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open" title="Mark as read"></i>
-                   <router-link :to="qureyParms"> <i @click="saveAsNote" class="fa-solid fa-paper-plane" title="Mark as read"></i></router-link>
+                    <router-link :to="{ path: '/note', query: { from:mail.from,date:mail.sentAt ,subject:mail.subject, body:mail.body}}">
+                        <i @click="saveAsNote" class="fa-solid fa-paper-plane" title="Mark as read"></i>
+                    </router-link>
                 </td>
             </tr>
         <!-- </section> -->
@@ -31,7 +33,6 @@ export default {
         return {
             isHover: false,
             isStarred: false,
-            // isChecked: false,
         }
     },
     created() {
@@ -88,11 +89,6 @@ export default {
         },
         qureyParms() {
             return `/note/${this.mail.from}/${this.mail.sentAt}/${this.mail.subject}/${this.mail.body}`
-            // return {
-            //   `?subject= ${this.mail.subject}`  
-            //     txt: this.mail.body,
-            //     form: this.mail.from
-            // }
         }
     }
 }

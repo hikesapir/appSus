@@ -30,7 +30,8 @@ export default {
     },
     created() {
         noteService.query()
-            .then(notes => this.notes = notes);
+            .then(notes => this.notes = notes)
+
     },
     methods: {
         removeNote(id) {
@@ -69,24 +70,44 @@ export default {
                 });
         },
         setFilter(filterBy) {
-            this.filterBy = filterBy;
+            this.filterBy = filterBy
         },
-        getMailCtx() {
-            if (!this.$route.params) return;
-                var mailNote = {
-                    type: "note-mail",
-                    isPinned: true,
-                    info: {
-                        backgroundColor: 'white',
-                        from: this.$route.params.from,
-                        subject: this.$route.params.subject,
-                        body: this.$route.params.body,
-                        date: +this.$route.params.date
-                    }
+        saveMailAsNote(mail) {
+            this.mailNote = {
+                type: "note-mail",
+                isPinned: true,
+                info: {
+                    backgroundColor: 'white',
+                    from: mail.from,
+                    subject: mail.subject,
+                    body: mail.body,
                 }
-                noteService.mailNote(mailNote);
-                // this.$router.push('/note')     
+            }
+            return noteService.mailNote(this.mailNote)
+                .then(mail => {
+                    return noteService.query()
+                        .then(notes => {
+                            this.notes = notes
+                            this.$router.push('/note');
+                            return notes
+                        })
+
+                })
         }
+    },
+    computed: {
+        notesToShow() {
+            if (!this.notes) return
+            const regex = new RegExp(this.filterBy.byTitle, 'i');
+            if (!this.filterBy.byType) return this.notes.filter(note => regex.test(note.info.title || note.info.label || note.info.txt))
+
+            return this.notes.filter(note => {
+                return regex.test(note.info.title || note.info.label || note.info.txt) &&
+                    note.type === this.filterBy.byType
+            });
+
+        },
+
     },
     computed: {
         notesToShow() {
@@ -103,12 +124,14 @@ export default {
 
     },
     watch: {
-        mailCtx: {
+        '$route.query': {
             handler() {
-
+                console.log('watching');
+                const mail = this.$route.query;
+                if (Object.keys(mail).length === 0) return
+                this.saveMailAsNote(mail)
             },
-            // immediate: true
-
+            immediate: true
         }
     }
 
