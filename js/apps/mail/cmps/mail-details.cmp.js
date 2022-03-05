@@ -10,7 +10,7 @@ export default {
         <div class="actions">
                 <button @click="backToMails" title="Back"><i class="fa-solid fa-arrow-left-long"></i></button>
             <div class="nav-page">
-                <button v-if="!mail.isTrashed" @click="removeMail" title="Remove"><i class="fa-solid fa-trash-can"></i></button> 
+                <button  @click="removeMail" title="Remove"><i class="fa-solid fa-trash-can"></i></button> 
                 <button v-if="mail.isTrashed" @click="restoreMail" title="Restore"><i class="fa-solid fa-trash-can-arrow-up"></i></button> 
                 <button v-if="mail.isRead" title="Mark as unread" @click="setRead"><i class="fa-solid fa-envelope"></i></button> 
                 <button  v-if="!mail.isStarred" title="Not starred" @click="setStarred" class="star"><i class="fa-regular fa-star"></i></button>
