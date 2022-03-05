@@ -26,7 +26,7 @@ export default {
                         <th class="star-col" style="text-align: center;"></th>
                         <th class="from-col"><h1>From</h1></th>
                         <th class="subject-col"><h1>Subject</h1></th>
-                        <th class="body-col"><h1></h1></th>
+                        <th class="body-col"><h1>Message</h1></th>
                         <th class="time-col"><h1>
                         <i v-if="someChecked" @click="removeMails" class="fa-solid fa-trash-can" title="Remove"></i>
                         </h1></th>
@@ -87,8 +87,9 @@ export default {
             this.mails.forEach(mail => {
                 if (mail.isChecked) {
                     // mail.isChecked = false                   
-                    console.log('remove',mail.id);
-                    mailService.remove(mail.id)
+                    this.removeMail(mail.id)
+                    // console.log('remove',mail.id);
+                    // mailService.remove(mail.id)
                 }
             })
         },

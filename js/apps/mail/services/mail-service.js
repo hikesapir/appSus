@@ -15,7 +15,6 @@ export const mailService = {
     getEmptyMail,
     sendMail,
     createDraft,
-    // querySentMails,
 };
 
 const loggedinUser = {
@@ -27,9 +26,6 @@ function query() {
     return storageService.query(MAILS_KEY);
 }
 
-// function querySentMails(){
-//     return storageService.query(SENT_MAILS_KEY);
-// }
 
 function remove(mailId) {
     return get(mailId)
@@ -37,16 +33,17 @@ function remove(mailId) {
             if (mail.isTrashed) {
                 return storageService.remove(MAILS_KEY, mailId);
             }
-            console.log('not chack enymore', mail.id);
             mail.isChecked = false
+            console.log('not check enymore', mail.id, mail.isChecked);
             mail.isTrashed = true
-                ;
             return save(mail)
                 .then(mail => {
-                    console.log('is saved', mail.id)
+                    console.log('is saved', mail)
                     return mail
                 })
         })
+
+
 }
 
 function get(mailId) {
@@ -97,7 +94,7 @@ function getEmptyMail(subject = '', body = '', sentAt = '', from = '', to = '', 
         isStarred: false,
         isTrashed: false,
         isDraft,
-        isChacked: false
+        isChecked: false
     };
 }
 
