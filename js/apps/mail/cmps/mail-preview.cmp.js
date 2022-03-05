@@ -19,7 +19,7 @@ export default {
                     <i @click="removeMail" class="fa-solid fa-trash-can" title="Remove"></i>
                     <i v-if="!mail.isRead" @click="setRead" class="fa-solid fa-envelope" title="Mark as unread"></i>
                     <i v-if="mail.isRead" @click="setRead" class="fa-solid fa-envelope-open" title="Mark as read"></i>
-                   <router-link :to="'/note/?subject='+ qureyParms"> <i @click="saveAsNote" class="fa-solid fa-paper-plane" title="Mark as read"></i></router-link>
+                   <router-link :to="'/note/'+ this.mail.subject"> <i @click="saveAsNote" class="fa-solid fa-paper-plane" title="Mark as read"></i></router-link>
                 </td>
             </tr>
         <!-- </section> -->
@@ -61,7 +61,7 @@ export default {
             this.$emit('check', this.mail)
             console.log('its checked', this.mail.isChecked);
         },
-        saveAsNote(){
+        saveAsNote() {
             // return this.$route.to( {name: ''}
         }
     },
@@ -82,16 +82,17 @@ export default {
         openedMail() {
             return (this.mail.isRead) ? 'raed' : 'unread'
         },
-        checked(){
+        checked() {
             return (this.mail.isChecked) ? 'checked' : ''
 
         },
-        qureyParms(){
-            return {
-                title: this.mail.subject,
-                txt: this.mail.body,
-                form: this.mail.from
-            }
+        qureyParms() {
+            return `?subject= ${this.mail.subject}`
+            // return {
+            //   `?subject= ${this.mail.subject}`  
+            //     txt: this.mail.body,
+            //     form: this.mail.from
+            // }
         }
     }
 }

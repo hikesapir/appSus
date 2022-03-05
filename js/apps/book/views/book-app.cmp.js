@@ -5,7 +5,6 @@ import bookList from '../cmps/book-list.cmp.js';
 export default {
     template: `
         <section class="book-app">
-            <router-link to="/book/add">Add a new book!</router-link>
             <book-filter @clear="onClear"  @filtered="setFilter" />
             <book-list  :books="booksToShow" />
         </section>

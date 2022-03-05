@@ -1,0 +1,44 @@
+/* .book-filter input[type="number"] {
+    width: 60px
+} */
+
+.book-filter{
+    
+    justify-content: space-around;
+    /* flex-direction: column; */
+}
+
+.book-filter .set-filter{
+    width: 500px;
+}
+
+.book-filter .fa-solid.fa-plus{
+    color: var(--clr-purple3);
+
+    font-size: 2rem;
+}
+
+.book-filter .btn-container{
+margin-top: 10px;
+text-align: right;
+}
+
+.book-filter .btn-container button{
+    border: none;
+    padding: 5px;
+    font-size: 0.9rem;
+    margin-left: 5px ;
+    border-radius: 6px;
+    background-color: var(--clr-purple3);
+    color: var(--clr-white);
+}
+
+.book-filter .search{
+    background-color: var(--clr-white);
+    padding: 5px;
+    border: none;
+    border-radius: 9px ;
+    outline: none;
+    min-width: 200px;
+    font-size: 1.1rem;
+}

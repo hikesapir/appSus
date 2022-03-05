@@ -25,3 +25,4 @@
 
 @import 'apps/book/book-app.css';
 @import 'apps/book/book-list.css';
+@import 'apps/book/cmp/book-filter.css';

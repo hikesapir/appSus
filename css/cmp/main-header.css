@@ -25,8 +25,9 @@
 
 
 @media (max-width: 580px) {
+    
     .router-nav {
-        display: flex;
+        display: none;
         position: absolute;
         flex-direction: column;
         right: 0;
@@ -38,7 +39,11 @@
         justify-content: space-around;
         background-color: var(--clr-light-gray2);
     }
-
+    
+    .app-header .router-nav.open{
+        display: flex;
+    }
+    
     .nav-button {
         display: block; 
     }
