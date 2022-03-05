@@ -27,9 +27,7 @@ export default {
                 byType: ''
             },
             openEdit: false,
-            mailNote:{
-                
-            }
+            mailNote: null
         };
     },
     created() {
@@ -91,7 +89,21 @@ export default {
 
         },
         getMailCtx() {
-            return this.$route.params.mailCtx
+            
+            if(!this.$route.params.mailCtx) return
+
+             this.mailNote = {
+                    type: "note-mail",
+                    isPinned: true,
+                    info: {
+                        backgroundColor: 'white',
+                        from:,
+                        subject: this.$route.params.mailCtx,
+                        body:,
+                    }
+                }
+
+                return noteService.mailNote(this.mailNote)
         }
     },
     watch: {
