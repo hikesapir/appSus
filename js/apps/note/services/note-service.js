@@ -13,7 +13,7 @@ export const noteService = {
     newNote,
     saveAllNotes,
     duplicateNote,
-    getEvPos
+    getEvPos,
 };
 
 function saveAllNotes(notes) {
@@ -256,3 +256,9 @@ function getEvPos(ev) {
     };
     return pos;
 };
+
+
+
+
+
+
