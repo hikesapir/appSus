@@ -5,6 +5,7 @@ import noteVideo from '../cmps/note-video.cmp.js';
 import noteAudio from '../cmps/note-audio.cmp.js';
 import noteCanvas from '../cmps/note-canvas.cmp.js';
 import { noteService } from "../services/note-service.js";
+import { utilService } from '../../../services/util-service.js';
 
 import noteEdit from '../../note/cmps/note-edit.cmp.js';
 
@@ -18,9 +19,11 @@ export default {
                 :style="{ backgroundColor: note.info.backgroundColor }"
                  v-for="note in notes"
                  :key="note.id"
+                 :id = "note.id"
                  draggable="true"
+                 ref="dcomponent"
                  @dragstart="startDrag($event, note)"
-                 @drop="onDrop($event, notes)"
+                 @drop="onDrop($event, note)"
                  @dragenter.prevent
                  @dragover.prevent>
 
@@ -61,31 +64,63 @@ export default {
         noteAudio,
         noteEdit,
         noteCanvas,
-        noteService
+        noteService,
+        utilService
     },
     data() {
         return {
             openEdit: false,
             currNote: null,
-            onColor: false
+            onColor: false,
+            elem: null,
+            currDiv: null
         };
     },
     mounted() {
     },
     methods: {
-
+        
         startDrag(ev, note){
-            console.log(note)
+            this.currDiv = this.$refs.dcomponent.find(div => div.id === note.id)
+            
             ev.dataTransfer.dragEffect = 'true'
-            ev.dataTransfer.effectAllowed = 'move'
-            ev.dataTransfer.setData('noteId', note.id)
+            ev.dataTransfer.effectAllowed = 'move';
+            ev.dataTransfer.setData('note', this.currDiv);
+            // this.elem = ev.target
+            
         },
 
 
-        onDrop (ev, notes) {
-            console.log(ev, notes)
-            const noteId = ev.dataTransfer.getData('noteId')
-            notes.findIndex((note) => note.id === noteId)
+        onDrop (ev) {
+
+           const from = this.notes.find(note => this.currDiv.id === note.id)
+           const toIdx = this.notes.findIndex(note => ev.toElement.id === note.id)
+            const fromIdx = this.notes.findIndex(note => this.currDiv.id === note.id)
+            console.log(from)
+            if(toIdx < 0|| fromIdx < 0) return 
+            else {
+
+                // noteService.saveAllNotes(this.notes)
+                // .then(notes => console.log(notes))
+                noteService.query()
+                .then(notes => {
+                    notes.splice(toIdx, 0, from)
+                    notes.splice(fromIdx, 1)
+                    noteService.saveAllNotes(notes)
+                    this.notes = notes
+                })   
+                // utilService.saveToStorage(noteService.NOTES_KEY, this.notes)
+                // noteService.query()
+                // .then(notes => {this.notes = notes
+                    
+      
+
+
+
+                //     })
+               console.log('hi')
+                ev.dataTransfer.getData('note');
+            }
         },
 
         setNote(text) {
