@@ -33,10 +33,9 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                     <mail-preview v-for="mail in mailForDisplay" @check="check" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
+                     <mail-preview v-for="mail in mailForDisplay" @restore="restore" @check="check" @starred="setStarred" @remove="removeMail" @setRead="setRead"  @select="seeDetails" :key="mail.id" :mail="mail" />
                 </tbody>
             </table>
-           {{someChecked}}
         </section>
         
     `,
@@ -60,7 +59,6 @@ export default {
         filterBy(filter, inputSearch) {
             this.filter = filter
             this.inputSearch = inputSearch
-            console.log(this.inputSearch);
         },
         sort(sortBy, mult) {
             this.sortBy = sortBy;
@@ -69,37 +67,39 @@ export default {
         seeDetails(id) {
             mailService.get(id)
                 .then(mail => {
+                    if (mail.isDraft) {
+                        this.$emit('darft',mail)
+                        return mail
+                    }
                     mail.isRead = true
                     mailService.save(mail)
                         .then(() => {
                             this.$router.push(`/mail/${id}`)
-                            this.$emit('opened')
+                            this.$emit('recount')
                         })
                 })
         },
         removeMail(id) {
             mailService.remove(id)
                 .then(() => {
-                    this.$emit('opened')
+                    this.$emit('recount')
                 })
         },
         removeMails() {
             this.mails.forEach(mail => {
                 if (mail.isChecked) {
-                    // mail.isChecked = false                   
-                    // this.removeMail(mail.id)
-                    console.log('remove',mail.id);
+                    console.log('remove', mail.id);
                     mailService.remove(mail.id)
                 }
             })
-            this.$emit('opened')
+            this.$emit('recount')
         },
         setRead(id) {
             mailService.get(id)
                 .then(mail => {
                     mail.isRead = !mail.isRead
                     mailService.save(mail)
-                        .then(() => this.$emit('opened'))
+                        .then(() => this.$emit('recount'))
                 })
         },
         setStarred(id) {
@@ -107,7 +107,7 @@ export default {
                 .then(mail => {
                     mail.isStarred = !mail.isStarred
                     mailService.save(mail)
-                        .then(() => this.$emit('opened'))
+                        .then(() => this.$emit('recount'))
                 })
         },
         check(mail) {
@@ -116,6 +116,11 @@ export default {
         openNavBar() {
             this.$emit('openNavBar')
         },
+        restore(mail) {
+            mail.isTrashed = false
+            mailService.save(mail)
+                .then(() => this.$emit('recount'))
+        }
     },
     computed: {
         mailForDisplay() {

@@ -7,13 +7,12 @@ export default {
     props: ['mails'],
     template: `
     <section v-if="mail && mails" class="mail-details">
-        <!-- {{mails}} -->
         <div class="actions">
                 <button @click="backToMails" title="Back"><i class="fa-solid fa-arrow-left-long"></i></button>
             <div class="nav-page">
-                <button @click="removeMail" title="Remove"><i class="fa-solid fa-trash-can"></i></button> 
+                <button v-if="!mail.isTrashed" @click="removeMail" title="Remove"><i class="fa-solid fa-trash-can"></i></button> 
+                <button v-if="mail.isTrashed" @click="restoreMail" title="Restore"><i class="fa-solid fa-trash-can-arrow-up"></i></button> 
                 <button v-if="mail.isRead" title="Mark as unread" @click="setRead"><i class="fa-solid fa-envelope"></i></button> 
-                <!-- <button v-if="!mail.isRead" title="Mark as unread" @click="setRead"><i  class="fa-solid fa-envelope-open"></i></button>  -->
                 <button  v-if="!mail.isStarred" title="Not starred" @click="setStarred" class="star"><i class="fa-regular fa-star"></i></button>
                 <button v-if="mail.isStarred" title="Starred" @click="setStarred" class="star"><i class="fa-solid fa-star"></i></button>
                 <router-link :to="'/mail/'+mail.prevMailId"><button title="Previous"> <i class="fa-solid fa-chevron-left"></i></button> </router-link>
@@ -48,9 +47,7 @@ export default {
         }
     },
     created() {
-        // console.log(this.mails);
-        // console.log(this.mail);
-        // this.loadMail()
+
     },
 
     methods: {
@@ -73,7 +70,15 @@ export default {
         removeMail() {
             mailService.remove(this.mail.id)
                 .then(() => {
-                    this.$emit('opened')
+                    this.$emit('recount')
+                    this.$router.push(`/mail/list`)
+                })
+        },
+        restoreMail() {
+            this.mail.isTrashed = false
+            mailService.save(this.mail)
+                .then(() => {
+                    this.$emit('recount')
                     this.$router.push(`/mail/list`)
                 })
         },
@@ -83,7 +88,7 @@ export default {
                     mail.isRead = !mail.isRead
                     mailService.save(mail)
                         .then(() => {
-                            this.$emit('opened')
+                            this.$emit('recount')
                             this.$router.push(`/mail/list`)
                         })
                 })
@@ -94,7 +99,7 @@ export default {
                 .then(mail => {
                     mail.isStarred = !mail.isStarred
                     mailService.save(mail)
-                        .then(() => this.$emit('opened'))
+                        .then(() => this.$emit('recount'))
                 })
         },
 
