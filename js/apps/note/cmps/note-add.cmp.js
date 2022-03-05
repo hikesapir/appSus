@@ -1,7 +1,7 @@
 export default {
     template: `
         <section class="note-add">
-        <form @submit.prevent="addNote">
+        <form @submit.prevent="addNote" @key.enter>
 
                 <div class="input-container">
                     <transition name="fade">

@@ -14,16 +14,25 @@ export default {
     template: `
         <section class="note-list">
             <div class="note-container">
-                <!-- <transition name="fade" mode="out-in"> -->
-                <div class="current-note" :style="{ backgroundColor: note.info.backgroundColor }" v-for="note in notes">
+                <div class="current-note" 
+                :style="{ backgroundColor: note.info.backgroundColor }"
+                 v-for="note in notes"
+                 :key="note.id"
+                 draggable="true"
+                 @dragstart="startDrag($event, note)"
+                 @drop="onDrop($event, notes)"
+                 @dragenter.prevent
+                 @dragover.prevent>
+
+
                     <span :style="{ opacity: note.isPinned ? 1 : 0 }" class="pin"><i class="fa-solid fa-thumbtack"></i></span>
+
                     <component  id="component"
                     :is="note.type"
                     :info="note.info" 
                     @setTxt="setNote"
                     @canvas="saveCanvas($event, note)"
-                    @done="doneAt($event, note)"
-                    />
+                    @done="doneAt($event, note)"/>
                     
                     <ul class="actions">
                         <li @click="remove(note.id)"><i class="fa-solid fa-trash-can"></i></li>
@@ -41,7 +50,6 @@ export default {
                     </ul>
                 </div>
             </div>
-        <!-- </transition> -->
             <note-edit :note="currNote" v-if="openEdit" @done="doneAt" @close="closeModal"/>
         </section>
     `,
@@ -62,7 +70,24 @@ export default {
             onColor: false
         };
     },
+    mounted() {
+    },
     methods: {
+
+        startDrag(ev, note){
+            console.log(note)
+            ev.dataTransfer.dragEffect = 'true'
+            ev.dataTransfer.effectAllowed = 'move'
+            ev.dataTransfer.setData('noteId', note.id)
+        },
+
+
+        onDrop (ev, notes) {
+            console.log(ev, notes)
+            const noteId = ev.dataTransfer.getData('noteId')
+            notes.findIndex((note) => note.id === noteId)
+        },
+
         setNote(text) {
             console.log(text);
         },
