@@ -3,6 +3,7 @@ import noteImg from '../cmps/note-img.cmp.js';
 import noteTodos from '../cmps/note-todos.cmp.js';
 import noteVideo from '../cmps/note-video.cmp.js';
 import noteAudio from '../cmps/note-audio.cmp.js';
+import noteCanvas from '../cmps/note-canvas.cmp.js';
 import { noteService } from "../services/note-service.js";
 
 import noteEdit from '../../note/cmps/note-edit.cmp.js';
@@ -20,6 +21,7 @@ export default {
                     :is="note.type"
                     :info="note.info" 
                     @setTxt="setNote"
+                    @canvas="saveCanvas($event, note)"
                     @done="doneAt($event, note)"
                     />
                     
@@ -49,6 +51,7 @@ export default {
         noteVideo,
         noteAudio,
         noteEdit,
+        noteCanvas,
         noteService
     },
     data() {
@@ -94,6 +97,10 @@ export default {
         },
         copy(note) {
             this.$emit('copy', note)
+        },
+        saveCanvas(canvas, note) {
+            note.info.canvas = canvas        
+            noteService.save(note)
         }
 
     },
