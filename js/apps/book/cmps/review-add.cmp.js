@@ -1,7 +1,7 @@
 export default {
     template: `
         <section class="review-add">
-            <button @click="close">X</button>
+            <span @click="close"><i class="fa-solid fa-x"></i></span>
             <h1> Add new review! </h1>
         <form class="flex column" @submit.prevent="save">
             <label>Full Name</label>

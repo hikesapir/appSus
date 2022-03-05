@@ -76,19 +76,17 @@ export default {
             currDiv: null
         };
     },
-    mounted() {
-    },
     methods: {
         
-        // startDrag(ev, note){
-        //     this.currDiv = this.$refs.dcomponent.find(div => div.id === note.id)
+        startDrag(ev, note){
+            this.currDiv = this.$refs.dcomponent.find(div => div.id === note.id)
             
-        //     ev.dataTransfer.dragEffect = 'true'
-        //     ev.dataTransfer.effectAllowed = 'move';
-        //     ev.dataTransfer.setData('note', this.currDiv);
-        //     // this.elem = ev.target
+            ev.dataTransfer.dragEffect = 'true'
+            ev.dataTransfer.effectAllowed = 'move';
+            ev.dataTransfer.setData('note', this.currDiv);
+            // this.elem = ev.target
             
-        // },
+        },
 
 
         // onDrop (ev) {

@@ -95,6 +95,15 @@
     border-radius: 3px; 
 }
 
+.book-details .book-details-container .img-container {
+    position: relative;
+}
+
+.book-details .book-details-container .sale {
+    position: absolute;
+    width: 200px;
+    left: 0;
+}
 
 .book-details .book-details-paging {
     display: flex;
@@ -126,8 +135,30 @@
     margin: 10px;
 }
 
+.book-filter .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+} 
+
 .book-add {
     min-height: 70vh
+}
+
+.add-new-book {
+    font-size: 30px;
+    text-align: center;
+    color: var(--clr-purple3);
+}
+
+@media (max-width: 600px) {
+    .add-new-book {
+        font-size: 20px;
+    }
+}
+
+.btn-container button {
+    cursor: pointer;
 }
 
 .book-add .add-container {
@@ -193,3 +224,4 @@
     cursor: pointer;
     color: var(--clr-pink);
 }
+
