@@ -60,7 +60,15 @@
     .search-bar .fa-solid.fa-magnifying-glass{
         display: none;
     }
+
+    /* send mail */
  
+    .send-mail{
+        right: 0;
+        width: 100vw;
+        min-height: 50vh;
+    }
+
 }
 
    /* small */

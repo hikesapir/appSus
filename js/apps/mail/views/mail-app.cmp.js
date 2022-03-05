@@ -7,7 +7,7 @@ import sendMail from "../cmps/send-mail.cmp.js";
 export default {
     name: 'mail-app',
     template: `
-        <section class="mail-app">
+        <section class="mail-app main-screen">
             <nav-bar :open="opennav" @selected="moveTo" :unread="unread"></nav-bar>
                <router-view :mails="mailsForDisplay" @openNavBar="openNavBar" @opened="recount"></router-view>
                <!-- <keep-alive> -->
@@ -76,7 +76,7 @@ export default {
         },
         opennav() {
             console.log(this.isNavBarOpen);
-            return (this.isNavBarOpen) ? 'open' : ''
+            return (this.isNavBarOpen) ? 'open ' : ''
         }
 
     },
