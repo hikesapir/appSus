@@ -90,16 +90,17 @@ export default {
         },
         getMailCtx() {
             
-            if(!this.$route.params.mailCtx) return
-
+            if(!this.$route.params) return
+            console.log(this.$route.params)
              this.mailNote = {
                     type: "note-mail",
                     isPinned: true,
                     info: {
                         backgroundColor: 'white',
-                        from:,
-                        subject: this.$route.params.mailCtx,
-                        body:,
+                        from: this.$route.params.from,
+                        subject: this.$route.params.subject,
+                        body: this.$route.params.subject,
+                        
                     }
                 }
 
